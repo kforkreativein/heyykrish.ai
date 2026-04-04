@@ -1,17 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { Download } from "lucide-react";
 import BottomCTA from "@/components/BottomCTA";
-
-const stats = [
-  { label: "Followers", value: "150K+" },
-  { label: "Monthly Impressions", value: "5M+" },
-  { label: "Audience Age", value: "18-34" },
-];
+import OSCard from "@/components/OSCard";
 
 const pastPartners = [
   "AI Tool Co",
-  "CreatorStack",
+  "CreatorStack", 
   "AutomatePro",
   "ContentAI",
   "EditMagic",
@@ -20,103 +16,66 @@ const pastPartners = [
 
 export default function BrandPartnershipsPage() {
   return (
-    <div className="min-h-screen bg-zinc-950 pt-8 lg:pt-16 pb-16 px-4 lg:px-8 relative overflow-hidden">
+    <div className="min-h-screen bg-[#0a0a0a] pt-8 lg:pt-16 pb-16 px-4 lg:px-8 relative overflow-hidden">
       {/* Ambient Background Glow */}
-      <div className="absolute top-[-10%] left-[20%] w-[500px] h-[500px] bg-orange-500/15 rounded-full blur-[120px] -z-10 pointer-events-none" />
+      <div className="absolute top-[-10%] left-[20%] w-[500px] h-[500px] bg-[#CC785C]/10 rounded-full blur-[120px] -z-10 pointer-events-none" />
       
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         {/* Page Header */}
         <div className="mb-12">
-          <h1 className="text-3xl lg:text-4xl font-bold text-zinc-50 mb-3 tracking-tight">
-            Work With Me
+          <div className="font-mono text-xs tracking-widest text-[#CC785C] mb-4 uppercase">
+            Heyykrish.AI // Partnership
+          </div>
+          <h1 className="font-heading text-5xl font-bold text-white mb-4 tracking-tight">
+            Partner With HeyyKrish
           </h1>
-          <p className="text-lg text-zinc-400">
-            Partner with heyykrish to reach a highly engaged audience of AI
-            enthusiasts and creators.
+          <p className="text-lg text-zinc-400 max-w-3xl">
+            Put your tool in front of 150,000+ creators and founders who actually take action. I partner with brands to build authentic, workflow-driven content that drives conversions, not just vanity metrics.
           </p>
         </div>
 
-        {/* Stats Section */}
-        <div className="grid grid-cols-3 gap-4 mb-12">
-          {stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 text-center"
-            >
-              <p className="text-2xl lg:text-3xl font-bold text-[#E17F62] mb-1">
-                {stat.value}
-              </p>
-              <p className="text-sm text-zinc-400">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Audience Info */}
+        {/* Media Kit CTA */}
         <div className="mb-12">
-          <h2 className="text-xl font-semibold text-zinc-50 mb-4">
-            Audience Demographics
-          </h2>
-          <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6">
-            <div className="grid grid-cols-2 gap-6">
-              <div>
-                <p className="text-sm text-zinc-500 mb-1">Primary Platforms</p>
-                <p className="font-medium text-zinc-50">
-                  Instagram, TikTok, YouTube
-                </p>
-              </div>
-              <div>
-                <p className="text-sm text-zinc-500 mb-1">Top Interests</p>
-                <p className="font-medium text-zinc-50">
-                  AI Tools, Productivity, Content Creation
-                </p>
-              </div>
-              <div>
-                <p className="text-sm text-zinc-500 mb-1">Location</p>
-                <p className="font-medium text-zinc-50">
-                  US, UK, Canada, India
-                </p>
-              </div>
-              <div>
-                <p className="text-sm text-zinc-500 mb-1">Engagement Rate</p>
-                <p className="font-medium text-zinc-50">8.5% average</p>
-              </div>
-            </div>
-          </div>
+          <Link 
+            href="/media-kit"
+            className="inline-flex items-center gap-3 px-8 py-4 text-base font-bold text-black bg-gradient-to-b from-[#CC785C] to-[#b8674a] rounded-full hover:shadow-[0_0_20px_rgba(204,120,92,0.4)] transition-all duration-300 shadow-[0_0_15px_rgba(204,120,92,0.3)] hover:scale-105"
+          >
+            <Download size={20} />
+            View Media Kit
+          </Link>
         </div>
 
         {/* Past Partners */}
         <div className="mb-12">
-          <h2 className="text-xl font-semibold text-zinc-50 mb-4">
+          <h2 className="font-heading text-2xl font-semibold text-white mb-6">
             Past Partners
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
             {pastPartners.map((partner) => (
-              <div
+              <OSCard
                 key={partner}
-                className="h-20 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center"
+                className="h-32 flex items-center justify-center group hover:border-[#CC785C]/20 transition-all duration-300"
               >
-                <span className="text-sm font-medium text-zinc-500">
-                  {partner}
-                </span>
-              </div>
+                <div className="text-center">
+                  {/* Logo Placeholder */}
+                  <div className="w-12 h-12 mx-auto mb-3 bg-[#CC785C]/10 rounded-full flex items-center justify-center group-hover:bg-[#CC785C]/20 transition-all duration-300">
+                    <span className="text-[#CC785C] font-mono text-lg font-bold">
+                      {partner.split(' ').map(word => word[0]).join('')}
+                    </span>
+                  </div>
+                  <span className="font-mono text-sm font-medium text-zinc-400 group-hover:text-zinc-300 transition-colors">
+                    {partner}
+                  </span>
+                </div>
+              </OSCard>
             ))}
           </div>
         </div>
 
-        {/* Media Kit Download */}
-        <div className="mb-12">
-          <a
-            href="#"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-zinc-800 border border-zinc-700 text-zinc-50 font-medium rounded-xl hover:bg-zinc-700 transition-all duration-300 hover:shadow-[0_0_15px_rgba(225,127,98,0.2)]"
-          >
-            <Download className="w-5 h-5" />
-            Download Full Media Kit
-          </a>
-        </div>
 
         {/* Contact Form */}
-        <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 lg:p-8">
-          <h2 className="text-xl font-semibold text-zinc-50 mb-6">
+        <OSCard>
+          <h2 className="font-heading text-2xl font-semibold text-white mb-6">
             Get in Touch
           </h2>
           <form
@@ -126,7 +85,7 @@ export default function BrandPartnershipsPage() {
             <div>
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-zinc-300 mb-1.5"
+                className="block font-mono text-xs font-medium text-zinc-400 mb-2 uppercase tracking-wider"
               >
                 Your Name
               </label>
@@ -134,13 +93,13 @@ export default function BrandPartnershipsPage() {
                 type="text"
                 id="name"
                 placeholder="John Doe"
-                className="w-full px-4 py-3 text-sm bg-zinc-800 border border-zinc-700 rounded-xl text-zinc-50 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-[#E17F62] focus:border-transparent transition-all"
+                className="w-full px-5 py-3 text-sm bg-[#0a0a0a] border border-white/10 rounded-full text-zinc-50 placeholder:text-zinc-600 focus:outline-none focus:border-[#CC785C] focus:shadow-[0_0_20px_rgba(204,120,92,0.2)] transition-all"
               />
             </div>
             <div>
               <label
                 htmlFor="brand"
-                className="block text-sm font-medium text-zinc-300 mb-1.5"
+                className="block font-mono text-xs font-medium text-zinc-400 mb-2 uppercase tracking-wider"
               >
                 Brand / Company
               </label>
@@ -148,13 +107,13 @@ export default function BrandPartnershipsPage() {
                 type="text"
                 id="brand"
                 placeholder="Your Company"
-                className="w-full px-4 py-3 text-sm bg-zinc-800 border border-zinc-700 rounded-xl text-zinc-50 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-[#E17F62] focus:border-transparent transition-all"
+                className="w-full px-5 py-3 text-sm bg-[#0a0a0a] border border-white/10 rounded-full text-zinc-50 placeholder:text-zinc-600 focus:outline-none focus:border-[#CC785C] focus:shadow-[0_0_20px_rgba(204,120,92,0.2)] transition-all"
               />
             </div>
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-zinc-300 mb-1.5"
+                className="block font-mono text-xs font-medium text-zinc-400 mb-2 uppercase tracking-wider"
               >
                 Email
               </label>
@@ -162,31 +121,31 @@ export default function BrandPartnershipsPage() {
                 type="email"
                 id="email"
                 placeholder="john@company.com"
-                className="w-full px-4 py-3 text-sm bg-zinc-800 border border-zinc-700 rounded-xl text-zinc-50 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-[#E17F62] focus:border-transparent transition-all"
+                className="w-full px-5 py-3 text-sm bg-[#0a0a0a] border border-white/10 rounded-full text-zinc-50 placeholder:text-zinc-600 focus:outline-none focus:border-[#CC785C] focus:shadow-[0_0_20px_rgba(204,120,92,0.2)] transition-all"
               />
             </div>
             <div>
               <label
                 htmlFor="message"
-                className="block text-sm font-medium text-zinc-300 mb-1.5"
+                className="block font-mono text-xs font-medium text-zinc-400 mb-2 uppercase tracking-wider"
               >
                 Message
               </label>
               <textarea
                 id="message"
                 rows={4}
-                placeholder="Tell me about your partnership idea..."
-                className="w-full px-4 py-3 text-sm bg-zinc-800 border border-zinc-700 rounded-xl text-zinc-50 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-[#E17F62] focus:border-transparent transition-all resize-none"
+                placeholder="Tell me about your product and partnership goals..."
+                className="w-full px-5 py-3 text-sm bg-[#0a0a0a] border border-white/10 rounded-[24px] text-zinc-50 placeholder:text-zinc-600 focus:outline-none focus:border-[#CC785C] focus:shadow-[0_0_20px_rgba(204,120,92,0.2)] transition-all resize-none"
               />
             </div>
             <button
               type="submit"
-              className="w-full px-6 py-3.5 text-sm font-semibold text-zinc-950 bg-[#E17F62] rounded-xl hover:bg-[#d4725a] transition-all duration-300 shadow-[0_0_20px_rgba(225,127,98,0.3)] hover:shadow-[0_0_30px_rgba(225,127,98,0.5)]"
+              className="w-full px-8 py-4 text-base font-bold text-black bg-gradient-to-b from-[#CC785C] to-[#b8674a] rounded-full hover:shadow-[0_0_25px_rgba(204,120,92,0.5)] transition-all duration-300 shadow-[0_0_15px_rgba(204,120,92,0.3)] hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50 active:scale-[0.98]"
             >
               Send Message
             </button>
           </form>
-        </div>
+        </OSCard>
         
         {/* Bottom CTA */}
         <BottomCTA
@@ -195,6 +154,7 @@ export default function BrandPartnershipsPage() {
           subtext="I work with brands that align with my mission to democratize AI knowledge. Let's create something meaningful together."
           buttonText="Get in Touch"
           buttonHref="#contact"
+          useContactModal={true}
         />
       </div>
     </div>

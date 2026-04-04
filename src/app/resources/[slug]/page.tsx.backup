@@ -1,0 +1,173 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { ArrowLeft, Download, Calendar } from "lucide-react";
+import { resources, getResourceBySlug } from "@/data/resources";
+import OSCard from "@/components/OSCard";
+import DownloadModal from "@/components/DownloadModal";
+
+// Generate static params for all resources
+export function generateStaticParams() {
+  return resources.map((resource) => ({
+    slug: resource.slug,
+  }));
+}
+
+export default function ResourceDetailPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const { slug } = params;
+  const resource = getResourceBySlug(slug);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  if (!resource) {
+    notFound();
+  }
+
+  // Format date
+  const formattedDate = new Date(resource.publishedAt).toLocaleDateString(
+    "en-US",
+    {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }
+  );
+
+  return (
+    <>
+      <DownloadModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        resourceTitle={resource.title}
+        resourceId={resource.id}
+        downloadUrl={resource.downloadUrl}
+      />
+
+      <div className="min-h-screen bg-[#0a0a0a]">
+      {/* Hero Section with Gradient Background */}
+      <div className="relative overflow-hidden">
+        {/* Ambient glow */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#CC785C]/5 via-[#0a0a0a] to-purple-500/5 opacity-50"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#CC785C]/10 rounded-full blur-3xl"></div>
+        
+        <div className="relative pt-8 lg:pt-16 pb-16 px-4 lg:px-8">
+          <div className="max-w-4xl mx-auto">
+            {/* Back Link */}
+            <Link
+              href="/resources"
+              className="inline-flex items-center gap-2 font-mono text-xs text-zinc-400 hover:text-[#CC785C] transition-colors mb-8 group uppercase tracking-wider"
+            >
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+              Back to Database
+            </Link>
+
+            {/* Header */}
+            <header className="mb-10">
+              <div className="flex flex-wrap items-center gap-3 mb-6">
+                <span className="inline-block bg-[#CC785C]/10 text-[#CC785C] text-[10px] px-3 py-1 rounded-full uppercase tracking-wider font-mono">
+                  {resource.category}
+                </span>
+                <span className="flex items-center gap-1.5 font-mono text-xs text-zinc-500 uppercase tracking-wider">
+                  <Calendar className="w-3 h-3" />
+                  {formattedDate}
+                </span>
+              </div>
+              <h1 className="font-heading text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
+                {resource.title}
+              </h1>
+              <p className="text-xl text-zinc-400 leading-relaxed max-w-3xl">
+                {resource.description}
+              </p>
+            </header>
+
+            {/* Primary CTA with Gradient */}
+            <div className="mb-12">
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="inline-flex items-center gap-2 px-8 py-4 text-base font-bold text-black bg-gradient-to-b from-[#CC785C] to-[#b8674a] rounded-full hover:shadow-[0_0_25px_rgba(204,120,92,0.5)] transition-all shadow-[0_0_15px_rgba(204,120,92,0.3)] hover:scale-105 cursor-pointer"
+              >
+                <Download className="w-5 h-5" />
+                Download Free Guide
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="px-4 lg:px-8 pb-16">
+        <div className="max-w-4xl mx-auto">
+          {resource.contentHtml ? (
+            <OSCard className="mb-16">
+              {/* 
+                SECURITY NOTE: dangerouslySetInnerHTML is used here to render 
+                Claude-generated HTML content. This is safe ONLY because:
+                1. The content comes from a trusted source (the developer/Claude)
+                2. It is NOT user-submitted content
+                3. The content is stored in our codebase, not a database
+                
+                NEVER use this pattern with untrusted or user-generated content
+                as it can enable XSS (Cross-Site Scripting) attacks.
+              */}
+              <div
+                className="prose-dark max-w-none"
+                dangerouslySetInnerHTML={{ __html: resource.contentHtml }}
+              />
+            </OSCard>
+          ) : (
+            <OSCard className="mb-16 text-center">
+              <div className="font-mono text-xs tracking-widest text-zinc-600 mb-2 uppercase">
+                Content Loading
+              </div>
+              <p className="text-zinc-400 mb-4">
+                Detailed content for this resource is coming soon.
+              </p>
+              <p className="text-zinc-500 text-sm">
+                In the meantime, download the PDF to get started.
+              </p>
+            </OSCard>
+          )}
+
+          {/* Bottom CTA Card - "YOUR NEXT STEP" Style */}
+          <OSCard>
+            {/* Icon in Rounded Container */}
+            <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#CC785C]/10 border border-[#CC785C]/20 mb-6">
+              <Download className="w-6 h-6 text-[#CC785C]" />
+            </div>
+
+            <div className="flex flex-col gap-6">
+              <div>
+                <div className="inline-block mb-4">
+                  <span className="px-3 py-1 text-[10px] font-mono uppercase tracking-wider text-[#CC785C] bg-[#CC785C]/10 border border-[#CC785C]/20 rounded-full">
+                    Your Next Step
+                  </span>
+                </div>
+                
+                <h3 className="font-heading text-3xl lg:text-4xl font-bold text-white mb-4">
+                  Ready to level up?
+                </h3>
+                <p className="text-zinc-400 text-lg mb-6">
+                  Download the complete guide and start implementing these strategies today.
+                </p>
+
+                {/* Text Link with Arrow */}
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="inline-flex items-center gap-2 font-mono text-sm text-[#CC785C] hover:text-[#d88567] transition-colors group uppercase tracking-wider cursor-pointer"
+                >
+                  Go to Download
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </button>
+              </div>
+            </div>
+          </OSCard>
+        </div>
+      </div>
+    </>
+  );
+}

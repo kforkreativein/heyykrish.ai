@@ -70,7 +70,7 @@ The UI follows a **Futuristic Cyber-Dashboard** aesthetic with ultra-dark backgr
 - **Main Content:** Offset by 276px on desktop (`lg:ml-[276px]`), full-width on mobile
 - **Mobile Header:** Minimal top bar with logo and hamburger (no padding excess)
 
-## New Components
+## Components
 
 ### OSCard Component
 ```tsx
@@ -86,20 +86,43 @@ Base styles applied automatically:
 - `backdrop-blur-xl` — Glass morphism effect
 - `p-6 md:p-8` — Responsive padding
 
-### Updated Sidebar Component
-- Floating OS panel aesthetic on desktop
+### Sidebar Component
+- Floating OS panel aesthetic on desktop with `m-4`
 - Status indicator text: "System Ready"
 - Navigation with active state dots (glowing when active)
-- Pill-shaped social buttons with icons
-- Newsletter section with rounded inputs/buttons
+- Pill-shaped social buttons (Instagram, Email)
+- Newsletter signup form with functional validation
 - Smooth mobile slide-out with dark overlay
+- **IMPORTANT**: Instagram-only social links (TikTok and YouTube removed)
 
-### Updated ResourceCard Component
+### ResourceCard Component
 - Wrapped in OSCard component
 - Pill-shaped category tags: `bg-claude-500/10 text-claude-500`
 - Title in Space Grotesk: `font-heading text-2xl text-white`
 - Subtle progress bar for aesthetics
 - Pill-shaped action button with gradient: `bg-gradient-to-b from-claude-500 to-claude-600`
+- Links to `/resources/${slug}` automatically
+
+### DownloadModal Component
+- Email capture before PDF downloads
+- Full-screen centered overlay with dark backdrop
+- "Unlock This System" positioning
+- Success states with smooth transitions
+- Posts to `/api/download-lead` API endpoint
+- Data stored in `/data/download-leads.csv`
+
+### ContactModal Component (NEW)
+- Partnership inquiry form (Name, Email, Company, Message)
+- Full-screen centered overlay matching DownloadModal
+- Form validation and error handling
+- Posts to `/api/contact` API endpoint
+- Data stored in `/data/contact-inquiries.csv`
+
+### BottomCTA Component (UPDATED)
+- Flexible CTA component for multiple purposes
+- Props: `useModal={true}` for newsletter, `useContactModal={true}` for partnerships
+- Default behavior: Regular link navigation
+- Conditionally renders appropriate modal based on props
 
 ## Coding Conventions
 1. **Component Structure:** 
@@ -140,20 +163,30 @@ Base styles applied automatically:
 ### Pages
 - `/app/layout.tsx` - Global layout with Sidebar
 - `/app/page.tsx` - Homepage (hero with typewriter + featured resources)
-- `/app/resources/page.tsx` - Searchable resource directory with filters
+- `/app/resources/page.tsx` - Searchable resource directory with filters + newsletter CTA
 - `/app/resources/[slug]/page.tsx` - Dynamic resource detail pages (SSG)
-- `/app/brand-partnerships/page.tsx` - Media kit with stats and contact form
-- `/app/about/page.tsx` - Biography and mission
+- `/app/brand-partnerships/page.tsx` - Partnership page with contact modal
+- `/app/about/page.tsx` - Biography and mission with newsletter CTA
+- `/app/media-kit/page.tsx` - Hidden media kit dashboard (direct access only)
 
 ### Components
 - `/src/components/Sidebar.tsx` - Floating OS panel navigation (Client Component)
 - `/src/components/OSCard.tsx` - Reusable card with inset glow effect (Server Component)
 - `/src/components/ResourceCard.tsx` - Resource display card using OSCard (Server Component)
 - `/src/components/TypewriterText.tsx` - Animated typewriter effect (Client Component)
-- `/src/components/BottomCTA.tsx` - Reusable CTA card component (Server Component)
+- `/src/components/BottomCTA.tsx` - Flexible CTA component with modal support (Client Component)
+- `/src/components/DownloadModal.tsx` - Newsletter/lead capture modal (Client Component)
+- `/src/components/ContactModal.tsx` - Partnership inquiry modal (Client Component)
 
 ### Data & Configuration
 - `/src/data/resources.ts` - All resource data and utility functions
+- `/src/data/mediakit.ts` - Media kit stats (150K+ followers, 5M+ impressions, etc.)
+- `/src/app/api/newsletter/route.ts` - Newsletter signup API endpoint
+- `/src/app/api/download-lead/route.ts` - PDF download lead capture API
+- `/src/app/api/contact/route.ts` - Partnership contact form API (NEW)
+- `/data/newsletter-subscribers.csv` - Email subscriber data
+- `/data/download-leads.csv` - PDF download lead data
+- `/data/contact-inquiries.csv` - Partnership inquiry data (NEW)
 - `/src/app/globals.css` - Global styles, CSS variables, prose-dark utilities
 - `/next.config.ts` - Security headers configuration
 - `/.claude/memory/MEMORY.md` - Project memory for AI assistants
@@ -283,35 +316,47 @@ npm run start        # Run production build
 
 ### Completed ✅
 - [x] Cyber-Dashboard theme foundation (fonts, colors, shadows)
-- [x] Floating sidebar OS panel
+- [x] Floating sidebar OS panel with Instagram-only social buttons
 - [x] OSCard component with inset glows
 - [x] Sidebar navigation with dot indicators
 - [x] Pill-shaped buttons and inputs
 - [x] Space Grotesk + JetBrains Mono fonts
 - [x] Resource sorting by date (newest first)
+- [x] Professional copywriting across all pages
+- [x] Email capture system (newsletter, PDF downloads, contact inquiries)
+- [x] DownloadModal for PDF lead capture
+- [x] ContactModal for partnership inquiries
+- [x] API endpoints for all data collection
+- [x] CSV-based data storage system
+- [x] BottomCTA component with modal support
+- [x] Newsletter CTA on About and Resources pages
+- [x] Contact modal on Brand Partnerships page
+- [x] Updated page breadcrumbs (HeyyKrish.AI // [Page Name])
 
 ### In Progress 🔄
-- [ ] Update homepage to dashboard layout (Step 3)
-- [ ] Update ResourceCard with new design
-- [ ] Update resources page with new card styles
-- [ ] Update all other pages with new theme
+- [ ] Dashboard analytics view (viewing collected emails/inquiries)
+- [ ] Email validation & GDPR compliance features
+- [ ] Form submission rate limiting
 
-### High Priority
+### High Priority (Before Launch)
 - [ ] Add actual profile photo to homepage
-- [ ] Complete homepage dashboard redesign
-- [ ] Update resource detail pages with new styling
-- [ ] Implement newsletter backend with security
+- [ ] Testing on all devices (mobile, tablet, desktop)
+- [ ] Performance optimization for production
+- [ ] SSL certificate setup for Vercel deployment
+- [ ] Newsletter email delivery service integration
 
 ### Medium Priority
-- [ ] Extract more reusable patterns from dashboard
-- [ ] Add page transitions/animations
-- [ ] Consider CMS integration (with XSS protection)
-- [ ] Add analytics
+- [ ] Advanced search filters on resources page
+- [ ] Page transitions/animations
+- [ ] CMS integration (with XSS protection)
+- [ ] Analytics dashboard
+- [ ] Admin panel for managing inquiries
 
 ### Low Priority
-- [ ] Add RSS feed for resources
-- [ ] Consider advanced scroll animations
-- [ ] Refine mobile responsiveness on all pages
+- [ ] RSS feed for resources
+- [ ] Advanced scroll animations
+- [ ] Dark mode toggle (already dark)
+- [ ] Internationalization support
 
 ## Memory & Context
 - Project memory stored in `.claude/memory/MEMORY.md`
@@ -329,13 +374,16 @@ npm run start        # Run production build
 ---
 
 **Last Updated:** April 4, 2026  
-**Status:** ✅ Cyber-Dashboard theme foundation complete, Sidebar redesigned, OSCard component added, Build passing 18 pages
+**Status:** ✅ Complete website redesign with email capture, modals, and professional copy. All 9 pages styled, 3 API endpoints, CSV data storage.
 
-**Recent Changes:**
-- Migrated from minimal dark theme to Futuristic Cyber-Dashboard aesthetic
-- Added Space Grotesk (headings) and JetBrains Mono (technical text) fonts
-- Updated color palette: `#0a0a0a` background, `#CC785C` accent (dusty orange)
-- Created OSCard component with inset glow effect for all major cards
-- Redesigned Sidebar as floating OS panel with status indicators
-- Updated navigation with glowing dot indicators instead of backgrounds
-- Pill-shaped buttons, inputs, and social buttons for cohesive design
+**Recent Changes (This Session):**
+- Fixed partnership page UI: removed duplicate media kit button, left-aligned single button
+- Created ContactModal component for partnership inquiries
+- Created `/api/contact` endpoint with CSV storage for contact inquiries
+- Enhanced BottomCTA component with flexible modal support
+- Added newsletter BottomCTA to Resources page
+- Fixed modal positioning: both ContactModal and DownloadModal now full-screen centered
+- Updated page breadcrumbs to "HeyyKrish.AI // [Page Name]" format across all pages
+- Fixed Sidebar social buttons: removed TikTok and YouTube, kept Instagram and Email only
+- Improved button styling on partnership page with hover states and accessibility features
+- Standardized container widths across all pages (max-w-6xl) for consistent spacing

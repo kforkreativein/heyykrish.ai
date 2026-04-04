@@ -1,4 +1,11 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
+import { ArrowRight, Zap } from "lucide-react";
+import OSCard from "./OSCard";
+import DownloadModal from "./DownloadModal";
+import ContactModal from "./ContactModal";
 
 interface BottomCTAProps {
   badge?: string;
@@ -6,50 +13,96 @@ interface BottomCTAProps {
   subtext: string;
   buttonText: string;
   buttonHref: string;
+  useModal?: boolean; // Optional flag to use newsletter modal instead of link
+  useContactModal?: boolean; // Optional flag to use contact modal instead of link
 }
 
 export default function BottomCTA({
-  badge = "Let's Connect",
+  badge = "Your Next Step",
   heading,
   subtext,
   buttonText,
   buttonHref,
+  useModal = false,
+  useContactModal = false,
 }: BottomCTAProps) {
+  const [isNewsletterModalOpen, setIsNewsletterModalOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   return (
-    <div className="relative mt-16 lg:mt-24 bg-[#1c1c21] rounded-2xl p-8 md:p-12 border border-zinc-800 overflow-hidden">
-      {/* Ambient Glow */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#E17F62]/10 rounded-full blur-[120px] -z-10 pointer-events-none" />
+    <>
+      <OSCard className="mt-16 lg:mt-24 relative overflow-hidden">
+      {/* Icon in Rounded Container */}
+      <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#CC785C]/10 border border-[#CC785C]/20 mb-6">
+        <Zap className="w-6 h-6 text-[#CC785C]" />
+      </div>
       
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <div className="flex flex-col gap-6">
         <div className="flex-1">
           {/* Badge */}
           <div className="inline-block mb-4">
-            <span className="px-3 py-1 text-xs font-semibold text-[#E17F62] bg-[#E17F62]/10 border border-[#E17F62]/20 rounded-full">
+            <span className="px-3 py-1 text-[10px] font-mono uppercase tracking-wider text-[#CC785C] bg-[#CC785C]/10 border border-[#CC785C]/20 rounded-full">
               {badge}
             </span>
           </div>
           
-          {/* Heading */}
-          <h2 className="text-2xl lg:text-3xl font-bold text-zinc-50 mb-3">
+          {/* Heading in Space Grotesk */}
+          <h2 className="font-heading text-3xl lg:text-4xl font-bold text-white mb-4">
             {heading}
           </h2>
           
           {/* Subtext */}
-          <p className="text-zinc-400 leading-relaxed max-w-2xl">
+          <p className="text-zinc-400 leading-relaxed max-w-2xl mb-6">
             {subtext}
           </p>
-        </div>
-        
-        {/* CTA Button */}
-        <div className="md:flex-shrink-0">
-          <Link
-            href={buttonHref}
-            className="inline-block px-8 py-4 text-sm font-semibold text-zinc-950 bg-[#E17F62] rounded-xl hover:bg-[#d4725a] transition-all duration-300 shadow-[0_0_20px_rgba(225,127,98,0.3)] hover:shadow-[0_0_30px_rgba(225,127,98,0.5)] whitespace-nowrap"
-          >
-            {buttonText}
-          </Link>
+
+          {/* Conditional Button/Link */}
+          {useModal ? (
+            <button
+              onClick={() => setIsNewsletterModalOpen(true)}
+              className="inline-flex items-center gap-2 font-mono text-sm text-[#CC785C] hover:text-[#d88567] transition-colors group uppercase tracking-wider bg-transparent border-none cursor-pointer p-0"
+            >
+              {buttonText}
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </button>
+          ) : useContactModal ? (
+            <button
+              onClick={() => setIsContactModalOpen(true)}
+              className="inline-flex items-center gap-2 font-mono text-sm text-[#CC785C] hover:text-[#d88567] transition-colors group uppercase tracking-wider bg-transparent border-none cursor-pointer p-0"
+            >
+              {buttonText}
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </button>
+          ) : (
+            <Link
+              href={buttonHref}
+              className="inline-flex items-center gap-2 font-mono text-sm text-[#CC785C] hover:text-[#d88567] transition-colors group uppercase tracking-wider"
+            >
+              {buttonText}
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          )}
         </div>
       </div>
-    </div>
+    </OSCard>
+
+    {/* Newsletter Modal - Only render if useModal is true */}
+    {useModal && (
+      <DownloadModal
+        isOpen={isNewsletterModalOpen}
+        onClose={() => setIsNewsletterModalOpen(false)}
+        resourceTitle="HeyyKrish Newsletter"
+        resourceId="newsletter-signup"
+        downloadUrl="#"
+      />
+    )}
+
+    {/* Contact Modal - Only render if useContactModal is true */}
+    {useContactModal && (
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+      />
+    )}
+    </>
   );
 }

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import OSCard from "./OSCard";
 
 interface ResourceCardProps {
   id: string;
@@ -10,15 +10,6 @@ interface ResourceCardProps {
   link?: string;
 }
 
-const categoryColors: Record<string, string> = {
-  Prompts: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-  Tools: "bg-purple-500/10 text-purple-400 border-purple-500/20",
-  Learning: "bg-green-500/10 text-green-400 border-green-500/20",
-  Marketing: "bg-orange-500/10 text-orange-400 border-orange-500/20",
-  Automations: "bg-pink-500/10 text-pink-400 border-pink-500/20",
-  "Video Editing": "bg-red-500/10 text-red-400 border-red-500/20",
-};
-
 export default function ResourceCard({
   slug,
   title,
@@ -26,28 +17,49 @@ export default function ResourceCard({
   category,
   link,
 }: ResourceCardProps) {
-  const colorClass = categoryColors[category] || "bg-zinc-700/50 text-zinc-400 border-zinc-600";
   const href = link || (slug ? `/resources/${slug}` : "#");
 
   return (
-    <Link
-      href={href}
-      className="group block p-5 bg-zinc-900 border border-zinc-800 rounded-xl hover:border-zinc-700 hover:bg-zinc-800/50 transition-all duration-200"
-    >
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex-1 min-w-0">
-          <span
-            className={`inline-block px-2.5 py-1 text-xs font-medium rounded-md mb-3 border ${colorClass}`}
-          >
-            {category}
-          </span>
-          <h3 className="font-semibold text-zinc-50 mb-1.5 group-hover:text-[#E17F62] transition-colors">
-            {title}
-          </h3>
-          <p className="text-sm text-zinc-400 line-clamp-2">{description}</p>
+    <Link href={href} className="group block h-full">
+      <OSCard className="h-full flex flex-col hover:border-[#CC785C]/20 transition-all duration-300">
+        {/* Pill-Shaped Category Tag */}
+        <span className="inline-block bg-[#CC785C]/10 text-[#CC785C] text-[10px] px-3 py-1 rounded-full uppercase tracking-wider font-mono mb-4 w-fit">
+          {category}
+        </span>
+
+        {/* Title in Space Grotesk */}
+        <h3 className="font-heading text-2xl text-white mt-2 mb-3 group-hover:text-[#CC785C] transition-colors">
+          {title}
+        </h3>
+
+        {/* Description */}
+        <p className="text-sm text-zinc-400 mb-6 line-clamp-2 flex-grow">
+          {description}
+        </p>
+
+        {/* Aesthetic Progress Bar */}
+        <div className="mb-6">
+          <div className="flex items-center justify-between mb-2">
+            <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider">
+              Completion
+            </span>
+            <span className="font-mono text-[10px] text-[#CC785C]">
+              100%
+            </span>
+          </div>
+          <div className="h-1 bg-white/5 rounded-full overflow-hidden">
+            <div 
+              className="h-full bg-gradient-to-r from-[#CC785C] to-[#b8674a] rounded-full shadow-[0_0_8px_rgba(204,120,92,0.6)]"
+              style={{ width: '100%' }}
+            />
+          </div>
         </div>
-        <ArrowUpRight className="w-5 h-5 text-zinc-600 group-hover:text-[#E17F62] flex-shrink-0 mt-1 transition-colors" />
-      </div>
+
+        {/* Pill-Shaped Action Button */}
+        <button className="w-full py-3 px-6 bg-gradient-to-b from-[#CC785C] to-[#b8674a] text-black font-semibold text-sm rounded-full hover:shadow-[0_0_20px_rgba(204,120,92,0.4)] transition-all duration-300 shadow-[0_0_15px_rgba(204,120,92,0.3)] group-hover:scale-[1.02]">
+          View Resource
+        </button>
+      </OSCard>
     </Link>
   );
 }

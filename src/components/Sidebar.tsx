@@ -14,59 +14,94 @@ import {
 } from "lucide-react";
 
 const InstagramIcon = () => (
-  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
   </svg>
 );
 
-const YoutubeIcon = () => (
-  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
-    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
+const TikTokIcon = () => (
+  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
   </svg>
 );
 
-const TikTokIcon = () => (
-  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+const YouTubeIcon = () => (
+  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
+    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
   </svg>
 );
 
 const navItems = [
   { name: "Home", href: "/", icon: Home },
   { name: "Resources", href: "/resources", icon: Folder },
-  { name: "Brand Partnerships", href: "/brand-partnerships", icon: Briefcase },
+  { name: "Partnerships", href: "/brand-partnerships", icon: Briefcase },
   { name: "About", href: "/about", icon: User },
 ];
 
 const socialLinks = [
   { name: "Instagram", href: "https://instagram.com/heyykrish", icon: InstagramIcon },
-  // { name: "TikTok", href: "https://tiktok.com/@heyykrish", icon: TikTokIcon },
-  // { name: "YouTube", href: "https://youtube.com/@heyykrish", icon: YoutubeIcon },
   { name: "Email", href: "mailto:hello@heyykrish.ai", icon: Mail },
 ];
 
 export default function Sidebar() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [sidebarEmail, setSidebarEmail] = useState("");
+  const [isSidebarSubmitting, setIsSidebarSubmitting] = useState(false);
+  const [sidebarSubmitted, setSidebarSubmitted] = useState(false);
+
+  const handleSidebarNewsletter = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSidebarSubmitting(true);
+
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: sidebarEmail,
+          source: "sidebar",
+        }),
+      });
+
+      if (response.ok) {
+        setSidebarSubmitted(true);
+        setSidebarEmail("");
+        setTimeout(() => setSidebarSubmitted(false), 3000);
+      }
+    } catch (error) {
+      console.error("Error submitting newsletter:", error);
+    } finally {
+      setIsSidebarSubmitting(false);
+    }
+  };
 
   const SidebarContent = () => (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full p-2">
       {/* Profile Header */}
-      <div className="p-6 pb-4">
+      <div className="p-5 pb-6">
         <div className="flex flex-col items-center text-center">
-          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-zinc-800 to-zinc-700 flex items-center justify-center mb-3 overflow-hidden border border-zinc-700">
-            <span className="text-2xl font-semibold text-[#E17F62]">K</span>
-          </div>
-          <h2 className="text-lg font-semibold text-zinc-50">Krish Chhatrala</h2>
-          <p className="text-sm text-zinc-400 mt-0.5">AI Creator</p>
+          {/* Status indicator */}
+          <span className="font-mono text-[10px] tracking-[0.2em] text-[#CC785C] uppercase mb-2">
+            System Ready
+          </span>
+          {/* Name */}
+          <h2 className="font-heading text-xl text-white font-semibold tracking-tight">
+            Krish Chhatrala
+          </h2>
+          <p className="font-mono text-[10px] tracking-[0.15em] text-zinc-500 uppercase mt-1">
+            AI Creator
+          </p>
         </div>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 px-3">
+      <nav className="flex-1 px-2">
         <ul className="space-y-1">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
@@ -75,13 +110,18 @@ export default function Sidebar() {
                 <Link
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 ${
+                  className={`flex items-center gap-3 px-4 py-3 rounded-2xl font-mono text-[11px] uppercase tracking-[0.15em] transition-all duration-200 ${
                     isActive
-                      ? "bg-zinc-800 text-zinc-50"
-                      : "text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-50"
+                      ? "text-[#CC785C]"
+                      : "text-zinc-500 hover:text-zinc-300"
                   }`}
                 >
-                  <item.icon className="w-5 h-5" strokeWidth={1.5} />
+                  {/* Active dot indicator */}
+                  <span className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${
+                    isActive 
+                      ? "bg-[#CC785C] shadow-[0_0_8px_rgba(204,120,92,0.6)]" 
+                      : "bg-zinc-700"
+                  }`} />
                   {item.name}
                 </Link>
               </li>
@@ -89,50 +129,53 @@ export default function Sidebar() {
           })}
         </ul>
 
-        {/* Find Me Section */}
-        <div className="mt-8">
-          <h3 className="px-3 text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-2">
-            Find Me
+        {/* Connect Section */}
+        <div className="mt-10 mb-6">
+          <h3 className="px-4 font-mono text-[9px] text-zinc-600 uppercase tracking-[0.2em] mb-4">
+            Connect
           </h3>
-          <ul className="space-y-1">
+          <div className="space-y-2 px-2">
             {socialLinks.map((link) => (
-              <li key={link.name}>
-                <a
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-50 transition-all duration-150"
-                >
-                  {link.icon === Mail ? (
-                    <Mail className="w-5 h-5" strokeWidth={1.5} />
-                  ) : (
-                    <link.icon />
-                  )}
+              <a
+                key={link.name}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 px-4 py-3 rounded-full bg-white/5 hover:bg-[#CC785C]/10 border border-white/5 hover:border-[#CC785C]/20 text-sm text-zinc-400 hover:text-zinc-200 transition-all duration-200 group"
+              >
+                <span className="text-zinc-500 group-hover:text-[#CC785C] transition-colors">
+                  <link.icon />
+                </span>
+                <span className="font-mono text-[11px] uppercase tracking-wider">
                   {link.name}
-                </a>
-              </li>
+                </span>
+              </a>
             ))}
-          </ul>
+          </div>
         </div>
       </nav>
 
       {/* Newsletter CTA */}
-      <div className="p-4 mt-auto">
-        <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-xl p-4">
-          <p className="text-sm font-medium text-zinc-50 mb-3">
-            Join 10k+ getting my weekly AI breakdown
+      <div className="p-3 mt-auto">
+        <div className="bg-[#0a0a0a] border border-white/5 rounded-2xl p-4">
+          <p className="font-mono text-[10px] tracking-[0.1em] text-zinc-400 uppercase mb-3">
+            Weekly AI Breakdown
           </p>
-          <form className="space-y-2" onSubmit={(e) => e.preventDefault()}>
+          <form className="space-y-2" onSubmit={handleSidebarNewsletter}>
             <input
               type="email"
-              placeholder="Enter your email"
-              className="w-full px-3 py-2 text-sm bg-zinc-900 border border-zinc-700 rounded-lg text-zinc-50 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-[#E17F62] focus:border-transparent transition-all"
+              value={sidebarEmail}
+              onChange={(e) => setSidebarEmail(e.target.value)}
+              required
+              placeholder="your@email.com"
+              className="w-full px-4 py-2.5 text-xs font-mono bg-[#121212] border border-white/5 rounded-full text-zinc-300 placeholder:text-zinc-600 focus:outline-none focus:ring-1 focus:ring-[#CC785C]/50 focus:border-[#CC785C]/50 transition-all"
             />
             <button
               type="submit"
-              className="w-full px-3 py-2 text-sm font-medium text-zinc-950 bg-[#E17F62] rounded-lg hover:bg-[#d4725a] transition-all duration-300 shadow-[0_0_12px_rgba(225,127,98,0.25)] hover:shadow-[0_0_18px_rgba(225,127,98,0.4)]"
+              disabled={isSidebarSubmitting || sidebarSubmitted}
+              className="w-full px-4 py-2.5 text-xs font-mono font-medium text-black bg-[#CC785C] rounded-full hover:bg-[#B86246] transition-all duration-200 uppercase tracking-wider disabled:opacity-50"
             >
-              Join Free
+              {sidebarSubmitted ? "✓ Subscribed!" : isSidebarSubmitting ? "Joining..." : "Subscribe"}
             </button>
           </form>
         </div>
@@ -143,16 +186,16 @@ export default function Sidebar() {
   return (
     <>
       {/* Mobile Header */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-zinc-950 border-b border-zinc-800 flex items-center justify-between px-4 z-40">
-        <span className="text-lg font-semibold text-zinc-50">heyykrish.ai</span>
+      <div className="lg:hidden fixed top-0 left-0 right-0 h-14 bg-[#0a0a0a] border-b border-white/5 flex items-center justify-between px-4 z-40">
+        <span className="font-heading text-base font-semibold text-white">heyykrish.ai</span>
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="p-2 rounded-lg hover:bg-zinc-800 transition-colors"
+          className="p-2 rounded-xl bg-[#121212] border border-white/5 hover:bg-white/5 transition-colors"
         >
           {mobileMenuOpen ? (
-            <X className="w-6 h-6 text-zinc-400" />
+            <X className="w-5 h-5 text-zinc-400" />
           ) : (
-            <Menu className="w-6 h-6 text-zinc-400" />
+            <Menu className="w-5 h-5 text-zinc-400" />
           )}
         </button>
       </div>
@@ -160,14 +203,14 @@ export default function Sidebar() {
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
         <div
-          className="lg:hidden fixed inset-0 bg-black/50 z-40"
+          className="lg:hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-40"
           onClick={() => setMobileMenuOpen(false)}
         />
       )}
 
-      {/* Sidebar - Desktop fixed, Mobile slide-out */}
+      {/* Sidebar - Desktop floating panel, Mobile slide-out */}
       <aside
-        className={`fixed top-0 left-0 h-full w-[280px] bg-zinc-900 border-r border-zinc-800 z-50 transform transition-transform duration-300 ease-in-out sidebar-scroll overflow-y-auto ${
+        className={`fixed top-0 left-0 h-full lg:h-auto lg:top-4 lg:bottom-4 lg:left-4 w-[280px] lg:w-[260px] bg-[#121212] border border-white/5 lg:rounded-[32px] shadow-[0_4px_24px_-1px_rgba(0,0,0,0.5),inset_0_1px_0_0_rgba(255,255,255,0.05)] z-50 transform transition-transform duration-300 ease-in-out sidebar-scroll overflow-y-auto ${
           mobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         }`}
       >
@@ -175,7 +218,7 @@ export default function Sidebar() {
       </aside>
 
       {/* Mobile content spacer */}
-      <div className="lg:hidden h-16" />
+      <div className="lg:hidden h-14" />
     </>
   );
 }

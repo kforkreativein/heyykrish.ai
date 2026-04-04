@@ -1,6 +1,16 @@
 # heyykrish.ai
 
-Personal brand website and AI resource hub for Krish Chhatrala (@heyykrish.ai). A modern Next.js application showcasing AI workflows, ChatGPT prompts, and automation tools.
+Personal brand website and AI resource hub for Krish Chhatrala (@heyykrish.ai). A premium Next.js application showcasing AI workflows, ChatGPT prompts, automation tools, and battle-tested systems from real-world testing.
+
+## 🎯 Features
+
+- **Futuristic Cyber-Dashboard Design** - Ultra-dark aesthetic with extreme border radiuses and glowing effects
+- **Email Capture System** - Collect newsletters, PDF download leads, and partnership inquiries via modals
+- **API Endpoints** - 3 endpoints with CSV-based data storage
+- **Responsive Design** - Mobile-first, works on all devices
+- **Professional Copywriting** - Execution-focused messaging across all pages
+- **SEO Optimized** - Static generation with dynamic routes
+- **TypeScript** - Full type safety
 
 ## 🚀 Quick Start
 
@@ -30,7 +40,7 @@ npm start
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS
 - **Icons:** Lucide React
-- **Font:** Inter (Google Fonts)
+- **Fonts:** Space Grotesk, JetBrains Mono, Inter (Google Fonts)
 - **Deployment:** Vercel
 
 ### Project Structure
@@ -43,127 +53,222 @@ src/
 │   ├── resources/         # Resource hub
 │   │   ├── page.tsx       # Resources list with search/filters
 │   │   └── [slug]/        # Dynamic resource detail pages
-│   ├── about/             # About page
-│   └── brand-partnerships/# Brand partnerships & media kit
+│   ├── about/             # About page with newsletter CTA
+│   ├── brand-partnerships/# Partnership page with contact modal
+│   ├── media-kit/         # Media kit dashboard (hidden page)
+│   └── api/               # API endpoints
+│       ├── newsletter/    # Newsletter signup
+│       ├── download-lead/ # PDF download leads
+│       └── contact/       # Partnership inquiries
 ├── components/            # Reusable React components
-│   ├── Sidebar.tsx        # Fixed navigation sidebar
+│   ├── Sidebar.tsx        # Floating navigation sidebar
+│   ├── OSCard.tsx         # Card component with inset glow
 │   ├── ResourceCard.tsx   # Resource display card
 │   ├── TypewriterText.tsx # Animated typewriter effect
-│   └── BottomCTA.tsx      # Reusable CTA component
+│   ├── BottomCTA.tsx      # Flexible CTA with modal support
+│   ├── DownloadModal.tsx  # Email capture modal
+│   └── ContactModal.tsx   # Partnership inquiry modal
 └── data/
-    └── resources.ts       # Resource database & utilities
+    ├── resources.ts       # Resource database & utilities
+    └── mediakit.ts        # Media kit stats
+data/
+├── newsletter-subscribers.csv  # Email subscribers
+├── download-leads.csv          # PDF download leads
+└── contact-inquiries.csv       # Partnership inquiries
 ```
 
 ## 🎨 Design System
 
-### Color Palette
-- **Background:** `#09090b` (zinc-950)
-- **Cards:** `#18181b` (zinc-900)
-- **Borders:** `#27272a` (zinc-800)
-- **Accent:** `#E17F62` (coral/orange for CTAs)
-- **Text Primary:** `#fafafa` (zinc-50)
-- **Text Secondary:** `#a1a1aa` (zinc-400)
+### Color Palette (Cyber-Dashboard Aesthetic)
+- **Background:** `#0a0a0a` (pure black)
+- **Cards:** `#121212` (dark gray)
+- **Borders:** `white/5` (subtle glass effect)
+- **Accent:** `#CC785C` (dusty orange - Claude color)
+- **Text Primary:** `#ffffff` (white)
+- **Text Secondary:** `#d4d4d8` (zinc-300)
+- **Text Tertiary:** `#a1a1aa` (zinc-400)
 
-### Features
-- Premium dark theme with subtle gradients
-- Responsive design (mobile-first)
-- Ambient glowing effects
-- Smooth animations and transitions
-- Accessibility-first component design
+### Typography
+- **Headings:** Space Grotesk (`font-heading`) - Wide, futuristic feel
+- **Body:** Inter - Clean, readable
+- **Technical:** JetBrains Mono (`font-mono`) - Labels, status indicators
+
+### Components
+- **OSCard:** Reusable card with inset glow, backdrop blur, and extreme border radius
+- **Sidebar:** Floating OS panel with navigation, status indicator, and newsletter signup
+- **Modals:** Full-screen centered overlays with dark backdrop for email capture
+- **Buttons:** Pill-shaped with gradient backgrounds and smooth hover states
+
+## 📊 Email Capture System
+
+The site includes a complete email capture system with 3 endpoints and CSV storage:
+
+### 1. Newsletter Signup (`/api/newsletter`)
+- Used on: Homepage, Sidebar, About page, Resources page
+- Data stored in: `/data/newsletter-subscribers.csv`
+- Fields: Timestamp, Email, Source
+- Trigger: Newsletter forms throughout the site
+
+### 2. PDF Download Leads (`/api/download-lead`)
+- Used on: Resource detail pages
+- Data stored in: `/data/download-leads.csv`
+- Fields: Timestamp, Name, Email, Resource ID, Resource Title
+- Trigger: DownloadModal before PDF download
+
+### 3. Partnership Inquiries (`/api/contact`)
+- Used on: Brand Partnerships page
+- Data stored in: `/data/contact-inquiries.csv`
+- Fields: Timestamp, Name, Email, Company, Message
+- Trigger: ContactModal on partnership button click
+
+### Accessing Your Data
+All CSV files are in the `/data` directory:
+```bash
+# View newsletter subscribers
+open data/newsletter-subscribers.csv
+
+# View download leads
+open data/download-leads.csv
+
+# View partnership inquiries
+open data/contact-inquiries.csv
+```
+
+Import into Excel, Google Sheets, or your CRM for analysis and follow-up.
 
 ## 📚 Adding Resources
 
-Resources are stored in `/src/data/resources.ts` as a TypeScript array.
+Resources are stored in `/src/data/resources.ts`:
 
-### Add a New Resource
-1. Edit `/src/data/resources.ts`
-2. Add to the `resources` array:
 ```typescript
 {
   id: "12",
   slug: "my-resource-slug",
-  title: "Resource Title (Max 5 words)",
+  title: "Resource Title",
   description: "Brief 2-3 sentence summary",
-  category: "Prompts" | "Tools" | "Video Editing" | "Marketing" | "Automations" | "Learning",
+  category: "Prompts", // or Tools, Learning, Automations, etc.
   publishedAt: "2026-04-04",
   featured: true, // Optional: shows on homepage
-  downloadUrl: "/downloads/[slug].pdf", // Optional: PDF download link
-  contentHtml: `<h3>Content</h3><p>Rich HTML content...</p>` // Optional: detailed content
+  contentHtml: `<h3>Content</h3>...` // Optional: rich HTML content
 }
 ```
 
-3. Run `npm run build` to regenerate static pages
+Then run:
+```bash
+npm run build
+```
 
-## 🚀 Deployment
+## 🔗 Page Breadcrumbs
 
-### Deploy to Vercel (Recommended)
-The easiest way to deploy heyykrish.ai is on the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
+All pages now use consistent breadcrumb format:
+- **Home:** "Heyykrish.AI // Home"
+- **Resources:** "Heyykrish.AI // Resources"
+- **Partnership:** "Heyykrish.AI // Partnership"
+- **About:** "Heyykrish.AI // About"
+- **Media Kit:** "Heyykrish.AI // Media Kit"
 
-**Setup Steps:**
-1. Push code to GitHub (✅ Already done)
-2. Go to [vercel.com](https://vercel.com)
-3. Click "New Project" → Import your GitHub repository
-4. Vercel will auto-detect Next.js configuration
+## 🌐 Deployment
+
+### Deploy to Vercel
+The easiest way to deploy is on [Vercel](https://vercel.com):
+
+1. Push code to GitHub
+2. Go to vercel.com and click "New Project"
+3. Import your GitHub repository
+4. Vercel auto-detects Next.js
 5. Click "Deploy"
 
-Your site will be live on `https://heyykrish-ai.vercel.app` (custom domain: `heyykrish.ai`)
-
-**Configure Custom Domain:**
+**Custom Domain:**
 1. In Vercel Dashboard → Project Settings → Domains
-2. Add your custom domain
+2. Add your custom domain (heyykrish.ai)
 3. Update DNS records (Vercel provides instructions)
-4. SSL certificate auto-provisioned
-
-### Environment Variables
-No environment variables required for basic deployment. For future features (newsletter, analytics, etc.):
-```bash
-# .env.local
-NEXT_PUBLIC_API_URL=https://api.heyykrish.ai
-```
+4. SSL auto-provisioned
 
 ## 🔒 Security
 
-This project includes:
-- ✅ Security headers (X-Frame-Options, CSP prep)
-- ✅ React auto-escaping (XSS protection)
-- ✅ Trusted content only (no user-generated content)
-- ✅ No hardcoded secrets
+✅ **Current Security Measures:**
+- Security headers (X-Frame-Options, CSP prep)
+- React auto-escaping (XSS protection)
+- Email validation on all forms
+- CSV-based data storage (no external dependencies)
+- No hardcoded secrets
+- Trusted content only (no user-generated HTML)
+
+⚠️ **Before Production:**
+- [ ] Set up rate limiting for API endpoints
+- [ ] Add CSRF tokens if needed
+- [ ] Implement email verification
+- [ ] Consider GDPR compliance for EU users
 
 See [SECURITY-AUDIT.md](./SECURITY-AUDIT.md) for full security report.
 
-## 📦 What's Included
+## 📚 Pages
 
-- **11+ Resource Pages** with rich content and download PDFs
-- **Searchable Resource Hub** with category filtering
-- **Dynamic Routing** for SSG (Static Site Generation)
-- **TypeScript** for type safety
-- **Tailwind CSS** with custom design system
-- **Premium Dark Theme** inspired by Apple & high-end creator platforms
+### Homepage (`/`)
+- Execution-focused hero: "Stop Learning AI. Start Deploying It."
+- Typewriter effect with dynamic words
+- Featured resources grid
+- Newsletter signup
 
-## 🔧 Available Scripts
+### Resources Hub (`/resources`)
+- Searchable directory with category filters
+- Command-line inspired search bar
+- Responsive grid layout
+- Newsletter CTA at bottom
+
+### Resource Detail (`/resources/[slug]`)
+- Rich content display
+- Download modal for lead capture
+- Related resources
+- Social sharing
+
+### About (`/about`)
+- Creator biography and mission
+- Agency story (K for Kreative)
+- Newsletter signup CTA
+- Direct contact info
+
+### Brand Partnerships (`/brand-partnerships`)
+- Partnership program info
+- Past partners showcase with logo grid
+- "View Media Kit" button
+- Contact inquiry modal
+
+### Media Kit (`/media-kit`) - *Hidden Page*
+- 150K+ followers stat
+- 5M+ monthly impressions
+- Audience demographics
+- Engagement metrics
+- Direct access only (not in navigation)
+
+## 🧪 Testing
 
 ```bash
-npm run dev        # Start development server
-npm run build      # Build for production
-npm run start      # Run production build
-npm run lint       # Run ESLint
+# Build for production
+npm run build
+
+# Check for errors
+npm run lint
+
+# Test pages
+# Homepage: http://localhost:3000
+# Resources: http://localhost:3000/resources
+# About: http://localhost:3000/about
+# Partnerships: http://localhost:3000/brand-partnerships
+# Media Kit: http://localhost:3000/media-kit
 ```
 
-## 📄 Documentation
+## 📖 Documentation
 
-- [AGENTS.md](./AGENTS.md) - Copilot agent instructions & workflows
-- [CLAUDE.md](./CLAUDE.md) - Project memory & guidelines
+- [CLAUDE.md](./CLAUDE.md) - Detailed project guidelines & architecture
+- [AGENTS.md](./AGENTS.md) - AI agent instructions
 - [SECURITY-AUDIT.md](./SECURITY-AUDIT.md) - Security analysis
 - [ENHANCEMENT-SUMMARY.md](./ENHANCEMENT-SUMMARY.md) - Recent updates
 
-## 🤝 Contributing
-
-This is a personal brand project. For suggestions or improvements, open an issue on GitHub.
-
 ## 📱 Connect
 
-- 🎥 Instagram: [@heyykrish.ai](https://instagram.com/heyykrish)
-- 💻 Website: [heyykrish.ai](https://heyykrish.ai)
+- 📱 Instagram: [@heyykrish.ai](https://instagram.com/heyykrish)
+- 🌐 Website: [heyykrish.ai](https://heyykrish.ai)
 - 📧 Email: hello@heyykrish.ai
 
 ## 📜 License
@@ -172,4 +277,5 @@ This project is private. All rights reserved to Krish Chhatrala.
 
 ---
 
-Built with Next.js, Tailwind CSS, and ❤️ using Vercel's platform.
+**Built with:** Next.js 16 • Tailwind CSS • TypeScript • Vercel  
+**Last Updated:** April 4, 2026
