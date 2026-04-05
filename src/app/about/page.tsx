@@ -79,7 +79,7 @@ export default function AboutPage() {
         <BottomCTA
           badge="Let's Connect"
           heading="Ready to level up your AI game?"
-          subtext="Join 10,000+ creators getting my weekly AI breakdown. Real tools, real workflows, zero fluff."
+          subtext="Join creators getting my weekly AI breakdown. Real tools, real workflows, zero fluff."
           buttonText="Join the Newsletter"
           buttonHref="/#newsletter"
           useModal={true}

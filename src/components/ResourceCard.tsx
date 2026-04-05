@@ -37,22 +37,10 @@ export default function ResourceCard({
           {description}
         </p>
 
-        {/* Aesthetic Progress Bar */}
-        <div className="mb-6">
-          <div className="flex items-center justify-between mb-2">
-            <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider">
-              Completion
-            </span>
-            <span className="font-mono text-[10px] text-[#CC785C]">
-              100%
-            </span>
-          </div>
-          <div className="h-1 bg-white/5 rounded-full overflow-hidden">
-            <div 
-              className="h-full bg-gradient-to-r from-[#CC785C] to-[#b8674a] rounded-full shadow-[0_0_8px_rgba(204,120,92,0.6)]"
-              style={{ width: '100%' }}
-            />
-          </div>
+        {/* Terminal-Style Metadata Row */}
+        <div className="flex justify-between items-center mt-auto mb-4 pt-4 border-t border-white/5 font-mono text-[10px] tracking-[0.2em] uppercase text-zinc-500">
+          <span>[BUILD // STABLE]</span>
+          <span className="text-[#CC785C]">Access // Free</span>
         </div>
 
         {/* Pill-Shaped Action Button */}

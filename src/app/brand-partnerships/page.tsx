@@ -27,7 +27,7 @@ export default function BrandPartnershipsPage() {
             Heyykrish.AI // Partnership
           </div>
           <h1 className="font-heading text-5xl font-bold text-white mb-4 tracking-tight">
-            Partner With HeyyKrish
+            Partner with Krish
           </h1>
           <p className="text-lg text-zinc-400 max-w-3xl">
             Put your tool in front of 150,000+ creators and founders who actually take action. I partner with brands to build authentic, workflow-driven content that drives conversions, not just vanity metrics.
@@ -36,13 +36,21 @@ export default function BrandPartnershipsPage() {
 
         {/* Media Kit CTA */}
         <div className="mb-12">
-          <Link 
-            href="/media-kit"
-            className="inline-flex items-center gap-3 px-8 py-4 text-base font-bold text-black bg-gradient-to-b from-[#CC785C] to-[#b8674a] rounded-full hover:shadow-[0_0_20px_rgba(204,120,92,0.4)] transition-all duration-300 shadow-[0_0_15px_rgba(204,120,92,0.3)] hover:scale-105"
-          >
-            <Download size={20} />
-            View Media Kit
-          </Link>
+          <div className="flex flex-wrap items-center gap-4">
+            <Link 
+              href="/media-kit"
+              className="inline-flex items-center gap-3 px-8 py-4 text-base font-bold text-black bg-gradient-to-b from-[#CC785C] to-[#b8674a] rounded-full hover:shadow-[0_0_20px_rgba(204,120,92,0.4)] transition-all duration-300 shadow-[0_0_15px_rgba(204,120,92,0.3)] hover:scale-105"
+            >
+              <Download size={20} />
+              View Media Kit
+            </Link>
+            <a 
+              href="mailto:kforkreativein@gmail.com"
+              className="px-8 py-3 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-zinc-300 font-semibold transition-all flex items-center gap-2"
+            >
+              Get in Touch
+            </a>
+          </div>
         </div>
 
         {/* Past Partners */}
@@ -72,90 +80,68 @@ export default function BrandPartnershipsPage() {
           </div>
         </div>
 
-
-        {/* Contact Form */}
-        <OSCard>
+        {/* What I Offer Section */}
+        <div className="mb-12">
           <h2 className="font-heading text-2xl font-semibold text-white mb-6">
-            Get in Touch
+            What I Offer:
           </h2>
-          <form
-            className="space-y-5"
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <div>
-              <label
-                htmlFor="name"
-                className="block font-mono text-xs font-medium text-zinc-400 mb-2 uppercase tracking-wider"
-              >
-                Your Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                placeholder="John Doe"
-                className="w-full px-5 py-3 text-sm bg-[#0a0a0a] border border-white/10 rounded-full text-zinc-50 placeholder:text-zinc-600 focus:outline-none focus:border-[#CC785C] focus:shadow-[0_0_20px_rgba(204,120,92,0.2)] transition-all"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="brand"
-                className="block font-mono text-xs font-medium text-zinc-400 mb-2 uppercase tracking-wider"
-              >
-                Brand / Company
-              </label>
-              <input
-                type="text"
-                id="brand"
-                placeholder="Your Company"
-                className="w-full px-5 py-3 text-sm bg-[#0a0a0a] border border-white/10 rounded-full text-zinc-50 placeholder:text-zinc-600 focus:outline-none focus:border-[#CC785C] focus:shadow-[0_0_20px_rgba(204,120,92,0.2)] transition-all"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="email"
-                className="block font-mono text-xs font-medium text-zinc-400 mb-2 uppercase tracking-wider"
-              >
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                placeholder="john@company.com"
-                className="w-full px-5 py-3 text-sm bg-[#0a0a0a] border border-white/10 rounded-full text-zinc-50 placeholder:text-zinc-600 focus:outline-none focus:border-[#CC785C] focus:shadow-[0_0_20px_rgba(204,120,92,0.2)] transition-all"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="message"
-                className="block font-mono text-xs font-medium text-zinc-400 mb-2 uppercase tracking-wider"
-              >
-                Message
-              </label>
-              <textarea
-                id="message"
-                rows={4}
-                placeholder="Tell me about your product and partnership goals..."
-                className="w-full px-5 py-3 text-sm bg-[#0a0a0a] border border-white/10 rounded-[24px] text-zinc-50 placeholder:text-zinc-600 focus:outline-none focus:border-[#CC785C] focus:shadow-[0_0_20px_rgba(204,120,92,0.2)] transition-all resize-none"
-              />
-            </div>
-            <button
-              type="submit"
-              className="w-full px-8 py-4 text-base font-bold text-black bg-gradient-to-b from-[#CC785C] to-[#b8674a] rounded-full hover:shadow-[0_0_25px_rgba(204,120,92,0.5)] transition-all duration-300 shadow-[0_0_15px_rgba(204,120,92,0.3)] hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50 active:scale-[0.98]"
-            >
-              Send Message
-            </button>
-          </form>
-        </OSCard>
-        
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Card 1 - The Workflow */}
+            <OSCard className="h-full">
+              <div className="mb-4">
+                <span className="font-mono text-[10px] tracking-[0.2em] text-[#CC785C] uppercase">
+                  [ MODULE // BUILD ]
+                </span>
+              </div>
+              <h3 className="font-heading text-2xl text-white mb-2">
+                Custom AI Workflows
+              </h3>
+              <p className="text-zinc-400 text-sm leading-relaxed">
+                We don't do generic tool reviews. I spend hundreds of hours recreating successful creator videos, building custom AI prompts, and designing full-scale automations from scratch. Every tool and resource is built with specificity to solve real-world technical problems.
+              </p>
+            </OSCard>
+
+            {/* Card 2 - The User Value */}
+            <OSCard className="h-full">
+              <div className="mb-4">
+                <span className="font-mono text-[10px] tracking-[0.2em] text-[#CC785C] uppercase">
+                  [ VALUE // DEPLOY ]
+                </span>
+              </div>
+              <h3 className="font-heading text-2xl text-white mb-2">
+                Immediate Action & Trust
+              </h3>
+              <p className="text-zinc-400 text-sm leading-relaxed">
+                This deep-dive technical content is given away for free. Users get immediate, tangible value by plugging my resources directly into their businesses. This drives incredible engagement and skyrockets brand perception and trust.
+              </p>
+            </OSCard>
+
+            {/* Card 3 - The Partner Benefit */}
+            <OSCard className="h-full">
+              <div className="mb-4">
+                <span className="font-mono text-[10px] tracking-[0.2em] text-[#CC785C] uppercase">
+                  [ RESULT // ACQUIRE ]
+                </span>
+              </div>
+              <h3 className="font-heading text-2xl text-white mb-2">
+                High-Intent User Growth
+              </h3>
+              <p className="text-zinc-400 text-sm leading-relaxed">
+                For you, this means extremely high-trust partnerships. Users don't just watch; they download, they implement, and they convert. Leverage my high-engagement platform to acquire quality users and customers who value execution over hype.
+              </p>
+            </OSCard>
+          </div>
+        </div>
+
         {/* Bottom CTA */}
         <BottomCTA
           badge="Let's Partner"
           heading="Ready to collaborate?"
           subtext="I work with brands that align with my mission to democratize AI knowledge. Let's create something meaningful together."
           buttonText="Get in Touch"
-          buttonHref="#contact"
-          useContactModal={true}
+          buttonHref="mailto:kforkreativein@gmail.com"
         />
+
       </div>
     </div>
   );

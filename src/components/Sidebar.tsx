@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 
 const InstagramIcon = () => (
-  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+  <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
@@ -22,13 +22,13 @@ const InstagramIcon = () => (
 );
 
 const TikTokIcon = () => (
-  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+  <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
   </svg>
 );
 
 const YouTubeIcon = () => (
-  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+  <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
     <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
   </svg>
@@ -42,8 +42,8 @@ const navItems = [
 ];
 
 const socialLinks = [
-  { name: "Instagram", href: "https://instagram.com/heyykrish", icon: InstagramIcon },
-  { name: "Email", href: "mailto:hello@heyykrish.ai", icon: Mail },
+  { name: "Instagram", href: "https://instagram.com/heyykrish.ai", icon: InstagramIcon },
+  { name: "Email", href: "mailto:kforkreativein@gmail.com", icon: Mail },
 ];
 
 export default function Sidebar() {
@@ -102,7 +102,7 @@ export default function Sidebar() {
 
       {/* Navigation */}
       <nav className="flex-1 px-2">
-        <ul className="space-y-1">
+        <ul className="flex flex-col gap-6">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -130,18 +130,18 @@ export default function Sidebar() {
         </ul>
 
         {/* Connect Section */}
-        <div className="mt-10 mb-6">
+        <div className="mt-12 mb-8">
           <h3 className="px-4 font-mono text-[9px] text-zinc-600 uppercase tracking-[0.2em] mb-4">
             Connect
           </h3>
-          <div className="space-y-2 px-2">
+          <div className="flex flex-col gap-3 px-2">
             {socialLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 px-4 py-3 rounded-full bg-white/5 hover:bg-[#CC785C]/10 border border-white/5 hover:border-[#CC785C]/20 text-sm text-zinc-400 hover:text-zinc-200 transition-all duration-200 group"
+                className="flex items-center gap-4 px-5 py-3.5 w-full rounded-[16px] border border-white/5 bg-[#121212] hover:bg-white/5 transition-all text-sm font-mono text-zinc-300 tracking-wide shadow-sm"
               >
                 <span className="text-zinc-500 group-hover:text-[#CC785C] transition-colors">
                   <link.icon />
@@ -159,7 +159,7 @@ export default function Sidebar() {
       <div className="p-3 mt-auto">
         <div className="bg-[#0a0a0a] border border-white/5 rounded-2xl p-4">
           <p className="font-mono text-[10px] tracking-[0.1em] text-zinc-400 uppercase mb-3">
-            Weekly AI Breakdown
+            Join the Weekly Breakdown
           </p>
           <form className="space-y-2" onSubmit={handleSidebarNewsletter}>
             <input

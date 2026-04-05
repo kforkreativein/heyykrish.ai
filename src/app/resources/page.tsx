@@ -92,7 +92,7 @@ export default function ResourcesPage() {
         <BottomCTA
           badge="Stay Updated"
           heading="Never miss the latest AI tools"
-          subtext="Join 10,000+ creators getting my weekly AI breakdown. Real tools, real workflows, zero fluff delivered every Tuesday."
+          subtext="Join creators getting my weekly AI breakdown. Real tools, real workflows, zero fluff delivered every Tuesday."
           buttonText="Join the Newsletter"
           buttonHref="/#newsletter"
           useModal={true}

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import ResourceCard from "@/components/ResourceCard";
 import TypewriterText from "@/components/TypewriterText";
 import { getFeaturedResources } from "@/data/resources";
@@ -66,7 +67,7 @@ export default function Home() {
                 <span>Steal my private</span>
                 <span className="text-[#CC785C]">
                   <TypewriterText
-                    words={["workflows.", "prompts.", "automations."]}
+                    words={["workflows.", "prompts.", "automations.", "systems.", "templates."]}
                   />
                 </span>
               </h2>
@@ -82,7 +83,7 @@ export default function Home() {
                   AI tips that actually help (no fluff)
                 </h3>
                 <p className="text-sm text-zinc-400 mb-4">
-                  Join 10,000+ beginners learning AI weekly. Get tools, prompts, and workflows delivered to your inbox every Tuesday.
+                  Join creators and founders learning AI weekly. Get tools, prompts, and workflows delivered to your inbox every Tuesday.
                 </p>
                 <form
                   className="flex flex-col sm:flex-row gap-3"
@@ -112,18 +113,14 @@ export default function Home() {
               <div className="relative group">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-[#CC785C] to-[#b8674a] rounded-[32px] blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
                 <div className="relative w-80 h-96 rounded-[32px] border border-white/5 bg-[#121212] overflow-hidden transform -rotate-2 hover:rotate-0 transition-all duration-500 shadow-[0_4px_24px_-1px_rgba(0,0,0,0.5)]">
-                  {/* Placeholder for profile image */}
-                  <div className="w-full h-full bg-gradient-to-br from-[#121212] to-[#0a0a0a] flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-500">
-                    <div className="text-center">
-                      <div className="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#CC785C] to-[#b8674a] flex items-center justify-center shadow-[0_0_20px_rgba(204,120,92,0.4)]">
-                        <span className="text-5xl font-bold text-black">K</span>
-                      </div>
-                      <p className="text-zinc-400 text-sm">Add your photo here</p>
-                      <p className="text-zinc-600 text-xs mt-1 font-mono">
-                        /public/profile.jpg
-                      </p>
-                    </div>
-                  </div>
+                  {/* Profile Image */}
+                  <Image
+                    src="/profile.jpg"
+                    alt="Krish Chhatrala"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
                 </div>
               </div>
             </div>
@@ -138,7 +135,7 @@ export default function Home() {
                 Latest Resources
               </div>
               <h2 className="font-heading text-3xl lg:text-4xl font-bold text-white">
-                Active Modules
+                Featured Resources
               </h2>
             </div>
             <Link

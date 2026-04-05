@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { X, Download } from "lucide-react";
+import { X, Mail } from "lucide-react";
 import OSCard from "./OSCard";
 
 interface DownloadModalProps {
@@ -92,23 +92,23 @@ export default function DownloadModal({
 
           {/* Icon */}
           <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#CC785C]/10 border border-[#CC785C]/20 mb-6">
-            <Download className="w-6 h-6 text-[#CC785C]" />
+            <Mail className="w-6 h-6 text-[#CC785C]" />
           </div>
 
           {/* Heading */}
           <h2 className="font-heading text-2xl font-bold text-white mb-2">
-            Unlock This System
+            Join the Newsletter
           </h2>
           <p className="text-sm text-zinc-400 mb-6">
-            Drop your email below to receive <strong className="text-zinc-300">{resourceTitle}</strong>, plus get my latest AI workflows delivered to your inbox every Tuesday.
+            Drop your email below to get my latest AI workflows, tools, and prompts delivered to your inbox every Tuesday. Zero fluff.
           </p>
 
           {success ? (
             <div className="text-center py-8">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#CC785C]/10 border border-[#CC785C]/20 mb-4">
-                <Download className="w-8 h-8 text-[#CC785C]" />
+                <Mail className="w-8 h-8 text-[#CC785C]" />
               </div>
-              <p className="text-zinc-300 font-medium">Starting download...</p>
+              <p className="text-zinc-300 font-medium">Subscribed! Check your email.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -160,7 +160,7 @@ export default function DownloadModal({
                 disabled={isSubmitting}
                 className="w-full px-6 py-3.5 text-sm font-semibold text-black bg-gradient-to-b from-[#CC785C] to-[#b8674a] rounded-full hover:shadow-[0_0_25px_rgba(204,120,92,0.5)] transition-all duration-300 shadow-[0_0_15px_rgba(204,120,92,0.3)] disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isSubmitting ? "Processing..." : "Download Now"}
+                {isSubmitting ? "Subscribing..." : "Subscribe Now"}
               </button>
 
               <p className="text-xs text-zinc-500 text-center">

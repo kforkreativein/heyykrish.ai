@@ -30,7 +30,7 @@ export const resources: Resource[] = [
           This pipeline connects <span class="text-[#E17F62] font-semibold">Claude Code</span> to Google's NotebookLM via an unofficial Python API (notebooklm-py). Give it a topic → it scrapes YouTube → pushes videos to NotebookLM → generates deep analysis, infographics, podcasts, and study guides automatically.
         </p>
         <p class="text-zinc-500 text-sm leading-relaxed">
-          Original system by Steve Arneson (stevearneson.com/notebook) · Python library by Teng Lin (github.com/teng-lin/notebooklm-py) · Compiled by Krish Chhatrala | K for Kreative | March 2026
+          Original system by Steve Arneson (stevearneson.com/notebook) · Python library by Teng Lin (github.com/teng-lin/notebooklm-py)
         </p>
 
         <h3 class="text-xl font-bold text-zinc-50 mt-8 mb-4">Key Capabilities</h3>
@@ -65,7 +65,7 @@ export const resources: Resource[] = [
         <h3 class="text-xl font-bold text-zinc-50 mt-8 mb-3">Step 1 — Paste This Into Claude Code</h3>
         <p class="text-zinc-400 mb-4">This single prompt builds the YouTube research skill, installs NotebookLM-PY, and wires everything together. No other files needed. <strong class="text-zinc-300">Copy the entire block and paste it into Claude Code.</strong></p>
 
-        <div class="bg-zinc-950 border border-zinc-800 rounded-lg p-6 my-6 font-mono text-sm text-zinc-300 overflow-x-auto">
+        <div class="relative bg-[#121212] rounded-xl p-5 my-6 font-mono text-sm text-zinc-200 overflow-x-auto">
           <pre><code>I want to set up an automated research pipeline connecting Claude Code to
 NotebookLM. Please perform the following steps and I will 'accept' all
 your proposed changes:
@@ -112,7 +112,7 @@ ask me what topic I want to research before proceeding.</code></pre>
         <h3 class="text-xl font-bold text-zinc-50 mt-8 mb-3">Step 2 — Run Your First Research Command</h3>
         <p class="text-zinc-400 mb-4">Once setup is confirmed, give Claude Code this command. Replace <code class="text-[#E17F62] bg-zinc-900 px-1 rounded text-xs">[YOUR TOPIC]</code> with your research subject.</p>
 
-        <div class="bg-zinc-950 border border-zinc-800 rounded-lg p-6 my-6 font-mono text-sm text-zinc-300 overflow-x-auto">
+        <div class="relative bg-[#121212] rounded-xl p-5 my-6 font-mono text-sm text-zinc-200 overflow-x-auto">
           <pre><code>Use the yt-research skill to find the 25 latest trending videos on
 [YOUR TOPIC]. Once we have those videos, send them over to NotebookLM
 using the notebooklm skill. Give me its analysis on the top findings,
@@ -127,7 +127,7 @@ style depicting that analysis.</code></pre>
         <h3 class="text-xl font-bold text-zinc-50 mt-8 mb-3">NotebookLM Login — The Working Method</h3>
         <p class="text-zinc-400 mb-4">The original guide's login instructions are incomplete. The basic pip install doesn't include browser support needed for login. Here's the <span class="text-[#E17F62] font-semibold">full tested process that actually works:</span></p>
 
-        <div class="bg-zinc-950 border border-zinc-800 rounded-lg p-6 my-6 font-mono text-sm text-zinc-300 overflow-x-auto">
+        <div class="relative bg-[#121212] rounded-xl p-5 my-6 font-mono text-sm text-zinc-200 overflow-x-auto">
           <pre><code># Step 1: Install with browser support (critical — do NOT skip [browser])
 pip install "notebooklm-py[browser]"
 
@@ -201,7 +201,7 @@ notebooklm list    # Should show notebooks or empty list
         </div>
 
         <h3 class="text-xl font-bold text-zinc-50 mt-8 mb-4">NotebookLM CLI Cheat Sheet</h3>
-        <div class="bg-zinc-950 border border-zinc-800 rounded-lg p-6 my-6 font-mono text-sm text-zinc-300 overflow-x-auto">
+        <div class="relative bg-[#121212] rounded-xl p-5 my-6 font-mono text-sm text-zinc-200 overflow-x-auto">
           <pre><code># ── Authentication ──────────────────────────────────────────
 notebooklm login                           # Browser login
 notebooklm login --browser msedge          # Edge for SSO orgs
@@ -244,167 +244,34 @@ NOTEBOOKLM_DEBUG_RPC=1 notebooklm list        # Check RPC IDs</code></pre>
           <strong class="text-zinc-300">Important Disclaimer:</strong> NotebookLM-PY uses undocumented Google APIs that can change without notice. This is a community project, not affiliated with Google. Best for prototypes, research, and personal projects. APIs may break if Google changes internal endpoints.
         </blockquote>
 
-        <p class="text-zinc-500 text-sm mt-6">
-          Compiled by Krish Chhatrala | K for Kreative | March 2026
-        </p>
       </div>
     `,
   },
-  {
-    id: "1",
-    slug: "chatgpt-prompt-library",
-    title: "ChatGPT Prompt Library",
-    description:
-      "50+ battle-tested prompts for content creation, coding, and productivity that I use daily.",
-    category: "Prompts",
-    publishedAt: "2026-04-01",
-    featured: true,
-    contentHtml: `
-      <h2>The Golden Rule</h2>
-      <p>Before we dive into the prompts, understand this: <strong>specificity is everything</strong>. A vague prompt gets a vague response. A specific prompt gets exactly what you need.</p>
-
-      <h2>The PTCF Framework</h2>
-      <p>Every great prompt follows this structure:</p>
-      <ul>
-        <li><strong>P - Persona:</strong> Tell ChatGPT who to be</li>
-        <li><strong>T - Task:</strong> Define the exact output you want</li>
-        <li><strong>C - Context:</strong> Provide relevant background</li>
-        <li><strong>F - Format:</strong> Specify how you want the response structured</li>
-      </ul>
-
-      <h2>3 Power Techniques Most People Miss</h2>
-      <ol>
-        <li><strong>Chain of Thought:</strong> Ask it to "think step by step" for complex problems</li>
-        <li><strong>Few-Shot Examples:</strong> Show it 2-3 examples of what you want before asking</li>
-        <li><strong>Role Stacking:</strong> Combine multiple personas for unique perspectives</li>
-      </ol>
-
-      <h2>Sample Prompt from the Guide</h2>
-      <blockquote>
-        "You are a senior content strategist with 10 years of experience in social media growth.
-        I need you to analyze my Instagram bio and suggest 3 improvements.
-        My niche is AI tools for creators. Current bio: [paste bio].
-        Format your response as a numbered list with the suggestion and reasoning for each."
-      </blockquote>
-
-      <h2>What's in the Full PDF</h2>
-      <ul>
-        <li>50+ copy-paste prompts organized by use case</li>
-        <li>Content creation prompts (captions, scripts, hooks)</li>
-        <li>Productivity prompts (summarization, research, planning)</li>
-        <li>Coding prompts (debugging, refactoring, documentation)</li>
-        <li>Advanced techniques for power users</li>
-      </ul>
-    `,
-  },
-  {
-    id: "2",
-    slug: "ai-video-editing-workflow",
-    title: "AI Video Editing Workflow",
-    description:
-      "How I edit 10x faster using AI tools. Complete breakdown of my CapCut + AI pipeline.",
-    category: "Video Editing",
-    publishedAt: "2026-03-28",
-    featured: true,
-  },
-  {
-    id: "3",
-    slug: "free-ai-tools-guide",
-    title: "Free AI Tool Alternatives",
-    description:
-      "The exact free alternatives I use instead of expensive AI tools. Tested and compared.",
-    category: "Tools",
-    publishedAt: "2026-03-25",
-    featured: true,
-  },
-  {
-    id: "4",
-    slug: "content-automation-blueprint",
-    title: "Content Automation Blueprint",
-    description:
-      "My system for automating content research, writing, and scheduling using Make + AI.",
-    category: "Automations",
-    publishedAt: "2026-03-20",
-    featured: true,
-  },
-  {
-    id: "5",
-    slug: "ai-marketing-stack",
-    title: "Creator AI Marketing Stack",
-    description:
-      "The complete AI marketing toolkit I use to grow on social media. SEO, captions, hashtags, all automated.",
-    category: "Marketing",
-    publishedAt: "2026-03-15",
-  },
-  {
-    id: "6",
-    slug: "beginners-guide-ai",
-    title: "AI Tools Beginner Guide",
-    description:
-      "New to AI? Start here. A simple guide to understanding and using AI tools effectively.",
-    category: "Learning",
-    publishedAt: "2026-03-10",
-  },
-  {
-    id: "7",
-    slug: "claude-vs-chatgpt",
-    title: "Claude vs ChatGPT Compared",
-    description:
-      "I tested both extensively. Here's which one wins for different use cases, with examples.",
-    category: "Learning",
-    publishedAt: "2026-03-05",
-  },
-  {
-    id: "8",
-    slug: "midjourney-prompt-templates",
-    title: "Midjourney Prompt Templates",
-    description:
-      "Copy-paste prompts for stunning AI art. Includes style guides and parameter cheat sheets.",
-    category: "Prompts",
-    publishedAt: "2026-03-01",
-  },
-  {
-    id: "9",
-    slug: "auto-caption-videos",
-    title: "AI Video Auto-Captioning",
-    description:
-      "Step-by-step guide to adding professional captions to your videos in minutes, not hours.",
-    category: "Video Editing",
-    publishedAt: "2026-02-25",
-  },
-  {
-    id: "10",
-    slug: "email-newsletter-automation",
-    title: "Email Newsletter Automation",
-    description:
-      "How I write, design, and send newsletters on autopilot using AI. Full workflow breakdown.",
-    category: "Automations",
-    publishedAt: "2026-02-20",
-  },
 ];
 
+// Categories for filtering
 export const categories = [
   "All",
   "Prompts",
-  "Video Editing",
-  "Marketing",
-  "Automations",
   "Tools",
+  "Video Editing",
+  "Automations",
+  "Marketing",
   "Learning",
 ];
 
+// Helper functions
 export function getAllResources(): Resource[] {
-  return [...resources].sort(
-    (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+  return resources.sort(
+    (a, b) =>
+      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
   );
+}
+
+export function getFeaturedResources(): Resource[] {
+  return resources.filter((r) => r.featured).slice(0, 6);
 }
 
 export function getResourceBySlug(slug: string): Resource | undefined {
   return resources.find((r) => r.slug === slug);
-}
-
-export function getFeaturedResources(): Resource[] {
-  return [...resources]
-    .filter((r) => r.featured)
-    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
 }
