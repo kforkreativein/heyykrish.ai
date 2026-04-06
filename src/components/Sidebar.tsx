@@ -37,7 +37,6 @@ const YouTubeIcon = () => (
 const navItems = [
   { name: "Home", href: "/", icon: Home },
   { name: "Resources", href: "/resources", icon: Folder },
-  { name: "Partnerships", href: "/brand-partnerships", icon: Briefcase },
   { name: "About", href: "/about", icon: User },
 ];
 
