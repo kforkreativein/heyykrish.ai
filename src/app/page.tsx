@@ -5,41 +5,12 @@ import Link from "next/link";
 import Image from "next/image";
 import ResourceCard from "@/components/ResourceCard";
 import TypewriterText from "@/components/TypewriterText";
+import NewsletterModal from "@/components/NewsletterModal";
 import { getFeaturedResources } from "@/data/resources";
 
 export default function Home() {
   const featuredResources = getFeaturedResources();
-  const [email, setEmail] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleNewsletterSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      const response = await fetch("/api/newsletter", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          source: "homepage",
-        }),
-      });
-
-      if (response.ok) {
-        setSubmitted(true);
-        setEmail("");
-        setTimeout(() => setSubmitted(false), 3000);
-      }
-    } catch (error) {
-      console.error("Error submitting newsletter:", error);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  const [isNewsletterModalOpen, setIsNewsletterModalOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] pt-16 lg:pt-8 pb-16 px-4 lg:px-8 relative overflow-hidden w-full max-w-[100vw]">
@@ -85,26 +56,12 @@ export default function Home() {
                 <p className="text-sm text-zinc-400 mb-4">
                   Join creators and founders learning AI weekly. Get tools, prompts, and workflows delivered to your inbox every Tuesday.
                 </p>
-                <form
-                  className="flex flex-col sm:flex-row gap-3"
-                  onSubmit={handleNewsletterSubmit}
-                >
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    placeholder="Enter your email"
-                    className="flex-1 px-4 sm:px-5 py-2.5 sm:py-3 text-sm bg-[#0a0a0a] border border-white/10 rounded-full text-zinc-50 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-[#CC785C] focus:border-transparent transition-all"
-                  />
-                  <button
-                    type="submit"
-                    disabled={isSubmitting || submitted}
-                    className="px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-semibold text-black bg-gradient-to-b from-[#CC785C] to-[#b8674a] rounded-full hover:shadow-[0_0_25px_rgba(204,120,92,0.5)] transition-all duration-300 shadow-[0_0_15px_rgba(204,120,92,0.3)] whitespace-nowrap disabled:opacity-50"
-                  >
-                    {submitted ? "✓ Subscribed!" : isSubmitting ? "Joining..." : "Join Free"}
-                  </button>
-                </form>
+                <button
+                   onClick={() => setIsNewsletterModalOpen(true)}
+                   className="w-full px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-semibold text-black bg-gradient-to-b from-[#CC785C] to-[#b8674a] rounded-full hover:shadow-[0_0_25px_rgba(204,120,92,0.5)] transition-all duration-300 shadow-[0_0_15px_rgba(204,120,92,0.3)]"
+                 >
+                   Join Free
+                 </button>
               </div>
             </div>
 
@@ -156,6 +113,12 @@ export default function Home() {
           </div>
         </section>
       </div>
+
+      {/* Newsletter Modal */}
+      <NewsletterModal
+        isOpen={isNewsletterModalOpen}
+        onClose={() => setIsNewsletterModalOpen(false)}
+      />
     </div>
   );
 }

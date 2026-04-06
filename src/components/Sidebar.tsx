@@ -12,6 +12,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
+import NewsletterModal from "./NewsletterModal";
 
 const InstagramIcon = () => (
   <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -48,37 +49,7 @@ const socialLinks = [
 export default function Sidebar() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [sidebarEmail, setSidebarEmail] = useState("");
-  const [isSidebarSubmitting, setIsSidebarSubmitting] = useState(false);
-  const [sidebarSubmitted, setSidebarSubmitted] = useState(false);
-
-  const handleSidebarNewsletter = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSidebarSubmitting(true);
-
-    try {
-      const response = await fetch("/api/newsletter", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: sidebarEmail,
-          source: "sidebar",
-        }),
-      });
-
-      if (response.ok) {
-        setSidebarSubmitted(true);
-        setSidebarEmail("");
-        setTimeout(() => setSidebarSubmitted(false), 3000);
-      }
-    } catch (error) {
-      console.error("Error submitting newsletter:", error);
-    } finally {
-      setIsSidebarSubmitting(false);
-    }
-  };
+  const [isNewsletterModalOpen, setIsNewsletterModalOpen] = useState(false);
 
   const SidebarContent = () => (
     <div className="flex flex-col h-full p-2">
@@ -160,23 +131,12 @@ export default function Sidebar() {
           <p className="font-mono text-[10px] tracking-[0.1em] text-zinc-400 uppercase mb-3">
             Join the Weekly Breakdown
           </p>
-          <form className="space-y-2" onSubmit={handleSidebarNewsletter}>
-            <input
-              type="email"
-              value={sidebarEmail}
-              onChange={(e) => setSidebarEmail(e.target.value)}
-              required
-              placeholder="your@email.com"
-              className="w-full px-4 py-2.5 sm:py-3 text-xs sm:text-sm font-mono bg-[#121212] border border-white/5 rounded-full text-zinc-300 placeholder:text-zinc-600 focus:outline-none focus:ring-1 focus:ring-[#CC785C]/50 focus:border-[#CC785C]/50 transition-all"
-            />
-            <button
-              type="submit"
-              disabled={isSidebarSubmitting || sidebarSubmitted}
-              className="w-full px-4 py-2.5 sm:py-3 text-xs font-mono font-medium text-black bg-[#CC785C] rounded-full hover:bg-[#B86246] transition-all duration-200 uppercase tracking-wider disabled:opacity-50"
-            >
-              {sidebarSubmitted ? "✓ Subscribed!" : isSidebarSubmitting ? "Joining..." : "Subscribe"}
-            </button>
-          </form>
+          <button
+            onClick={() => setIsNewsletterModalOpen(true)}
+            className="w-full px-4 py-2.5 sm:py-3 text-xs font-mono font-medium text-black bg-[#CC785C] rounded-full hover:bg-[#B86246] transition-all duration-200 uppercase tracking-wider"
+          >
+            Subscribe
+          </button>
         </div>
       </div>
     </div>
@@ -220,6 +180,12 @@ export default function Sidebar() {
 
       {/* Mobile content spacer */}
       <div className="lg:hidden h-14" />
+
+      {/* Newsletter Modal */}
+      <NewsletterModal
+        isOpen={isNewsletterModalOpen}
+        onClose={() => setIsNewsletterModalOpen(false)}
+      />
     </>
   );
 }

@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Zap } from "lucide-react";
 import OSCard from "./OSCard";
-import DownloadModal from "./DownloadModal";
+import NewsletterModal from "./NewsletterModal";
 import ContactModal from "./ContactModal";
 
 interface BottomCTAProps {
@@ -87,12 +87,9 @@ export default function BottomCTA({
 
     {/* Newsletter Modal - Only render if useModal is true */}
     {useModal && (
-      <DownloadModal
+      <NewsletterModal
         isOpen={isNewsletterModalOpen}
         onClose={() => setIsNewsletterModalOpen(false)}
-        resourceTitle="HeyyKrish Newsletter"
-        resourceId="newsletter-signup"
-        downloadUrl="#"
       />
     )}
 

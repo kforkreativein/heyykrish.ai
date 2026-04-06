@@ -15,7 +15,7 @@ function getISTTimestamp() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { email, source } = body;
+    const { email, name, source } = body;
 
     // Validate input
     if (!email) {
@@ -40,6 +40,7 @@ export async function POST(request: NextRequest) {
       .insert([
         {
           email,
+          name: name || null,
           source: source || "homepage",
           created_at: getISTTimestamp(),
         },
