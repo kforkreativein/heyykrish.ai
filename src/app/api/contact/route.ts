@@ -1,6 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
-import { writeFile, readFile } from "fs/promises";
-import path from "path";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
+
+function getISTTimestamp() {
+  const now = new Date();
+  const istTime = new Date(now.getTime() + 5.5 * 60 * 60 * 1000);
+  return istTime.toISOString();
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -24,32 +34,28 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Prepare CSV data
-    const timestamp = new Date().toISOString();
-    const csvRow = `"${timestamp}","${name.replace(/"/g, '""')}","${email.replace(/"/g, '""')}","${company?.replace(/"/g, '""') || ''}","${message.replace(/"/g, '""').replace(/\n/g, ' ')}"\n`;
-    
-    const dataDir = path.join(process.cwd(), "data");
-    const csvPath = path.join(dataDir, "contact-inquiries.csv");
+    // Insert into Supabase
+    const { error } = await supabase
+      .from("contact_inquiries")
+      .insert([
+        {
+          name,
+          email,
+          company: company || null,
+          message,
+          created_at: getISTTimestamp(),
+        },
+      ]);
 
-    // Check if CSV file exists and add header if not
-    let csvContent = csvRow;
-    try {
-      const existingContent = await readFile(csvPath, "utf-8");
-      csvContent = existingContent + csvRow;
-    } catch {
-      // File doesn't exist, add header
-      const header = "Timestamp,Name,Email,Company,Message\n";
-      csvContent = header + csvRow;
+    if (error) {
+      console.error("Supabase error:", error);
+      throw error;
     }
 
-    // Write to CSV file
-    await writeFile(csvPath, csvContent);
-
-    return NextResponse.json({ 
-      success: true, 
-      message: "Contact inquiry saved successfully" 
+    return NextResponse.json({
+      success: true,
+      message: "Contact inquiry saved successfully",
     });
-
   } catch (error) {
     console.error("Error saving contact inquiry:", error);
     return NextResponse.json(

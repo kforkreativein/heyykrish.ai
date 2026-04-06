@@ -1,7 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
-import { writeFile, readFile, mkdir } from "fs/promises";
-import { existsSync } from "fs";
-import path from "path";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
+
+function getISTTimestamp() {
+  const now = new Date();
+  const istTime = new Date(now.getTime() + 5.5 * 60 * 60 * 1000);
+  return istTime.toISOString();
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -25,26 +34,27 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create data directory if it doesn't exist
-    const dataDir = path.join(process.cwd(), "data");
-    if (!existsSync(dataDir)) {
-      await mkdir(dataDir, { recursive: true });
-    }
+    // Insert into Supabase
+    const { error } = await supabase
+      .from("newsletter_subscribers")
+      .insert([
+        {
+          email,
+          source: source || "homepage",
+          created_at: getISTTimestamp(),
+        },
+      ]);
 
-    const filePath = path.join(dataDir, "newsletter-subscribers.csv");
-    const timestamp = new Date().toISOString();
-
-    // Create CSV content
-    const csvRow = `"${timestamp}","${email.replace(/"/g, '""')}","${source || 'homepage'}"\n`;
-
-    // Check if file exists to add header
-    if (!existsSync(filePath)) {
-      const header = '"Timestamp","Email","Source"\n';
-      await writeFile(filePath, header + csvRow, "utf-8");
-    } else {
-      // Append to existing file
-      const existingData = await readFile(filePath, "utf-8");
-      await writeFile(filePath, existingData + csvRow, "utf-8");
+    if (error) {
+      console.error("Supabase error:", error);
+      // Check if it's a duplicate email error
+      if (error.code === "23505") {
+        return NextResponse.json(
+          { error: "This email is already subscribed" },
+          { status: 400 }
+        );
+      }
+      throw error;
     }
 
     return NextResponse.json({ success: true });
