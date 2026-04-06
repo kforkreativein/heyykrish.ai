@@ -20,17 +20,17 @@ export default function ResourcesPage() {
   });
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] pt-8 lg:pt-16 pb-16 px-4 lg:px-8">
+    <div className="min-h-screen bg-[#0a0a0a] pt-16 lg:pt-8 pb-16 px-4 lg:px-8 w-full max-w-[100vw] overflow-hidden">
       <div className="max-w-6xl mx-auto">
         {/* Page Header */}
         <div className="mb-10">
           <div className="font-mono text-xs tracking-widest text-[#CC785C] mb-4 uppercase">
             Heyykrish.AI // Resources
           </div>
-          <h1 className="font-heading text-5xl font-bold text-white mb-4 tracking-tight">
+          <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
             Resource Hub
           </h1>
-          <p className="text-lg text-zinc-400 max-w-3xl">
+          <p className="text-base sm:text-lg text-zinc-400 max-w-3xl">
             Every prompt, workflow, and automation I actually use—documented and ready for you to deploy. Find your use case, download the guide, and start building.
           </p>
         </div>
@@ -42,17 +42,17 @@ export default function ResourcesPage() {
             placeholder="> Search records..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full px-6 py-4 text-sm bg-[#121212] border border-white/10 rounded-full font-mono text-[#CC785C] placeholder:text-zinc-600 focus:outline-none focus:border-[#CC785C] focus:shadow-[0_0_20px_rgba(204,120,92,0.2)] transition-all shadow-[0_4px_24px_-1px_rgba(0,0,0,0.5),inset_0_1px_0_0_rgba(255,255,255,0.05)] backdrop-blur-xl"
+            className="w-full px-4 sm:px-6 py-3 sm:py-4 text-sm bg-[#121212] border border-white/10 rounded-full font-mono text-[#CC785C] placeholder:text-zinc-600 focus:outline-none focus:border-[#CC785C] focus:shadow-[0_0_20px_rgba(204,120,92,0.2)] transition-all shadow-[0_4px_24px_-1px_rgba(0,0,0,0.5),inset_0_1px_0_0_rgba(255,255,255,0.05)] backdrop-blur-xl"
           />
         </div>
 
         {/* Pill-Shaped Filter Toggle Buttons */}
-        <div className="flex flex-wrap gap-3 mb-10">
+        <div className="flex flex-wrap gap-2 sm:gap-3 mb-10">
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-5 py-2.5 text-sm font-medium rounded-full transition-all duration-300 ${
+              className={`px-3 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium rounded-full transition-all duration-300 ${
                 activeCategory === category
                   ? "bg-[#CC785C] text-black shadow-[0_0_15px_rgba(204,120,92,0.4)] font-semibold"
                   : "bg-white/5 text-zinc-400 border border-white/5 hover:bg-white/10 hover:text-zinc-300"
@@ -89,14 +89,16 @@ export default function ResourcesPage() {
         </div>
 
         {/* Bottom Newsletter CTA */}
-        <BottomCTA
-          badge="Stay Updated"
-          heading="Never miss the latest AI tools"
-          subtext="Join creators getting my weekly AI breakdown. Real tools, real workflows, zero fluff delivered every Tuesday."
-          buttonText="Join the Newsletter"
-          buttonHref="/#newsletter"
-          useModal={true}
-        />
+        <div className="mt-12 sm:mt-16 lg:mt-24">
+          <BottomCTA
+            badge="Stay Updated"
+            heading="Never miss the latest AI tools"
+            subtext="Join creators getting my weekly AI breakdown. Real tools, real workflows, zero fluff delivered every Tuesday."
+            buttonText="Join the Newsletter"
+            buttonHref="/#newsletter"
+            useModal={true}
+          />
+        </div>
       </div>
     </div>
   );

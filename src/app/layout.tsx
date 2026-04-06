@@ -32,9 +32,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} h-full`}>
-      <body className="min-h-full flex bg-[#0a0a0a] text-zinc-300 antialiased">
+      <body className="min-h-full flex bg-[#0a0a0a] text-zinc-300 antialiased w-full max-w-[100vw] overflow-x-hidden">
         <Sidebar />
-        <main className="flex-1 lg:ml-[276px] min-h-screen">
+        <main className="flex-1 min-w-0 w-full overflow-x-hidden lg:ml-[276px] min-h-screen">
           {children}
         </main>
       </body>

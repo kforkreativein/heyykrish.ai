@@ -168,12 +168,12 @@ export default function Sidebar() {
               onChange={(e) => setSidebarEmail(e.target.value)}
               required
               placeholder="your@email.com"
-              className="w-full px-4 py-2.5 text-xs font-mono bg-[#121212] border border-white/5 rounded-full text-zinc-300 placeholder:text-zinc-600 focus:outline-none focus:ring-1 focus:ring-[#CC785C]/50 focus:border-[#CC785C]/50 transition-all"
+              className="w-full px-4 py-2.5 sm:py-3 text-xs sm:text-sm font-mono bg-[#121212] border border-white/5 rounded-full text-zinc-300 placeholder:text-zinc-600 focus:outline-none focus:ring-1 focus:ring-[#CC785C]/50 focus:border-[#CC785C]/50 transition-all"
             />
             <button
               type="submit"
               disabled={isSidebarSubmitting || sidebarSubmitted}
-              className="w-full px-4 py-2.5 text-xs font-mono font-medium text-black bg-[#CC785C] rounded-full hover:bg-[#B86246] transition-all duration-200 uppercase tracking-wider disabled:opacity-50"
+              className="w-full px-4 py-2.5 sm:py-3 text-xs font-mono font-medium text-black bg-[#CC785C] rounded-full hover:bg-[#B86246] transition-all duration-200 uppercase tracking-wider disabled:opacity-50"
             >
               {sidebarSubmitted ? "✓ Subscribed!" : isSidebarSubmitting ? "Joining..." : "Subscribe"}
             </button>
@@ -187,7 +187,9 @@ export default function Sidebar() {
     <>
       {/* Mobile Header */}
       <div className="lg:hidden fixed top-0 left-0 right-0 h-14 bg-[#0a0a0a] border-b border-white/5 flex items-center justify-between px-4 z-40">
-        <span className="font-heading text-base font-semibold text-white">heyykrish.ai</span>
+        <Link href="/" className="font-heading text-base font-semibold text-white hover:text-[#CC785C] transition-colors">
+          heyykrish.ai
+        </Link>
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="p-2 rounded-xl bg-[#121212] border border-white/5 hover:bg-white/5 transition-colors"

@@ -28,7 +28,7 @@ export default function ResourceCard({
         </span>
 
         {/* Title in Space Grotesk */}
-        <h3 className="font-heading text-2xl text-white mt-2 mb-3 group-hover:text-[#CC785C] transition-colors">
+        <h3 className="font-heading text-xl sm:text-2xl text-white mt-2 mb-3 group-hover:text-[#CC785C] transition-colors">
           {title}
         </h3>
 
@@ -44,7 +44,7 @@ export default function ResourceCard({
         </div>
 
         {/* Pill-Shaped Action Button */}
-        <button className="w-full py-3 px-6 bg-gradient-to-b from-[#CC785C] to-[#b8674a] text-black font-semibold text-sm rounded-full hover:shadow-[0_0_20px_rgba(204,120,92,0.4)] transition-all duration-300 shadow-[0_0_15px_rgba(204,120,92,0.3)] group-hover:scale-[1.02]">
+        <button className="w-full py-2.5 sm:py-3 px-5 sm:px-6 bg-gradient-to-b from-[#CC785C] to-[#b8674a] text-black font-semibold text-xs sm:text-sm rounded-full hover:shadow-[0_0_20px_rgba(204,120,92,0.4)] transition-all duration-300 shadow-[0_0_15px_rgba(204,120,92,0.3)] group-hover:scale-[1.02]">
           View Resource
         </button>
       </OSCard>

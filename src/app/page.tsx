@@ -42,14 +42,14 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] pt-8 lg:pt-16 pb-16 px-4 lg:px-8 relative overflow-hidden">
+    <div className="min-h-screen bg-[#0a0a0a] pt-16 lg:pt-8 pb-16 px-4 lg:px-8 relative overflow-hidden w-full max-w-[100vw]">
       {/* Ambient Background Glow */}
-      <div className="absolute top-[-10%] left-[20%] w-[500px] h-[500px] bg-[#CC785C]/10 rounded-full blur-[120px] -z-10 pointer-events-none" />
+      <div className="absolute top-[-10%] left-[10%] md:left-[20%] w-[280px] h-[280px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] bg-[#CC785C]/10 rounded-full blur-[120px] -z-10 pointer-events-none" />
       
       <div className="max-w-6xl mx-auto">
         {/* Hero Section */}
         <section className="mb-16 lg:mb-24">
-          <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-16">
+          <div className="flex flex-col md:flex-row items-center gap-8 sm:gap-12 lg:gap-16">
             {/* Left Column - Text */}
             <div className="flex-1 md:w-[60%]">
               {/* Technical Breadcrumb */}
@@ -58,12 +58,12 @@ export default function Home() {
               </div>
 
               {/* H1 - Stop Learning, Start Deploying */}
-              <h1 className="font-heading text-6xl md:text-7xl font-bold tracking-tight text-white mb-6">
-                Stop Learning AI. Start Deploying It.
+              <h1 className="font-heading font-bold tracking-tight text-white mb-6 text-[clamp(2.25rem,7vw,4.5rem)] leading-[1.1]">
+                Stop Learning AI.<br />Start Deploying It.
               </h1>
               
               {/* H2 - Clean Inline Typewriter */}
-              <h2 className="text-2xl md:text-3xl font-semibold text-zinc-200 mb-6 flex flex-wrap items-center gap-x-3">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-zinc-200 mb-6 flex flex-wrap items-center gap-x-2 sm:gap-x-3">
                 <span>Steal my private</span>
                 <span className="text-[#CC785C]">
                   <TypewriterText
@@ -95,12 +95,12 @@ export default function Home() {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     placeholder="Enter your email"
-                    className="flex-1 px-5 py-3 text-sm bg-[#0a0a0a] border border-white/10 rounded-full text-zinc-50 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-[#CC785C] focus:border-transparent transition-all"
+                    className="flex-1 px-4 sm:px-5 py-2.5 sm:py-3 text-sm bg-[#0a0a0a] border border-white/10 rounded-full text-zinc-50 placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-[#CC785C] focus:border-transparent transition-all"
                   />
                   <button
                     type="submit"
                     disabled={isSubmitting || submitted}
-                    className="px-6 py-3 text-sm font-semibold text-black bg-gradient-to-b from-[#CC785C] to-[#b8674a] rounded-full hover:shadow-[0_0_25px_rgba(204,120,92,0.5)] transition-all duration-300 shadow-[0_0_15px_rgba(204,120,92,0.3)] whitespace-nowrap disabled:opacity-50"
+                    className="px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-semibold text-black bg-gradient-to-b from-[#CC785C] to-[#b8674a] rounded-full hover:shadow-[0_0_25px_rgba(204,120,92,0.5)] transition-all duration-300 shadow-[0_0_15px_rgba(204,120,92,0.3)] whitespace-nowrap disabled:opacity-50"
                   >
                     {submitted ? "✓ Subscribed!" : isSubmitting ? "Joining..." : "Join Free"}
                   </button>
@@ -112,7 +112,7 @@ export default function Home() {
             <div className="md:w-[40%] flex justify-center md:justify-end">
               <div className="relative group">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-[#CC785C] to-[#b8674a] rounded-[32px] blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
-                <div className="relative w-80 h-96 rounded-[32px] border border-white/5 bg-[#121212] overflow-hidden transform -rotate-2 hover:rotate-0 transition-all duration-500 shadow-[0_4px_24px_-1px_rgba(0,0,0,0.5)]">
+                <div className="relative w-56 h-72 sm:w-64 sm:h-80 md:w-80 md:h-96 rounded-[32px] border border-white/5 bg-[#121212] overflow-hidden transform -rotate-2 hover:rotate-0 transition-all duration-500 shadow-[0_4px_24px_-1px_rgba(0,0,0,0.5)]">
                   {/* Profile Image */}
                   <Image
                     src="/profile.jpg"
@@ -134,7 +134,7 @@ export default function Home() {
               <div className="font-mono text-xs tracking-widest text-[#CC785C] mb-2 uppercase">
                 Latest Resources
               </div>
-              <h2 className="font-heading text-3xl lg:text-4xl font-bold text-white">
+              <h2 className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-white">
                 Featured Resources
               </h2>
             </div>

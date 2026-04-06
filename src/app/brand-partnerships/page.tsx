@@ -16,9 +16,9 @@ const pastPartners = [
 
 export default function BrandPartnershipsPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] pt-8 lg:pt-16 pb-16 px-4 lg:px-8 relative overflow-hidden">
+    <div className="min-h-screen bg-[#0a0a0a] pt-16 lg:pt-8 pb-16 px-4 lg:px-8 relative overflow-hidden w-full max-w-[100vw]">
       {/* Ambient Background Glow */}
-      <div className="absolute top-[-10%] left-[20%] w-[500px] h-[500px] bg-[#CC785C]/10 rounded-full blur-[120px] -z-10 pointer-events-none" />
+      <div className="absolute top-[-10%] left-[10%] md:left-[20%] w-[280px] h-[280px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] bg-[#CC785C]/10 rounded-full blur-[120px] -z-10 pointer-events-none" />
       
       <div className="max-w-6xl mx-auto">
         {/* Page Header */}
@@ -26,27 +26,27 @@ export default function BrandPartnershipsPage() {
           <div className="font-mono text-xs tracking-widest text-[#CC785C] mb-4 uppercase">
             Heyykrish.AI // Partnership
           </div>
-          <h1 className="font-heading text-5xl font-bold text-white mb-4 tracking-tight">
+          <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
             Partner with Krish
           </h1>
-          <p className="text-lg text-zinc-400 max-w-3xl">
+          <p className="text-base sm:text-lg text-zinc-400 max-w-3xl">
             Put your tool in front of 150,000+ creators and founders who actually take action. I partner with brands to build authentic, workflow-driven content that drives conversions, not just vanity metrics.
           </p>
         </div>
 
         {/* Media Kit CTA */}
         <div className="mb-12">
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4">
             <Link 
               href="/media-kit"
-              className="inline-flex items-center gap-3 px-8 py-4 text-base font-bold text-black bg-gradient-to-b from-[#CC785C] to-[#b8674a] rounded-full hover:shadow-[0_0_20px_rgba(204,120,92,0.4)] transition-all duration-300 shadow-[0_0_15px_rgba(204,120,92,0.3)] hover:scale-105"
+              className="inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-bold text-black bg-gradient-to-b from-[#CC785C] to-[#b8674a] rounded-full hover:shadow-[0_0_20px_rgba(204,120,92,0.4)] transition-all duration-300 shadow-[0_0_15px_rgba(204,120,92,0.3)] hover:scale-105"
             >
-              <Download size={20} />
+              <Download size={18} />
               View Media Kit
             </Link>
             <a 
               href="mailto:kforkreativein@gmail.com"
-              className="px-8 py-3 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-zinc-300 font-semibold transition-all flex items-center gap-2"
+              className="px-6 sm:px-8 py-3 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-zinc-300 font-semibold transition-all flex items-center justify-center gap-2 text-sm sm:text-base"
             >
               Get in Touch
             </a>
@@ -55,10 +55,10 @@ export default function BrandPartnershipsPage() {
 
         {/* Past Partners */}
         <div className="mb-12">
-          <h2 className="font-heading text-2xl font-semibold text-white mb-6">
+          <h2 className="font-heading text-xl sm:text-2xl font-semibold text-white mb-6">
             Past Partners
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {pastPartners.map((partner) => (
               <OSCard
                 key={partner}
@@ -82,10 +82,10 @@ export default function BrandPartnershipsPage() {
 
         {/* What I Offer Section */}
         <div className="mb-12">
-          <h2 className="font-heading text-2xl font-semibold text-white mb-6">
+          <h2 className="font-heading text-xl sm:text-2xl font-semibold text-white mb-6">
             What I Offer:
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {/* Card 1 - The Workflow */}
             <OSCard className="h-full">
               <div className="mb-4">
@@ -93,7 +93,7 @@ export default function BrandPartnershipsPage() {
                   [ MODULE // BUILD ]
                 </span>
               </div>
-              <h3 className="font-heading text-2xl text-white mb-2">
+              <h3 className="font-heading text-xl sm:text-2xl text-white mb-2">
                 Custom AI Workflows
               </h3>
               <p className="text-zinc-400 text-sm leading-relaxed">
@@ -108,7 +108,7 @@ export default function BrandPartnershipsPage() {
                   [ VALUE // DEPLOY ]
                 </span>
               </div>
-              <h3 className="font-heading text-2xl text-white mb-2">
+              <h3 className="font-heading text-xl sm:text-2xl text-white mb-2">
                 Immediate Action & Trust
               </h3>
               <p className="text-zinc-400 text-sm leading-relaxed">
@@ -123,7 +123,7 @@ export default function BrandPartnershipsPage() {
                   [ RESULT // ACQUIRE ]
                 </span>
               </div>
-              <h3 className="font-heading text-2xl text-white mb-2">
+              <h3 className="font-heading text-xl sm:text-2xl text-white mb-2">
                 High-Intent User Growth
               </h3>
               <p className="text-zinc-400 text-sm leading-relaxed">
@@ -134,13 +134,15 @@ export default function BrandPartnershipsPage() {
         </div>
 
         {/* Bottom CTA */}
-        <BottomCTA
-          badge="Let's Partner"
-          heading="Ready to collaborate?"
-          subtext="I work with brands that align with my mission to democratize AI knowledge. Let's create something meaningful together."
-          buttonText="Get in Touch"
-          buttonHref="mailto:kforkreativein@gmail.com"
-        />
+        <div className="mt-12 sm:mt-16 lg:mt-24">
+          <BottomCTA
+            badge="Let's Partner"
+            heading="Ready to collaborate?"
+            subtext="I work with brands that align with my mission to democratize AI knowledge. Let's create something meaningful together."
+            buttonText="Get in Touch"
+            buttonHref="mailto:kforkreativein@gmail.com"
+          />
+        </div>
 
       </div>
     </div>

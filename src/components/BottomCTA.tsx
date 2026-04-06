@@ -30,10 +30,10 @@ export default function BottomCTA({
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   return (
     <>
-      <OSCard className="mt-16 lg:mt-24 relative overflow-hidden">
+      <OSCard className="overflow-hidden">
       {/* Icon in Rounded Container */}
-      <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#CC785C]/10 border border-[#CC785C]/20 mb-6">
-        <Zap className="w-6 h-6 text-[#CC785C]" />
+      <div className="inline-flex items-center justify-center w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-[#CC785C]/10 border border-[#CC785C]/20 mb-4 sm:mb-6">
+        <Zap className="w-5 sm:w-6 h-5 sm:h-6 text-[#CC785C]" />
       </div>
       
       <div className="flex flex-col gap-6">
@@ -46,12 +46,12 @@ export default function BottomCTA({
           </div>
           
           {/* Heading in Space Grotesk */}
-          <h2 className="font-heading text-3xl lg:text-4xl font-bold text-white mb-4">
+          <h2 className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
             {heading}
           </h2>
           
           {/* Subtext */}
-          <p className="text-zinc-400 leading-relaxed max-w-2xl mb-6">
+          <p className="text-sm sm:text-base text-zinc-400 leading-relaxed max-w-2xl mb-6">
             {subtext}
           </p>
 

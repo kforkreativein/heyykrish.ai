@@ -3,9 +3,9 @@ import { mediaKitData } from "@/data/mediakit";
 
 export default function MediaKitPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] pt-8 lg:pt-16 pb-16 px-4 lg:px-8 relative overflow-hidden">
+    <div className="min-h-screen bg-[#0a0a0a] pt-16 lg:pt-8 pb-16 px-4 lg:px-8 relative overflow-hidden w-full max-w-[100vw]">
       {/* Ambient Background Glow */}
-      <div className="absolute top-[-10%] left-[20%] w-[500px] h-[500px] bg-[#CC785C]/15 rounded-full blur-[120px] -z-10 pointer-events-none" />
+      <div className="absolute top-[-10%] left-[10%] md:left-[20%] w-[280px] h-[280px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] bg-[#CC785C]/15 rounded-full blur-[120px] -z-10 pointer-events-none" />
       
       <div className="max-w-6xl mx-auto">
         {/* Page Header */}
@@ -16,24 +16,24 @@ export default function MediaKitPage() {
           </div>
           
           {/* Main Title */}
-          <h1 className="font-heading text-5xl md:text-6xl text-white font-bold tracking-tight mb-4">
+          <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-bold tracking-tight mb-4">
             Krish Chhatrala
           </h1>
           
           {/* Subtitle */}
-          <p className="text-xl text-zinc-400 font-mono tracking-wider uppercase">
+          <p className="text-base sm:text-lg md:text-xl text-zinc-400 font-mono tracking-wider uppercase">
             AI Creator &amp; Automations Expert
           </p>
         </div>
 
         {/* Top Row - Big Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-8">
           {/* Followers */}
           <OSCard>
             <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-2">
               Followers
             </div>
-            <div className="font-heading text-[#CC785C] text-5xl font-bold mt-4">
+            <div className="font-heading text-[#CC785C] text-3xl sm:text-4xl md:text-5xl font-bold mt-4">
               {mediaKitData.followers}
             </div>
           </OSCard>
@@ -43,7 +43,7 @@ export default function MediaKitPage() {
             <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-2">
               Monthly Impressions
             </div>
-            <div className="font-heading text-[#CC785C] text-5xl font-bold mt-4">
+            <div className="font-heading text-[#CC785C] text-3xl sm:text-4xl md:text-5xl font-bold mt-4">
               {mediaKitData.impressions}
             </div>
           </OSCard>
@@ -53,7 +53,7 @@ export default function MediaKitPage() {
             <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-2">
               Audience Age
             </div>
-            <div className="font-heading text-[#CC785C] text-5xl font-bold mt-4">
+            <div className="font-heading text-[#CC785C] text-3xl sm:text-4xl md:text-5xl font-bold mt-4">
               {mediaKitData.audienceAge}
             </div>
           </OSCard>
@@ -61,7 +61,7 @@ export default function MediaKitPage() {
 
         {/* Second Row - Audience Details */}
         <OSCard>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {/* Top Locations */}
             <div>
               <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-4">
