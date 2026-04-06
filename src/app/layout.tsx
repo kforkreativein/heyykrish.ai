@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -37,6 +38,7 @@ export default function RootLayout({
         <main className="flex-1 min-w-0 w-full overflow-x-hidden lg:ml-[276px] min-h-screen">
           {children}
         </main>
+        <SpeedInsights />
       </body>
     </html>
   );
