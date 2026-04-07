@@ -1,12 +1,26 @@
+// Media Kit Data - Last Updated: April 2026
+
 export const mediaKitData = {
-  followers: "150K+",
-  impressions: "5M+",
+  followers: "10K+",
+  impressions: "1M+",
   audienceAge: "18-34",
-  demographics: {
-    topLocations: ["US", "UK", "Canada", "India"],
-    gender: { male: "65%", female: "35%" }
-  },
   engagementRate: "8.5%",
-  topInterests: ["AI Tools", "Productivity", "Content Creation"],
-  lastUpdated: "April 2026"
+  demographics: {
+    gender: {
+      male: "65%",
+      female: "35%",
+    },
+    topLocations: [
+      "US",
+      "UK",
+      "Canada",
+      "India"
+    ],
+  },
+  topInterests: [
+    "AI Tools",
+    "Productivity",
+    "Content Creation"
+  ],
+  lastUpdated: "April 2026",
 };

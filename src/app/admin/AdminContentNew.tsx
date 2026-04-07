@@ -24,8 +24,8 @@ import {
 } from "lucide-react";
 import OSCard from "@/components/OSCard";
 
-// Simple password protection
-const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "admin123";
+// Simple password protection (not exposed to browser)
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "admin123";
 
 interface Stats {
   newsletterCount: number;
