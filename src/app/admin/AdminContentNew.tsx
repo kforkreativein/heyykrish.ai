@@ -24,9 +24,6 @@ import {
 } from "lucide-react";
 import OSCard from "@/components/OSCard";
 
-// Simple password protection (not exposed to browser)
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "admin123";
-
 interface Stats {
   newsletterCount: number;
   contactCount: number;
@@ -107,15 +104,32 @@ export default function AdminContent() {
   const [isLoading, setIsLoading] = useState(false);
   const [saveMessage, setSaveMessage] = useState("");
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === ADMIN_PASSWORD) {
-      setIsAuthenticated(true);
-      setError("");
-      sessionStorage.setItem("admin_auth", "true");
-    } else {
-      setError("Invalid password");
+    setIsLoading(true);
+    setError("");
+
+    try {
+      const response = await fetch("/api/admin/auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setIsAuthenticated(true);
+        sessionStorage.setItem("admin_auth", "true");
+      } else {
+        setError("Invalid password");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      setError("Login failed. Please try again.");
     }
+    
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -320,9 +334,10 @@ export default function AdminContent() {
 
             <button
               type="submit"
-              className="w-full py-3 bg-gradient-to-b from-[#CC785C] to-[#b8674a] text-black font-bold rounded-full hover:shadow-[0_0_20px_rgba(204,120,92,0.4)] transition-all duration-300"
+              disabled={isLoading}
+              className="w-full py-3 bg-gradient-to-b from-[#CC785C] to-[#b8674a] text-black font-bold rounded-full hover:shadow-[0_0_20px_rgba(204,120,92,0.4)] transition-all duration-300 disabled:opacity-50"
             >
-              Login
+              {isLoading ? "Verifying..." : "Login"}
             </button>
           </form>
         </OSCard>
