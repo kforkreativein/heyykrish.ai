@@ -72,7 +72,7 @@ export default function Sidebar() {
 
       {/* Navigation */}
       <nav className="flex-1 px-2">
-        <ul className="flex flex-col gap-6">
+        <ul className="flex flex-col gap-6" role="list">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -80,19 +80,25 @@ export default function Sidebar() {
                 <Link
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-2xl font-mono text-[11px] uppercase tracking-[0.15em] transition-all duration-200 ${
+                  aria-current={isActive ? "page" : undefined}
+                  className={`flex items-center gap-3 px-4 py-3 rounded-2xl font-mono text-[11px] uppercase tracking-[0.15em] transition-all duration-200 focus-ring group ${
                     isActive
                       ? "text-[#CC785C]"
                       : "text-zinc-500 hover:text-zinc-300"
                   }`}
                 >
-                  {/* Active dot indicator */}
-                  <span className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${
-                    isActive 
-                      ? "bg-[#CC785C] shadow-[0_0_8px_rgba(204,120,92,0.6)]" 
-                      : "bg-zinc-700"
-                  }`} />
-                  {item.name}
+                  {/* Active dot indicator with trail effect */}
+                  <span 
+                    className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                      isActive 
+                        ? "bg-[#CC785C] nav-dot-active shadow-[0_0_8px_rgba(204,120,92,0.6)]" 
+                        : "bg-zinc-700 group-hover:bg-zinc-500 group-hover:scale-110"
+                    }`} 
+                    aria-hidden="true"
+                  />
+                  <span className={`transition-transform duration-200 ${isActive ? "" : "group-hover:translate-x-0.5"}`}>
+                    {item.name}
+                  </span>
                 </Link>
               </li>
             );
@@ -111,9 +117,10 @@ export default function Sidebar() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 px-5 py-3.5 w-full rounded-[16px] border border-white/5 bg-[#121212] hover:bg-white/5 transition-all text-sm font-mono text-zinc-300 tracking-wide shadow-sm"
+                aria-label={`${link.name}${link.href.startsWith('mailto:') ? '' : ' (opens in new tab)'}`}
+                className="flex items-center gap-4 px-5 py-3.5 w-full rounded-[16px] border border-white/5 bg-[#121212] hover:bg-white/5 transition-all text-sm font-mono text-zinc-300 tracking-wide shadow-sm focus-ring"
               >
-                <span className="text-zinc-500 group-hover:text-[#CC785C] transition-colors">
+                <span className="text-zinc-500 group-hover:text-[#CC785C] transition-colors" aria-hidden="true">
                   <link.icon />
                 </span>
                 <span className="font-mono text-[11px] uppercase tracking-wider">
@@ -133,7 +140,7 @@ export default function Sidebar() {
           </p>
           <button
             onClick={() => setIsNewsletterModalOpen(true)}
-            className="w-full px-4 py-2.5 sm:py-3 text-xs font-mono font-medium text-black bg-[#CC785C] rounded-full hover:bg-[#B86246] transition-all duration-200 uppercase tracking-wider"
+            className="w-full px-4 py-2.5 sm:py-3 text-xs font-mono font-medium text-black bg-[#CC785C] rounded-full hover:bg-[#B86246] transition-all duration-200 uppercase tracking-wider btn-press focus-ring"
           >
             Subscribe
           </button>
@@ -151,12 +158,15 @@ export default function Sidebar() {
         </Link>
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="p-2 rounded-xl bg-[#121212] border border-white/5 hover:bg-white/5 transition-colors"
+          aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={mobileMenuOpen}
+          aria-controls="mobile-sidebar"
+          className="p-2 rounded-xl bg-[#121212] border border-white/5 hover:bg-white/5 transition-colors focus-ring"
         >
           {mobileMenuOpen ? (
-            <X className="w-5 h-5 text-zinc-400" />
+            <X className="w-5 h-5 text-zinc-400" aria-hidden="true" />
           ) : (
-            <Menu className="w-5 h-5 text-zinc-400" />
+            <Menu className="w-5 h-5 text-zinc-400" aria-hidden="true" />
           )}
         </button>
       </div>
@@ -166,11 +176,15 @@ export default function Sidebar() {
         <div
           className="lg:hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-40"
           onClick={() => setMobileMenuOpen(false)}
+          aria-hidden="true"
         />
       )}
 
       {/* Sidebar - Desktop floating panel, Mobile slide-out */}
       <aside
+        id="mobile-sidebar"
+        role="navigation"
+        aria-label="Main navigation"
         className={`fixed top-0 left-0 h-full lg:h-auto lg:top-4 lg:bottom-4 lg:left-4 w-[280px] lg:w-[260px] bg-[#121212] border border-white/5 lg:rounded-[32px] shadow-[0_4px_24px_-1px_rgba(0,0,0,0.5),inset_0_1px_0_0_rgba(255,255,255,0.05)] z-50 transform transition-transform duration-300 ease-in-out sidebar-scroll overflow-y-auto ${
           mobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         }`}
@@ -179,7 +193,7 @@ export default function Sidebar() {
       </aside>
 
       {/* Mobile content spacer */}
-      <div className="lg:hidden h-14" />
+      <div className="lg:hidden h-14" aria-hidden="true" />
 
       {/* Newsletter Modal */}
       <NewsletterModal

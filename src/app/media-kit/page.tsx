@@ -3,13 +3,16 @@ import { mediaKitData } from "@/data/mediakit";
 
 export default function MediaKitPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] pt-16 lg:pt-8 pb-16 px-4 lg:px-8 relative overflow-hidden w-full max-w-[100vw]">
-      {/* Ambient Background Glow */}
-      <div className="absolute top-[-10%] left-[10%] md:left-[20%] w-[280px] h-[280px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] bg-[#CC785C]/15 rounded-full blur-[120px] -z-10 pointer-events-none" />
+    <div className="min-h-screen bg-[#0a0a0a] pt-16 lg:pt-8 pb-16 px-4 lg:px-8 relative overflow-hidden w-full max-w-[100vw] animate-page-enter">
+      {/* Ambient Background Glow with float animation */}
+      <div 
+        className="absolute top-[-10%] left-[10%] md:left-[20%] w-[280px] h-[280px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] bg-[#CC785C]/15 rounded-full blur-[120px] -z-10 pointer-events-none animate-float"
+        aria-hidden="true"
+      />
       
       <div className="max-w-6xl mx-auto">
         {/* Page Header */}
-        <div className="mb-12">
+        <div className="mb-12 animate-fade-up">
           {/* Technical Breadcrumb */}
           <div className="font-mono text-xs tracking-widest text-[#CC785C] mb-4 uppercase">
             Heyykrish.AI // Media Kit
@@ -29,7 +32,7 @@ export default function MediaKitPage() {
         {/* Top Row - Big Stats */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-8">
           {/* Followers */}
-          <OSCard>
+          <OSCard className="animate-fade-up" style={{ animationDelay: "0.1s" }}>
             <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-2">
               Followers
             </div>
@@ -39,7 +42,7 @@ export default function MediaKitPage() {
           </OSCard>
 
           {/* Monthly Impressions */}
-          <OSCard>
+          <OSCard className="animate-fade-up" style={{ animationDelay: "0.15s" }}>
             <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-2">
               Monthly Impressions
             </div>
@@ -49,7 +52,7 @@ export default function MediaKitPage() {
           </OSCard>
 
           {/* Audience Age */}
-          <OSCard>
+          <OSCard className="animate-fade-up" style={{ animationDelay: "0.2s" }}>
             <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-2">
               Audience Age
             </div>
@@ -60,7 +63,7 @@ export default function MediaKitPage() {
         </div>
 
         {/* Second Row - Audience Details */}
-        <OSCard>
+        <OSCard className="animate-fade-up" style={{ animationDelay: "0.25s" }}>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {/* Top Locations */}
             <div>

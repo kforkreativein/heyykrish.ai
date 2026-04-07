@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { X, Mail } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { X, Mail, Check } from "lucide-react";
 import OSCard from "./OSCard";
 
 interface DownloadModalProps {
@@ -24,6 +24,67 @@ export default function DownloadModal({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const firstInputRef = useRef<HTMLInputElement>(null);
+  const previousActiveElement = useRef<HTMLElement | null>(null);
+
+  // Focus management: trap focus within modal
+  useEffect(() => {
+    if (isOpen) {
+      // Store the currently focused element
+      previousActiveElement.current = document.activeElement as HTMLElement;
+      // Focus the first input after a short delay for animation
+      setTimeout(() => firstInputRef.current?.focus(), 100);
+      // Prevent body scroll
+      document.body.style.overflow = "hidden";
+    } else {
+      // Restore body scroll
+      document.body.style.overflow = "";
+      // Return focus to previous element
+      previousActiveElement.current?.focus();
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  // Handle Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isOpen) {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
+
+  // Focus trap
+  useEffect(() => {
+    if (!isOpen || !modalRef.current) return;
+
+    const focusableElements = modalRef.current.querySelectorAll<HTMLElement>(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    const handleTabKey = (e: KeyboardEvent) => {
+      if (e.key !== "Tab") return;
+
+      if (e.shiftKey && document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement?.focus();
+      } else if (!e.shiftKey && document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement?.focus();
+      }
+    };
+
+    window.addEventListener("keydown", handleTabKey);
+    return () => window.removeEventListener("keydown", handleTabKey);
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -53,7 +114,7 @@ export default function DownloadModal({
 
       setSuccess(true);
 
-      // Trigger download after 1 second
+      // Trigger download after 1.5 seconds to show success animation
       setTimeout(() => {
         if (downloadUrl) {
           window.open(downloadUrl, "_blank");
@@ -65,7 +126,7 @@ export default function DownloadModal({
           setEmail("");
           setSuccess(false);
         }, 300);
-      }, 1000);
+      }, 1500);
     } catch (err) {
       setError("Something went wrong. Please try again.");
       setIsSubmitting(false);
@@ -73,30 +134,37 @@ export default function DownloadModal({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div
+      className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 modal-backdrop-enter"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="download-modal-title"
+    >
       <div 
         className="absolute inset-0" 
         onClick={onClose}
+        aria-hidden="true"
       />
 
       {/* Modal */}
-      <div className="relative w-full max-w-md">
+      <div ref={modalRef} className="relative w-full max-w-md modal-content-enter">
         <OSCard className="relative">
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="absolute top-4 sm:top-6 right-4 sm:right-6 p-2 text-zinc-400 hover:text-white transition-colors rounded-full hover:bg-white/5"
+            aria-label="Close modal"
+            className="absolute top-4 sm:top-6 right-4 sm:right-6 p-2 text-zinc-400 hover:text-white transition-colors rounded-full hover:bg-white/5 focus-ring"
           >
-            <X size={20} />
+            <X size={20} aria-hidden="true" />
           </button>
 
           {/* Icon */}
           <div className="inline-flex items-center justify-center w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-[#CC785C]/10 border border-[#CC785C]/20 mb-4 sm:mb-6">
-            <Mail className="w-5 sm:w-6 h-5 sm:h-6 text-[#CC785C]" />
+            <Mail className="w-5 sm:w-6 h-5 sm:h-6 text-[#CC785C]" aria-hidden="true" />
           </div>
 
           {/* Heading */}
-          <h2 className="font-heading text-xl sm:text-2xl font-bold text-white mb-2">
+          <h2 id="download-modal-title" className="font-heading text-xl sm:text-2xl font-bold text-white mb-2">
             Join the Newsletter
           </h2>
           <p className="text-sm text-zinc-400 mb-6">
@@ -104,9 +172,27 @@ export default function DownloadModal({
           </p>
 
           {success ? (
-            <div className="text-center py-6 sm:py-8">
-              <div className="inline-flex items-center justify-center w-12 sm:w-16 h-12 sm:h-16 rounded-full bg-[#CC785C]/10 border border-[#CC785C]/20 mb-4">
-                <Mail className="w-6 sm:w-8 h-6 sm:h-8 text-[#CC785C]" />
+            <div className="text-center py-6 sm:py-8" role="status" aria-live="polite">
+              <div className="inline-flex items-center justify-center w-12 sm:w-16 h-12 sm:h-16 rounded-full bg-[#CC785C]/20 border border-[#CC785C]/30 mb-4">
+                <svg 
+                  className="w-6 sm:w-8 h-6 sm:h-8 text-[#CC785C]" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="3" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <polyline 
+                    points="20 6 9 17 4 12" 
+                    style={{ 
+                      strokeDasharray: 50, 
+                      strokeDashoffset: 0,
+                      animation: "checkmark-draw 0.4s ease-out forwards"
+                    }} 
+                  />
+                </svg>
               </div>
               <p className="text-zinc-300 font-medium">Subscribed! Check your email.</p>
             </div>
@@ -115,14 +201,15 @@ export default function DownloadModal({
               {/* Name Field */}
               <div>
                 <label
-                  htmlFor="modal-name"
+                  htmlFor="download-modal-name"
                   className="block font-mono text-xs font-medium text-zinc-400 mb-2 uppercase tracking-wider"
                 >
                   Your Name
                 </label>
                 <input
+                  ref={firstInputRef}
                   type="text"
-                  id="modal-name"
+                  id="download-modal-name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
@@ -134,14 +221,14 @@ export default function DownloadModal({
               {/* Email Field */}
               <div>
                 <label
-                  htmlFor="modal-email"
+                  htmlFor="download-modal-email"
                   className="block font-mono text-xs font-medium text-zinc-400 mb-2 uppercase tracking-wider"
                 >
                   Email Address
                 </label>
                 <input
                   type="email"
-                  id="modal-email"
+                  id="download-modal-email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -151,14 +238,14 @@ export default function DownloadModal({
               </div>
 
               {error && (
-                <p className="text-sm text-red-400 text-center">{error}</p>
+                <p className="text-sm text-red-400 text-center" role="alert">{error}</p>
               )}
 
               {/* Submit Button */}
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full px-6 py-3.5 text-sm font-semibold text-black bg-gradient-to-b from-[#CC785C] to-[#b8674a] rounded-full hover:shadow-[0_0_25px_rgba(204,120,92,0.5)] transition-all duration-300 shadow-[0_0_15px_rgba(204,120,92,0.3)] disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-6 py-3.5 text-sm font-semibold text-black bg-gradient-to-b from-[#CC785C] to-[#b8674a] rounded-full hover:shadow-[0_0_25px_rgba(204,120,92,0.5)] transition-all duration-300 shadow-[0_0_15px_rgba(204,120,92,0.3)] disabled:opacity-50 disabled:cursor-not-allowed btn-press"
               >
                 {isSubmitting ? "Subscribing..." : "Subscribe Now"}
               </button>

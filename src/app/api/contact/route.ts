@@ -1,5 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import {
+  checkRateLimit,
+  getClientIP,
+  getRateLimitHeaders,
+  RATE_LIMITS,
+} from "@/lib/rate-limit";
+import { contactSchema, validateWithSchema } from "@/lib/validations";
+import { validateRequest } from "@/lib/csrf";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -14,25 +22,41 @@ function getISTTimestamp() {
 
 export async function POST(request: NextRequest) {
   try {
+    // CSRF validation
+    const csrfResult = validateRequest(request);
+    if (!csrfResult.valid) {
+      return NextResponse.json(
+        { error: csrfResult.error },
+        { status: 403 }
+      );
+    }
+
+    // Rate limiting check
+    const ip = getClientIP(request);
+    const rateLimitResult = checkRateLimit(ip, RATE_LIMITS.contact);
+    
+    if (!rateLimitResult.success) {
+      return NextResponse.json(
+        { error: "Too many requests. Please try again later." },
+        { 
+          status: 429,
+          headers: getRateLimitHeaders(rateLimitResult),
+        }
+      );
+    }
+
     const body = await request.json();
-    const { name, email, company, message } = body;
 
-    // Validate required fields
-    if (!name || !email || !message) {
+    // Zod validation
+    const validation = validateWithSchema(contactSchema, body);
+    if (!validation.success) {
       return NextResponse.json(
-        { error: "Name, email, and message are required" },
+        { error: validation.error },
         { status: 400 }
       );
     }
 
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: "Invalid email format" },
-        { status: 400 }
-      );
-    }
+    const { name, email, company, message } = validation.data;
 
     // Insert into Supabase
     const { error } = await supabase
@@ -41,7 +65,7 @@ export async function POST(request: NextRequest) {
         {
           name,
           email,
-          company: company || null,
+          company,
           message,
           created_at: getISTTimestamp(),
         },

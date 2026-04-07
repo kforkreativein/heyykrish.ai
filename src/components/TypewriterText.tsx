@@ -19,8 +19,35 @@ export default function TypewriterText({
   const [currentText, setCurrentText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  // Check for reduced motion preference
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mediaQuery.matches);
+    
+    const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    mediaQuery.addEventListener("change", handler);
+    return () => mediaQuery.removeEventListener("change", handler);
+  }, []);
+
+  // If reduced motion is preferred, show full word without animation
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      setCurrentText(words[currentWordIndex]);
+    }
+  }, [prefersReducedMotion, currentWordIndex, words]);
 
   useEffect(() => {
+    // Skip animation if reduced motion is preferred
+    if (prefersReducedMotion) {
+      // Just cycle through words slowly without typing animation
+      const timeout = setTimeout(() => {
+        setCurrentWordIndex((prev) => (prev + 1) % words.length);
+      }, pauseDuration * 2);
+      return () => clearTimeout(timeout);
+    }
+
     const currentWord = words[currentWordIndex];
 
     if (isPaused) {
@@ -56,12 +83,14 @@ export default function TypewriterText({
     );
 
     return () => clearTimeout(timeout);
-  }, [currentText, isDeleting, isPaused, currentWordIndex, words, typingSpeed, deletingSpeed, pauseDuration]);
+  }, [currentText, isDeleting, isPaused, currentWordIndex, words, typingSpeed, deletingSpeed, pauseDuration, prefersReducedMotion]);
 
   return (
-    <span className="inline-block">
-      <span className="text-[#E17F62] font-bold">{currentText}</span>
-      <span className="animate-pulse ml-1 text-[#E17F62]">|</span>
+    <span className="inline-block" aria-label={`Rotating text: ${words.join(", ")}`}>
+      <span className="text-[#CC785C] font-bold">{currentText}</span>
+      {!prefersReducedMotion && (
+        <span className="animate-pulse ml-1 text-[#CC785C]" aria-hidden="true">|</span>
+      )}
     </span>
   );
 }

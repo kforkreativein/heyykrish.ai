@@ -1,15 +1,28 @@
+import type { Metadata } from "next";
 import BottomCTA from "@/components/BottomCTA";
 import OSCard from "@/components/OSCard";
 
+export const metadata: Metadata = {
+  title: "About Krish Chhatrala",
+  description: "AI content creator helping founders and creators deploy productivity tools without the technical jargon. 150K+ Instagram followers learning AI workflows daily.",
+  openGraph: {
+    title: "About Krish Chhatrala | HeyyKrish.AI",
+    description: "AI content creator helping founders and creators deploy productivity tools without the technical jargon.",
+  },
+};
+
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] pt-16 lg:pt-8 pb-16 px-4 lg:px-8 relative overflow-hidden w-full max-w-[100vw]">
-      {/* Ambient Background Glow */}
-      <div className="absolute top-[-10%] left-[10%] md:left-[20%] w-[280px] h-[280px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] bg-[#CC785C]/10 rounded-full blur-[120px] -z-10 pointer-events-none" />
+    <div className="min-h-screen bg-[#0a0a0a] pt-16 lg:pt-8 pb-16 px-4 lg:px-8 relative overflow-hidden w-full max-w-[100vw] animate-page-enter">
+      {/* Ambient Background Glow with float animation */}
+      <div 
+        className="absolute top-[-10%] left-[10%] md:left-[20%] w-[280px] h-[280px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] bg-[#CC785C]/10 rounded-full blur-[120px] -z-10 pointer-events-none animate-float"
+        aria-hidden="true"
+      />
       
       <div className="max-w-6xl mx-auto">
         {/* Page Header */}
-        <div className="mb-8">
+        <div className="mb-8 animate-fade-up">
           <div className="font-mono text-xs tracking-widest text-[#CC785C] mb-4 uppercase">
             Heyykrish.AI // About
           </div>
@@ -19,7 +32,7 @@ export default function AboutPage() {
         </div>
 
         {/* Main Content in OSCard */}
-        <OSCard className="mb-8">
+        <OSCard className="mb-8 animate-fade-up" style={{ animationDelay: "0.1s" }}>
           {/* Lead Paragraph */}
           <p className="text-lg sm:text-xl lg:text-2xl text-zinc-300 leading-relaxed mb-8 font-medium">
             I help creators and founders cut through the AI noise and deploy tools that actually boost productivity—without the technical jargon.
@@ -76,7 +89,7 @@ export default function AboutPage() {
         </OSCard>
         
         {/* Bottom CTA */}
-        <div className="mt-12 sm:mt-16 lg:mt-24">
+        <div className="mt-12 sm:mt-16 lg:mt-24 animate-fade-up" style={{ animationDelay: "0.2s" }}>
           <BottomCTA
             badge="Let's Connect"
             heading="Ready to level up your AI game?"

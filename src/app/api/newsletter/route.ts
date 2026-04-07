@@ -1,5 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import {
+  checkRateLimit,
+  getClientIP,
+  getRateLimitHeaders,
+  RATE_LIMITS,
+} from "@/lib/rate-limit";
+import { newsletterSchema, validateWithSchema } from "@/lib/validations";
+import { validateRequest } from "@/lib/csrf";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -14,25 +22,41 @@ function getISTTimestamp() {
 
 export async function POST(request: NextRequest) {
   try {
+    // CSRF validation
+    const csrfResult = validateRequest(request);
+    if (!csrfResult.valid) {
+      return NextResponse.json(
+        { error: csrfResult.error },
+        { status: 403 }
+      );
+    }
+
+    // Rate limiting check
+    const ip = getClientIP(request);
+    const rateLimitResult = checkRateLimit(ip, RATE_LIMITS.newsletter);
+    
+    if (!rateLimitResult.success) {
+      return NextResponse.json(
+        { error: "Too many requests. Please try again later." },
+        { 
+          status: 429,
+          headers: getRateLimitHeaders(rateLimitResult),
+        }
+      );
+    }
+
     const body = await request.json();
-    const { email, name, source } = body;
-
-    // Validate input
-    if (!email) {
+    
+    // Zod validation
+    const validation = validateWithSchema(newsletterSchema, body);
+    if (!validation.success) {
       return NextResponse.json(
-        { error: "Email is required" },
+        { error: validation.error },
         { status: 400 }
       );
     }
 
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: "Invalid email address" },
-        { status: 400 }
-      );
-    }
+    const { email, name, source } = validation.data;
 
     // Insert into Supabase
     const { error } = await supabase
@@ -40,8 +64,8 @@ export async function POST(request: NextRequest) {
       .insert([
         {
           email,
-          name: name || null,
-          source: source || "homepage",
+          name,
+          source,
           created_at: getISTTimestamp(),
         },
       ]);

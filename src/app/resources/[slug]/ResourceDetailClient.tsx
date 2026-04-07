@@ -2,10 +2,13 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Download, Calendar, Zap } from "lucide-react";
+import { ArrowLeft, Download, Calendar, Zap, Clock } from "lucide-react";
 import OSCard from "@/components/OSCard";
 import DownloadModal from "@/components/DownloadModal";
 import ContentRenderer from "@/components/ContentRenderer";
+import ReadingProgress from "@/components/ReadingProgress";
+import RelatedResources from "@/components/RelatedResources";
+import type { Resource } from "@/data/resources";
 
 interface ResourceDetailClientProps {
   resource: {
@@ -17,18 +20,23 @@ interface ResourceDetailClientProps {
     downloadUrl?: string;
   };
   formattedDate: string;
+  readingTime: string | null;
+  relatedResources: Resource[];
 }
 
-export default function ResourceDetailClient({ resource, formattedDate }: ResourceDetailClientProps) {
+export default function ResourceDetailClient({ resource, formattedDate, readingTime, relatedResources }: ResourceDetailClientProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] w-full max-w-[100vw] overflow-x-hidden">
+    <div className="min-h-screen bg-[#0a0a0a] w-full max-w-[100vw] overflow-x-hidden animate-page-enter">
+      {/* Reading Progress Bar */}
+      {resource.contentHtml && <ReadingProgress />}
+      
       <div className="pt-16 lg:pt-8 pb-16 px-4 lg:px-8 max-w-6xl mx-auto w-full">
         {/* Back Navigation */}
         <Link 
           href="/resources" 
-          className="inline-flex items-center gap-2 text-zinc-400 hover:text-[#CC785C] transition-colors mb-6 sm:mb-8 font-mono text-xs sm:text-sm tracking-wider uppercase"
+          className="inline-flex items-center gap-2 text-zinc-400 hover:text-[#CC785C] transition-colors mb-6 sm:mb-8 font-mono text-xs sm:text-sm tracking-wider uppercase animate-fade-up"
         >
           <ArrowLeft size={14} className="sm:hidden" />
           <ArrowLeft size={16} className="hidden sm:block" />
@@ -36,19 +44,28 @@ export default function ResourceDetailClient({ resource, formattedDate }: Resour
         </Link>
 
         {/* Content Card */}
-        <OSCard className="overflow-hidden">
+        <OSCard className="overflow-hidden animate-fade-up" style={{ animationDelay: "0.1s" }}>
           {/* Header */}
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 sm:mb-8 gap-4 sm:gap-6 w-full">
             <div className="flex-1 w-full min-w-0">
-              {/* Category + Date */}
+              {/* Category + Date + Reading Time */}
               <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-4 w-full">
                 <span className="inline-block bg-[#CC785C]/10 text-[#CC785C] text-[10px] px-3 py-1 rounded-full uppercase tracking-wider font-mono w-fit flex-shrink-0">
                   {resource.category}
                 </span>
-                <div className="flex items-center gap-2 text-zinc-500 text-xs sm:text-sm font-mono flex-shrink-0">
-                  <Calendar size={12} className="sm:hidden" />
-                  <Calendar size={14} className="hidden sm:block" />
-                  {formattedDate}
+                <div className="flex items-center gap-4 text-zinc-500 text-xs sm:text-sm font-mono flex-shrink-0">
+                  <span className="flex items-center gap-2">
+                    <Calendar size={12} className="sm:hidden" />
+                    <Calendar size={14} className="hidden sm:block" />
+                    {formattedDate}
+                  </span>
+                  {readingTime && (
+                    <span className="flex items-center gap-2">
+                      <Clock size={12} className="sm:hidden" />
+                      <Clock size={14} className="hidden sm:block" />
+                      {readingTime}
+                    </span>
+                  )}
                 </div>
               </div>
 
@@ -131,6 +148,9 @@ export default function ResourceDetailClient({ resource, formattedDate }: Resour
             </div>
           )}
         </OSCard>
+
+        {/* Related Resources */}
+        <RelatedResources resources={relatedResources} />
       </div>
 
       {/* Download Modal */}

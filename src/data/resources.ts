@@ -275,3 +275,11 @@ export function getFeaturedResources(): Resource[] {
 export function getResourceBySlug(slug: string): Resource | undefined {
   return resources.find((r) => r.slug === slug);
 }
+
+export function getRelatedResources(currentSlug: string, category: string, limit: number = 3): Resource[] {
+  return resources
+    .filter((r) => r.slug !== currentSlug)
+    .filter((r) => r.category === category)
+    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+    .slice(0, limit);
+}

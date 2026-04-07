@@ -52,39 +52,39 @@ export default function ContentRenderer({ htmlContent }: ContentRendererProps) {
       // Check if copy button already exists in this specific wrapper
       if (outerWrapper.querySelector("[data-copy-button]")) return;
 
-      // Create premium copy button
+      // Create premium copy button with keyboard accessibility
       const button = document.createElement("button");
       button.setAttribute("data-copy-button", "true");
-      button.className = "absolute top-3 right-3 p-2 rounded-md bg-zinc-800/80 backdrop-blur text-zinc-400 hover:text-white hover:bg-zinc-700 transition-all z-10 shadow-sm";
+      button.setAttribute("aria-label", "Copy code to clipboard");
+      button.className = "absolute top-3 right-3 p-2 rounded-md bg-zinc-800/80 backdrop-blur text-zinc-400 hover:text-white hover:bg-zinc-700 transition-all z-10 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#CC785C] focus:ring-offset-2 focus:ring-offset-[#121212]";
       button.type = "button";
       button.title = "Copy code";
 
       // Copy icon SVG
-      button.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      button.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
         <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
       </svg>`;
 
-      // Add click handler
-      button.addEventListener("click", async (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        
+      // Copy function for reuse
+      const handleCopy = async () => {
         // Get the text from the pre element, ensuring we get the actual code content
         const textToCopy = preElement.textContent || preElement.innerText;
 
         try {
           await navigator.clipboard.writeText(textToCopy);
 
-          // Show checkmark
-          button.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-400">
+          // Update aria-label and show checkmark
+          button.setAttribute("aria-label", "Code copied!");
+          button.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-400" aria-hidden="true">
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>`;
           button.classList.add("text-green-400");
 
           // Revert after 2 seconds
           setTimeout(() => {
-            button.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            button.setAttribute("aria-label", "Copy code to clipboard");
+            button.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
               <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
             </svg>`;
@@ -92,6 +92,22 @@ export default function ContentRenderer({ htmlContent }: ContentRendererProps) {
           }, 2000);
         } catch (err) {
           console.error("Failed to copy:", err);
+        }
+      };
+
+      // Add click handler
+      button.addEventListener("click", async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        await handleCopy();
+      });
+
+      // Add keyboard handler for Enter and Space keys
+      button.addEventListener("keydown", async (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          e.stopPropagation();
+          await handleCopy();
         }
       });
 

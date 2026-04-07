@@ -16,13 +16,16 @@ const pastPartners = [
 
 export default function BrandPartnershipsPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a] pt-16 lg:pt-8 pb-16 px-4 lg:px-8 relative overflow-hidden w-full max-w-[100vw]">
-      {/* Ambient Background Glow */}
-      <div className="absolute top-[-10%] left-[10%] md:left-[20%] w-[280px] h-[280px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] bg-[#CC785C]/10 rounded-full blur-[120px] -z-10 pointer-events-none" />
+    <div className="min-h-screen bg-[#0a0a0a] pt-16 lg:pt-8 pb-16 px-4 lg:px-8 relative overflow-hidden w-full max-w-[100vw] animate-page-enter">
+      {/* Ambient Background Glow with float animation */}
+      <div 
+        className="absolute top-[-10%] left-[10%] md:left-[20%] w-[280px] h-[280px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] bg-[#CC785C]/10 rounded-full blur-[120px] -z-10 pointer-events-none animate-float"
+        aria-hidden="true"
+      />
       
       <div className="max-w-6xl mx-auto">
         {/* Page Header */}
-        <div className="mb-12">
+        <div className="mb-12 animate-fade-up">
           <div className="font-mono text-xs tracking-widest text-[#CC785C] mb-4 uppercase">
             Heyykrish.AI // Partnership
           </div>
@@ -35,11 +38,11 @@ export default function BrandPartnershipsPage() {
         </div>
 
         {/* Media Kit CTA */}
-        <div className="mb-12">
+        <div className="mb-12 animate-fade-up" style={{ animationDelay: "0.1s" }}>
           <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4">
             <Link 
               href="/media-kit"
-              className="inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-bold text-black bg-gradient-to-b from-[#CC785C] to-[#b8674a] rounded-full hover:shadow-[0_0_20px_rgba(204,120,92,0.4)] transition-all duration-300 shadow-[0_0_15px_rgba(204,120,92,0.3)] hover:scale-105"
+              className="inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-bold text-black bg-gradient-to-b from-[#CC785C] to-[#b8674a] rounded-full hover:shadow-[0_0_20px_rgba(204,120,92,0.4)] transition-all duration-300 shadow-[0_0_15px_rgba(204,120,92,0.3)] hover:scale-105 btn-magnetic"
             >
               <Download size={18} />
               View Media Kit
@@ -54,15 +57,16 @@ export default function BrandPartnershipsPage() {
         </div>
 
         {/* Past Partners */}
-        <div className="mb-12">
+        <div className="mb-12 animate-fade-up" style={{ animationDelay: "0.15s" }}>
           <h2 className="font-heading text-xl sm:text-2xl font-semibold text-white mb-6">
             Past Partners
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {pastPartners.map((partner) => (
+            {pastPartners.map((partner, index) => (
               <OSCard
                 key={partner}
-                className="h-32 flex items-center justify-center group hover:border-[#CC785C]/20 transition-all duration-300"
+                className="h-32 flex items-center justify-center group hover:border-[#CC785C]/20 transition-all duration-300 animate-fade-up"
+                style={{ animationDelay: `${0.2 + index * 0.05}s` }}
               >
                 <div className="text-center">
                   {/* Logo Placeholder */}
@@ -82,12 +86,12 @@ export default function BrandPartnershipsPage() {
 
         {/* What I Offer Section */}
         <div className="mb-12">
-          <h2 className="font-heading text-xl sm:text-2xl font-semibold text-white mb-6">
+          <h2 className="font-heading text-xl sm:text-2xl font-semibold text-white mb-6 animate-fade-up" style={{ animationDelay: "0.4s" }}>
             What I Offer:
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {/* Card 1 - The Workflow */}
-            <OSCard className="h-full">
+            <OSCard className="h-full animate-fade-up" style={{ animationDelay: "0.45s" }}>
               <div className="mb-4">
                 <span className="font-mono text-[10px] tracking-[0.2em] text-[#CC785C] uppercase">
                   [ MODULE // BUILD ]
@@ -102,7 +106,7 @@ export default function BrandPartnershipsPage() {
             </OSCard>
 
             {/* Card 2 - The User Value */}
-            <OSCard className="h-full">
+            <OSCard className="h-full animate-fade-up" style={{ animationDelay: "0.5s" }}>
               <div className="mb-4">
                 <span className="font-mono text-[10px] tracking-[0.2em] text-[#CC785C] uppercase">
                   [ VALUE // DEPLOY ]
@@ -117,7 +121,7 @@ export default function BrandPartnershipsPage() {
             </OSCard>
 
             {/* Card 3 - The Partner Benefit */}
-            <OSCard className="h-full">
+            <OSCard className="h-full animate-fade-up" style={{ animationDelay: "0.55s" }}>
               <div className="mb-4">
                 <span className="font-mono text-[10px] tracking-[0.2em] text-[#CC785C] uppercase">
                   [ RESULT // ACQUIRE ]
@@ -134,7 +138,7 @@ export default function BrandPartnershipsPage() {
         </div>
 
         {/* Bottom CTA */}
-        <div className="mt-12 sm:mt-16 lg:mt-24">
+        <div className="mt-12 sm:mt-16 lg:mt-24 animate-fade-up" style={{ animationDelay: "0.6s" }}>
           <BottomCTA
             badge="Let's Partner"
             heading="Ready to collaborate?"

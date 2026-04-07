@@ -1,0 +1,103 @@
+{
+  "hero": {
+    "title": "Krish Chhatrala",
+    "subtitle": "AI Creator & Automations Expert",
+    "description": "I build AI workflows, ChatGPT prompts, and automation tools that help creators and founders work smarter. Follow along for practical resources you can implement today.",
+    "image": "/profile.jpg",
+    "typewriterWords": [
+      "workflows.",
+      "prompts.",
+      "tools.",
+      "automations."
+    ]
+  },
+  "about": {
+    "title": "About Krish",
+    "bio": "I'm Krish Chhatrala, an AI creator and automation expert passionate about democratizing artificial intelligence. With over 150,000 followers across social platforms, I've built a community of creators and founders who believe in working smarter, not harder.\n\nMy mission is simple: take complex AI concepts and turn them into actionable workflows that anyone can implement. From custom ChatGPT prompts to full-scale automation systems, I create resources that deliver immediate, tangible value.\n\nEvery workflow, prompt, and tool I share is battle-tested in real-world scenarios. I don't believe in theory—I believe in execution. That's why my content focuses on practical implementation that you can plug directly into your business or creative process.\n\nWhen I'm not building AI workflows, you'll find me experimenting with the latest tools, recreating successful creator videos, or designing automation systems that push the boundaries of what's possible with current technology.",
+    "mission": "To democratize AI knowledge and empower creators with practical, executable automation workflows.",
+    "stats": {
+      "followers": "150K+",
+      "resources": "50+",
+      "impressions": "5M+"
+    }
+  },
+  "social": {
+    "instagram": "https://instagram.com/heyykrish.ai",
+    "email": "kforkreativein@gmail.com",
+    "website": "https://www.heyykrish.site"
+  },
+  "seo": {
+    "homepage": {
+      "title": "Krish Chhatrala | AI Workflows & ChatGPT Prompts",
+      "description": "Discover practical AI workflows, ChatGPT prompts, and automation tools. Free resources for creators and founders who want to work smarter with AI.",
+      "keywords": "AI workflows, ChatGPT prompts, AI automation, creator tools, AI resources, automation expert"
+    },
+    "about": {
+      "title": "About Krish Chhatrala | AI Creator & Automation Expert",
+      "description": "Learn about Krish Chhatrala's mission to democratize AI knowledge through practical workflows and automation tools for 150K+ creators worldwide.",
+      "keywords": "Krish Chhatrala, AI creator, automation expert, AI educator, creator economy"
+    },
+    "resources": {
+      "title": "Free AI Resources | Workflows, Prompts & Tools",
+      "description": "Browse 50+ free AI resources including ChatGPT prompts, automation workflows, and productivity tools. Battle-tested and ready to implement.",
+      "keywords": "free AI resources, ChatGPT prompts, AI workflows, automation tools, creator resources"
+    },
+    "partnerships": {
+      "title": "Brand Partnerships | Collaborate with Krish Chhatrala",
+      "description": "Partner with Krish to reach 150K+ high-intent creators and founders. Authentic, workflow-driven content that drives real conversions.",
+      "keywords": "brand partnerships, influencer marketing, AI creator partnerships, sponsored content"
+    }
+  },
+  "partnerships": {
+    "heading": "Partner with Krish",
+    "subheading": "Put your tool in front of 150,000+ creators and founders who actually take action. I partner with brands to build authentic, workflow-driven content that drives conversions, not just vanity metrics.",
+    "pastPartners": [
+      {
+        "name": "AI Tool Co",
+        "logo": "",
+        "url": ""
+      },
+      {
+        "name": "CreatorStack",
+        "logo": "",
+        "url": ""
+      },
+      {
+        "name": "AutomatePro",
+        "logo": "",
+        "url": ""
+      },
+      {
+        "name": "ContentAI",
+        "logo": "",
+        "url": ""
+      },
+      {
+        "name": "EditMagic",
+        "logo": "",
+        "url": ""
+      },
+      {
+        "name": "PromptLab",
+        "logo": "",
+        "url": ""
+      }
+    ]
+  },
+  "socialProof": {
+    "enabled": true,
+    "heading": "As Featured In",
+    "logos": [
+      {
+        "name": "TechCrunch",
+        "image": "/logos/techcrunch.svg",
+        "url": ""
+      },
+      {
+        "name": "Product Hunt",
+        "image": "/logos/producthunt.svg",
+        "url": ""
+      }
+    ]
+  }
+}
