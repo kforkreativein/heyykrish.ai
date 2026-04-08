@@ -159,8 +159,8 @@ export default function AdminContent() {
       <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center px-4">
         <OSCard className="max-w-md w-full">
           <div className="text-center mb-8">
-            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#CC785C]/10 flex items-center justify-center">
-              <Shield className="w-8 h-8 text-[#CC785C]" />
+            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#FF6A25]/10 flex items-center justify-center">
+              <Shield className="w-8 h-8 text-[#FF6A25]" />
             </div>
             <h1 className="font-heading text-2xl font-bold text-white mb-2">
               Admin Access
@@ -177,7 +177,7 @@ export default function AdminContent() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter password"
-                className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white placeholder:text-zinc-600 focus:outline-none focus:border-[#CC785C] transition-colors"
+                className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white placeholder:text-zinc-600 focus:outline-none focus:border-[#FF6A25] transition-colors"
               />
               <button
                 type="button"
@@ -194,7 +194,7 @@ export default function AdminContent() {
 
             <button
               type="submit"
-              className="w-full px-6 py-3 bg-gradient-to-b from-[#CC785C] to-[#b8674a] text-black font-semibold rounded-xl hover:shadow-[0_0_25px_rgba(204,120,92,0.5)] transition-all duration-300"
+              className="w-full px-6 py-3 bg-gradient-to-b from-[#FF6A25] to-[#FF6A25] text-black font-semibold rounded-xl hover:shadow-[0_0_25px_rgba(255,106,37,0.5)] transition-all duration-300"
             >
               Access Dashboard
             </button>
@@ -211,7 +211,7 @@ export default function AdminContent() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
-            <div className="font-mono text-xs tracking-widest text-[#CC785C] mb-2 uppercase">
+            <div className="font-mono text-xs tracking-widest text-[#FF6A25] mb-2 uppercase">
               Heyykrish.AI // Admin
             </div>
             <h1 className="font-heading text-2xl sm:text-3xl font-bold text-white">
@@ -232,8 +232,8 @@ export default function AdminContent() {
         {/* Stats Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
           <OSCard className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-[#CC785C]/10 flex items-center justify-center flex-shrink-0">
-              <Mail className="w-6 h-6 text-[#CC785C]" />
+            <div className="w-12 h-12 rounded-xl bg-[#FF6A25]/10 flex items-center justify-center flex-shrink-0">
+              <Mail className="w-6 h-6 text-[#FF6A25]" />
             </div>
             <div>
               <p className="text-zinc-400 text-sm">Newsletter Subscribers</p>
@@ -276,7 +276,7 @@ export default function AdminContent() {
               onClick={() => setActiveTab(tab)}
               className={`px-4 py-2 text-sm font-medium rounded-lg transition-all whitespace-nowrap ${
                 activeTab === tab
-                  ? "bg-[#CC785C] text-black"
+                  ? "bg-[#FF6A25] text-black"
                   : "bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10"
               }`}
             >

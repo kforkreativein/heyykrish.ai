@@ -87,9 +87,9 @@ export default function TypewriterText({
 
   return (
     <span className="inline-block" aria-label={`Rotating text: ${words.join(", ")}`}>
-      <span className="text-[#CC785C] font-bold">{currentText}</span>
+      <span className="text-[#FF6A25] font-bold">{currentText}</span>
       {!prefersReducedMotion && (
-        <span className="animate-pulse ml-1 text-[#CC785C]" aria-hidden="true">|</span>
+        <span className="animate-pulse ml-1 text-[#FF6A25]" aria-hidden="true">|</span>
       )}
     </span>
   );

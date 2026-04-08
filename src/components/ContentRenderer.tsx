@@ -56,7 +56,7 @@ export default function ContentRenderer({ htmlContent }: ContentRendererProps) {
       const button = document.createElement("button");
       button.setAttribute("data-copy-button", "true");
       button.setAttribute("aria-label", "Copy code to clipboard");
-      button.className = "absolute top-3 right-3 p-2 rounded-md bg-zinc-800/80 backdrop-blur text-zinc-400 hover:text-white hover:bg-zinc-700 transition-all z-10 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#CC785C] focus:ring-offset-2 focus:ring-offset-[#121212]";
+      button.className = "absolute top-3 right-3 p-2 rounded-md bg-zinc-800/80 backdrop-blur text-zinc-400 hover:text-white hover:bg-zinc-700 transition-all z-10 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#FF6A25] focus:ring-offset-2 focus:ring-offset-[#121212]";
       button.type = "button";
       button.title = "Copy code";
 

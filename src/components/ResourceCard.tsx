@@ -21,14 +21,14 @@ export default function ResourceCard({
 
   return (
     <Link href={href} className="group block h-full">
-      <OSCard className="h-full flex flex-col hover:border-[#CC785C]/20 transition-all duration-300 card-hover-lift">
+      <OSCard className="h-full flex flex-col hover:border-[#FF6A25]/20 transition-all duration-300 card-hover-lift">
         {/* Pill-Shaped Category Tag */}
-        <span className="inline-block bg-[#CC785C]/10 text-[#CC785C] text-[10px] px-3 py-1 rounded-full uppercase tracking-wider font-mono mb-4 w-fit group-hover:bg-[#CC785C]/20 transition-colors duration-300">
+        <span className="inline-block bg-[#FF6A25]/10 text-[#FF6A25] text-[10px] px-3 py-1 rounded-full uppercase tracking-wider font-mono mb-4 w-fit group-hover:bg-[#FF6A25]/20 transition-colors duration-300">
           {category}
         </span>
 
         {/* Title in Space Grotesk */}
-        <h3 className="font-heading text-xl sm:text-2xl text-white mt-2 mb-3 group-hover:text-[#CC785C] transition-colors duration-300">
+        <h3 className="font-heading text-xl sm:text-2xl text-white mt-2 mb-3 group-hover:text-[#FF6A25] transition-colors duration-300">
           {title}
         </h3>
 
@@ -40,12 +40,12 @@ export default function ResourceCard({
         {/* Terminal-Style Metadata Row */}
         <div className="flex justify-between items-center mt-auto mb-4 pt-4 border-t border-white/5 font-mono text-[10px] tracking-[0.2em] uppercase text-zinc-500">
           <span>[BUILD // STABLE]</span>
-          <span className="text-[#CC785C] group-hover:animate-pulse">Access // Free</span>
+          <span className="text-[#FF6A25] group-hover:animate-pulse">Access // Free</span>
         </div>
 
         {/* Pill-Shaped Action Button */}
         <span 
-          className="w-full py-2.5 sm:py-3 px-5 sm:px-6 bg-gradient-to-b from-[#CC785C] to-[#b8674a] text-black font-semibold text-xs sm:text-sm rounded-full hover:shadow-[0_0_20px_rgba(204,120,92,0.4)] transition-all duration-300 shadow-[0_0_15px_rgba(204,120,92,0.3)] group-hover:scale-[1.02] group-hover:shadow-[0_0_25px_rgba(204,120,92,0.5)] text-center block btn-press"
+          className="w-full py-2.5 sm:py-3 px-5 sm:px-6 bg-gradient-to-b from-[#FF6A25] to-[#FF6A25] text-black font-semibold text-xs sm:text-sm rounded-full hover:shadow-[0_0_20px_rgba(255,106,37,0.4)] transition-all duration-300 shadow-[0_0_15px_rgba(255,106,37,0.3)] group-hover:scale-[1.02] group-hover:shadow-[0_0_25px_rgba(255,106,37,0.5)] text-center block btn-press"
           role="presentation"
           aria-hidden="true"
         >

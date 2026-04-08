@@ -1,4 +1,5 @@
 import OSCard from "@/components/OSCard";
+import BottomCTA from "@/components/BottomCTA";
 import { mediaKitData } from "@/data/mediakit";
 
 export default function MediaKitPage() {
@@ -6,7 +7,7 @@ export default function MediaKitPage() {
     <div className="min-h-screen bg-[#0a0a0a] pt-16 lg:pt-8 pb-16 px-4 lg:px-8 relative overflow-hidden w-full max-w-[100vw] animate-page-enter">
       {/* Ambient Background Glow with float animation */}
       <div 
-        className="absolute top-[-10%] left-[10%] md:left-[20%] w-[280px] h-[280px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] bg-[#CC785C]/15 rounded-full blur-[120px] -z-10 pointer-events-none animate-float"
+        className="absolute top-[-10%] left-[10%] md:left-[20%] w-[280px] h-[280px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] bg-[#FF6A25]/15 rounded-full blur-[120px] -z-10 pointer-events-none animate-float"
         aria-hidden="true"
       />
       
@@ -14,7 +15,7 @@ export default function MediaKitPage() {
         {/* Page Header */}
         <div className="mb-12 animate-fade-up">
           {/* Technical Breadcrumb */}
-          <div className="font-mono text-xs tracking-widest text-[#CC785C] mb-4 uppercase">
+          <div className="font-mono text-xs tracking-widest text-[#FF6A25] mb-4 uppercase">
             Heyykrish.AI // Media Kit
           </div>
           
@@ -36,7 +37,7 @@ export default function MediaKitPage() {
             <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-2">
               Followers
             </div>
-            <div className="font-heading text-[#CC785C] text-3xl sm:text-4xl md:text-5xl font-bold mt-4">
+            <div className="font-heading text-[#FF6A25] text-3xl sm:text-4xl md:text-5xl font-bold mt-4">
               {mediaKitData.followers}
             </div>
           </OSCard>
@@ -46,7 +47,7 @@ export default function MediaKitPage() {
             <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-2">
               Monthly Impressions
             </div>
-            <div className="font-heading text-[#CC785C] text-3xl sm:text-4xl md:text-5xl font-bold mt-4">
+            <div className="font-heading text-[#FF6A25] text-3xl sm:text-4xl md:text-5xl font-bold mt-4">
               {mediaKitData.impressions}
             </div>
           </OSCard>
@@ -56,7 +57,7 @@ export default function MediaKitPage() {
             <div className="font-mono text-[10px] tracking-widest text-zinc-500 uppercase mb-2">
               Audience Age
             </div>
-            <div className="font-heading text-[#CC785C] text-3xl sm:text-4xl md:text-5xl font-bold mt-4">
+            <div className="font-heading text-[#FF6A25] text-3xl sm:text-4xl md:text-5xl font-bold mt-4">
               {mediaKitData.audienceAge}
             </div>
           </OSCard>
@@ -73,7 +74,7 @@ export default function MediaKitPage() {
               <div className="space-y-2">
                 {mediaKitData.demographics.topLocations.map((location, index) => (
                   <div key={location} className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#CC785C] opacity-80" />
+                    <div className="w-2 h-2 rounded-full bg-[#FF6A25] opacity-80" />
                     <span className="text-zinc-300 font-mono text-sm">{location}</span>
                   </div>
                 ))}
@@ -110,7 +111,7 @@ export default function MediaKitPage() {
               <div className="space-y-3">
                 {mediaKitData.topInterests.map((interest) => (
                   <div key={interest} className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#CC785C] opacity-80" />
+                    <div className="w-2 h-2 rounded-full bg-[#FF6A25] opacity-80" />
                     <span className="text-zinc-300 font-mono text-sm">{interest}</span>
                   </div>
                 ))}
@@ -125,6 +126,18 @@ export default function MediaKitPage() {
             </span>
           </div>
         </OSCard>
+
+        {/* Bottom CTA */}
+        <div className="mt-12 sm:mt-16 lg:mt-24 animate-fade-up" style={{ animationDelay: "0.3s" }}>
+          <BottomCTA
+            badge="Let's Partner"
+            heading="Ready to collaborate?"
+            subtext="I work with brands that align with my mission to democratize AI knowledge. Let's create something meaningful together."
+            buttonText="Get in Touch"
+            buttonHref="mailto:kforkreativein@gmail.com"
+            useContactModal={true}
+          />
+        </div>
       </div>
     </div>
   );

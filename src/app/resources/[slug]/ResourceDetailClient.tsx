@@ -6,7 +6,7 @@ import { ArrowLeft, Download, Calendar, Zap, Clock } from "lucide-react";
 import OSCard from "@/components/OSCard";
 import DownloadModal from "@/components/DownloadModal";
 import ContentRenderer from "@/components/ContentRenderer";
-import ReadingProgress from "@/components/ReadingProgress";
+import ScrollProgress from "@/components/ScrollProgress";
 import RelatedResources from "@/components/RelatedResources";
 import type { Resource } from "@/data/resources";
 
@@ -29,14 +29,14 @@ export default function ResourceDetailClient({ resource, formattedDate, readingT
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] w-full max-w-[100vw] overflow-x-hidden animate-page-enter">
-      {/* Reading Progress Bar */}
-      {resource.contentHtml && <ReadingProgress />}
+      {/* Bottom reading progress tracker */}
+      {resource.contentHtml && <ScrollProgress />}
       
       <div className="pt-16 lg:pt-8 pb-16 px-4 lg:px-8 max-w-6xl mx-auto w-full">
         {/* Back Navigation */}
         <Link 
           href="/resources" 
-          className="inline-flex items-center gap-2 text-zinc-400 hover:text-[#CC785C] transition-colors mb-6 sm:mb-8 font-mono text-xs sm:text-sm tracking-wider uppercase animate-fade-up"
+          className="inline-flex items-center gap-2 text-zinc-400 hover:text-[#FF6A25] transition-colors mb-6 sm:mb-8 font-mono text-xs sm:text-sm tracking-wider uppercase animate-fade-up"
         >
           <ArrowLeft size={14} className="sm:hidden" />
           <ArrowLeft size={16} className="hidden sm:block" />
@@ -50,7 +50,7 @@ export default function ResourceDetailClient({ resource, formattedDate, readingT
             <div className="flex-1 w-full min-w-0">
               {/* Category + Date + Reading Time */}
               <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-4 w-full">
-                <span className="inline-block bg-[#CC785C]/10 text-[#CC785C] text-[10px] px-3 py-1 rounded-full uppercase tracking-wider font-mono w-fit flex-shrink-0">
+                <span className="inline-block bg-[#FF6A25]/10 text-[#FF6A25] text-[10px] px-3 py-1 rounded-full uppercase tracking-wider font-mono w-fit flex-shrink-0">
                   {resource.category}
                 </span>
                 <div className="flex items-center gap-4 text-zinc-500 text-xs sm:text-sm font-mono flex-shrink-0">
@@ -85,7 +85,7 @@ export default function ResourceDetailClient({ resource, formattedDate, readingT
               <div className="shrink-0">
                 <button
                   onClick={() => setIsModalOpen(true)}
-                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-b from-[#CC785C] to-[#b8674a] text-black font-semibold text-xs sm:text-sm rounded-full hover:shadow-[0_0_20px_rgba(204,120,92,0.4)] transition-all duration-300 shadow-[0_0_15px_rgba(204,120,92,0.3)] hover:scale-105"
+                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-b from-[#FF6A25] to-[#FF6A25] text-black font-semibold text-xs sm:text-sm rounded-full hover:shadow-[0_0_20px_rgba(255,106,37,0.4)] transition-all duration-300 shadow-[0_0_15px_rgba(255,106,37,0.3)] hover:scale-105"
                 >
                   <Download size={14} className="sm:hidden" />
                   <Download size={16} className="hidden sm:block" />
@@ -113,14 +113,14 @@ export default function ResourceDetailClient({ resource, formattedDate, readingT
           {resource.downloadUrl && (
             <div className="bg-[#121212] border border-white/5 rounded-2xl sm:rounded-[24px] lg:rounded-[32px] shadow-[0_4px_24px_-1px_rgba(0,0,0,0.5),inset_0_1px_0_0_rgba(255,255,255,0.05)] p-4 sm:p-6 lg:p-8 xl:p-10 mt-8 sm:mt-12 lg:mt-16 mb-6 sm:mb-8 relative overflow-hidden group">
               {/* Subtle glowing accent background on hover */}
-              <div className="absolute inset-0 bg-[#CC785C]/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+              <div className="absolute inset-0 bg-[#FF6A25]/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
 
               <div className="relative z-10 flex flex-col items-center text-center max-w-xl mx-auto">
                 {/* Decorative Top Icon */}
-                <div className="w-8 sm:w-10 lg:w-12 h-8 sm:h-10 lg:h-12 rounded-full bg-[#CC785C]/10 flex items-center justify-center mb-3 sm:mb-4 lg:mb-5 border border-[#CC785C]/20">
-                  <Zap size={14} className="text-[#CC785C] sm:hidden" />
-                  <Zap size={18} className="text-[#CC785C] hidden sm:block lg:hidden" />
-                  <Zap size={20} className="text-[#CC785C] hidden lg:block" />
+                <div className="w-8 sm:w-10 lg:w-12 h-8 sm:h-10 lg:h-12 rounded-full bg-[#FF6A25]/10 flex items-center justify-center mb-3 sm:mb-4 lg:mb-5 border border-[#FF6A25]/20">
+                  <Zap size={14} className="text-[#FF6A25] sm:hidden" />
+                  <Zap size={18} className="text-[#FF6A25] hidden sm:block lg:hidden" />
+                  <Zap size={20} className="text-[#FF6A25] hidden lg:block" />
                 </div>
 
                 {/* Shortened Headline */}
@@ -136,7 +136,7 @@ export default function ResourceDetailClient({ resource, formattedDate, readingT
                 {/* Centered Button */}
                 <button
                   onClick={() => setIsModalOpen(true)}
-                  className="flex items-center justify-center gap-2 sm:gap-2 lg:gap-3 px-5 sm:px-6 lg:px-8 py-2.5 sm:py-3 lg:py-4 rounded-full bg-gradient-to-b from-[#CC785C] to-[#b8674a] shadow-[0_0_20px_rgba(204,120,92,0.3)] text-black font-semibold text-xs sm:text-sm lg:text-base hover:brightness-110 hover:scale-[1.03] transition-all duration-300"
+                  className="flex items-center justify-center gap-2 sm:gap-2 lg:gap-3 px-5 sm:px-6 lg:px-8 py-2.5 sm:py-3 lg:py-4 rounded-full bg-gradient-to-b from-[#FF6A25] to-[#FF6A25] shadow-[0_0_20px_rgba(255,106,37,0.3)] text-black font-semibold text-xs sm:text-sm lg:text-base hover:brightness-110 hover:scale-[1.03] transition-all duration-300"
                 >
                   <Zap size={14} className="text-black sm:hidden" />
                   <Zap size={16} className="text-black hidden sm:block lg:hidden" />

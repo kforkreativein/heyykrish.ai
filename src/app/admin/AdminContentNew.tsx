@@ -298,7 +298,7 @@ export default function AdminContent() {
       <div className="min-h-screen flex items-center justify-center bg-[#0a0a0a] p-4">
         <OSCard className="w-full max-w-md">
           <div className="flex items-center justify-center mb-6">
-            <Shield className="w-12 h-12 text-[#CC785C]" />
+            <Shield className="w-12 h-12 text-[#FF6A25]" />
           </div>
           
           <h1 className="font-heading text-2xl text-white text-center mb-2">
@@ -315,7 +315,7 @@ export default function AdminContent() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
-                className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-full text-white placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-full text-white placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
               />
               <button
                 type="button"
@@ -335,7 +335,7 @@ export default function AdminContent() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-3 bg-gradient-to-b from-[#CC785C] to-[#b8674a] text-black font-bold rounded-full hover:shadow-[0_0_20px_rgba(204,120,92,0.4)] transition-all duration-300 disabled:opacity-50"
+              className="w-full py-3 bg-gradient-to-b from-[#FF6A25] to-[#FF6A25] text-black font-bold rounded-full hover:shadow-[0_0_20px_rgba(255,106,37,0.4)] transition-all duration-300 disabled:opacity-50"
             >
               {isLoading ? "Verifying..." : "Login"}
             </button>
@@ -362,7 +362,7 @@ export default function AdminContent() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <div className="font-mono text-xs tracking-widest text-[#CC785C] mb-4 uppercase">
+          <div className="font-mono text-xs tracking-widest text-[#FF6A25] mb-4 uppercase">
             Admin // Dashboard
           </div>
           <h1 className="font-heading text-3xl sm:text-4xl font-bold text-white mb-2">
@@ -383,7 +383,7 @@ export default function AdminContent() {
                 onClick={() => setActiveTab(tab.id as TabType)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full font-mono text-sm whitespace-nowrap transition-all ${
                   activeTab === tab.id
-                    ? "bg-[#CC785C] text-black font-bold"
+                    ? "bg-[#FF6A25] text-black font-bold"
                     : "bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-zinc-300"
                 }`}
               >
@@ -412,12 +412,12 @@ export default function AdminContent() {
                     <div className="font-mono text-xs text-zinc-500 uppercase mb-2">
                       Newsletter Subscribers
                     </div>
-                    <div className="font-heading text-4xl text-[#CC785C] font-bold">
+                    <div className="font-heading text-4xl text-[#FF6A25] font-bold">
                       {stats.newsletterCount}
                     </div>
                   </div>
-                  <div className="p-3 bg-[#CC785C]/10 rounded-full">
-                    <Mail className="w-6 h-6 text-[#CC785C]" />
+                  <div className="p-3 bg-[#FF6A25]/10 rounded-full">
+                    <Mail className="w-6 h-6 text-[#FF6A25]" />
                   </div>
                 </div>
               </OSCard>
@@ -428,12 +428,12 @@ export default function AdminContent() {
                     <div className="font-mono text-xs text-zinc-500 uppercase mb-2">
                       Contact Inquiries
                     </div>
-                    <div className="font-heading text-4xl text-[#CC785C] font-bold">
+                    <div className="font-heading text-4xl text-[#FF6A25] font-bold">
                       {stats.contactCount}
                     </div>
                   </div>
-                  <div className="p-3 bg-[#CC785C]/10 rounded-full">
-                    <MessageSquare className="w-6 h-6 text-[#CC785C]" />
+                  <div className="p-3 bg-[#FF6A25]/10 rounded-full">
+                    <MessageSquare className="w-6 h-6 text-[#FF6A25]" />
                   </div>
                 </div>
               </OSCard>
@@ -444,12 +444,12 @@ export default function AdminContent() {
                     <div className="font-mono text-xs text-zinc-500 uppercase mb-2">
                       PDF Downloads
                     </div>
-                    <div className="font-heading text-4xl text-[#CC785C] font-bold">
+                    <div className="font-heading text-4xl text-[#FF6A25] font-bold">
                       {stats.downloadCount}
                     </div>
                   </div>
-                  <div className="p-3 bg-[#CC785C]/10 rounded-full">
-                    <Download className="w-6 h-6 text-[#CC785C]" />
+                  <div className="p-3 bg-[#FF6A25]/10 rounded-full">
+                    <Download className="w-6 h-6 text-[#FF6A25]" />
                   </div>
                 </div>
               </OSCard>
@@ -463,8 +463,8 @@ export default function AdminContent() {
                   onClick={() => setActiveTab("subscribers")}
                   className="p-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl text-left transition-all group"
                 >
-                  <Mail className="w-5 h-5 text-[#CC785C] mb-2" />
-                  <div className="font-mono text-sm text-white group-hover:text-[#CC785C]">
+                  <Mail className="w-5 h-5 text-[#FF6A25] mb-2" />
+                  <div className="font-mono text-sm text-white group-hover:text-[#FF6A25]">
                     View Subscribers
                   </div>
                 </button>
@@ -473,8 +473,8 @@ export default function AdminContent() {
                   onClick={() => setActiveTab("contacts")}
                   className="p-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl text-left transition-all group"
                 >
-                  <MessageSquare className="w-5 h-5 text-[#CC785C] mb-2" />
-                  <div className="font-mono text-sm text-white group-hover:text-[#CC785C]">
+                  <MessageSquare className="w-5 h-5 text-[#FF6A25] mb-2" />
+                  <div className="font-mono text-sm text-white group-hover:text-[#FF6A25]">
                     View Contacts
                   </div>
                 </button>
@@ -483,8 +483,8 @@ export default function AdminContent() {
                   onClick={() => setActiveTab("hero")}
                   className="p-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl text-left transition-all group"
                 >
-                  <ImageIcon className="w-5 h-5 text-[#CC785C] mb-2" />
-                  <div className="font-mono text-sm text-white group-hover:text-[#CC785C]">
+                  <ImageIcon className="w-5 h-5 text-[#FF6A25] mb-2" />
+                  <div className="font-mono text-sm text-white group-hover:text-[#FF6A25]">
                     Edit Hero Section
                   </div>
                 </button>
@@ -494,8 +494,8 @@ export default function AdminContent() {
                   disabled={isLoading}
                   className="p-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl text-left transition-all group"
                 >
-                  <RefreshCw className={`w-5 h-5 text-[#CC785C] mb-2 ${isLoading ? "animate-spin" : ""}`} />
-                  <div className="font-mono text-sm text-white group-hover:text-[#CC785C]">
+                  <RefreshCw className={`w-5 h-5 text-[#FF6A25] mb-2 ${isLoading ? "animate-spin" : ""}`} />
+                  <div className="font-mono text-sm text-white group-hover:text-[#FF6A25]">
                     Refresh Data
                   </div>
                 </button>
@@ -510,7 +510,7 @@ export default function AdminContent() {
               <h2 className="font-heading text-2xl text-white">Newsletter Subscribers</h2>
               <button
                 onClick={() => exportToCSV(subscribers, "subscribers.csv")}
-                className="flex items-center gap-2 px-4 py-2 bg-[#CC785C] text-black font-bold rounded-full hover:shadow-[0_0_20px_rgba(204,120,92,0.4)] transition-all"
+                className="flex items-center gap-2 px-4 py-2 bg-[#FF6A25] text-black font-bold rounded-full hover:shadow-[0_0_20px_rgba(255,106,37,0.4)] transition-all"
               >
                 <Download size={16} />
                 Export CSV
@@ -519,7 +519,7 @@ export default function AdminContent() {
 
             {isLoading ? (
               <div className="text-center py-8">
-                <RefreshCw className="w-8 h-8 text-[#CC785C] animate-spin mx-auto mb-2" />
+                <RefreshCw className="w-8 h-8 text-[#FF6A25] animate-spin mx-auto mb-2" />
                 <p className="text-zinc-400 font-mono text-sm">Loading subscribers...</p>
               </div>
             ) : (
@@ -557,7 +557,7 @@ export default function AdminContent() {
               <h2 className="font-heading text-2xl text-white">Contact Inquiries</h2>
               <button
                 onClick={() => exportToCSV(contacts, "contacts.csv")}
-                className="flex items-center gap-2 px-4 py-2 bg-[#CC785C] text-black font-bold rounded-full hover:shadow-[0_0_20px_rgba(204,120,92,0.4)] transition-all"
+                className="flex items-center gap-2 px-4 py-2 bg-[#FF6A25] text-black font-bold rounded-full hover:shadow-[0_0_20px_rgba(255,106,37,0.4)] transition-all"
               >
                 <Download size={16} />
                 Export CSV
@@ -566,7 +566,7 @@ export default function AdminContent() {
 
             {isLoading ? (
               <div className="text-center py-8">
-                <RefreshCw className="w-8 h-8 text-[#CC785C] animate-spin mx-auto mb-2" />
+                <RefreshCw className="w-8 h-8 text-[#FF6A25] animate-spin mx-auto mb-2" />
                 <p className="text-zinc-400 font-mono text-sm">Loading contacts...</p>
               </div>
             ) : (
@@ -603,7 +603,7 @@ export default function AdminContent() {
             {activeTab === "hero" && siteContent && (
               <OSCard>
                 <h2 className="font-heading text-2xl text-white mb-6 flex items-center gap-3">
-                  <ImageIcon className="w-6 h-6 text-[#CC785C]" />
+                  <ImageIcon className="w-6 h-6 text-[#FF6A25]" />
                   Hero Section
                 </h2>
                 
@@ -617,7 +617,7 @@ export default function AdminContent() {
                         ...siteContent,
                         hero: { ...siteContent.hero, title: e.target.value }
                       })}
-                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                     />
                   </div>
 
@@ -630,7 +630,7 @@ export default function AdminContent() {
                         ...siteContent,
                         hero: { ...siteContent.hero, subtitle: e.target.value }
                       })}
-                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                     />
                   </div>
 
@@ -643,7 +643,7 @@ export default function AdminContent() {
                         hero: { ...siteContent.hero, description: e.target.value }
                       })}
                       rows={4}
-                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                     />
                   </div>
 
@@ -657,7 +657,7 @@ export default function AdminContent() {
                         hero: { ...siteContent.hero, image: e.target.value }
                       })}
                       placeholder="/profile.jpg"
-                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                     />
                     <p className="text-zinc-600 text-xs mt-2 font-mono">
                       Upload image to /public folder first
@@ -676,14 +676,14 @@ export default function AdminContent() {
                           typewriterWords: e.target.value.split(",").map(w => w.trim())
                         }
                       })}
-                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                     />
                   </div>
 
                   <button
                     onClick={saveSiteContent}
                     disabled={isLoading}
-                    className="flex items-center gap-2 px-6 py-3 bg-gradient-to-b from-[#CC785C] to-[#b8674a] text-black font-bold rounded-full hover:shadow-[0_0_20px_rgba(204,120,92,0.4)] transition-all"
+                    className="flex items-center gap-2 px-6 py-3 bg-gradient-to-b from-[#FF6A25] to-[#FF6A25] text-black font-bold rounded-full hover:shadow-[0_0_20px_rgba(255,106,37,0.4)] transition-all"
                   >
                     <Save size={18} />
                     {isLoading ? "Saving..." : "Save Hero Section"}
@@ -696,7 +696,7 @@ export default function AdminContent() {
             {activeTab === "about" && siteContent && (
               <OSCard>
                 <h2 className="font-heading text-2xl text-white mb-6 flex items-center gap-3">
-                  <Users className="w-6 h-6 text-[#CC785C]" />
+                  <Users className="w-6 h-6 text-[#FF6A25]" />
                   About Page
                 </h2>
                 
@@ -710,7 +710,7 @@ export default function AdminContent() {
                         ...siteContent,
                         about: { ...siteContent.about, title: e.target.value }
                       })}
-                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                     />
                   </div>
 
@@ -723,7 +723,7 @@ export default function AdminContent() {
                         about: { ...siteContent.about, bio: e.target.value }
                       })}
                       rows={8}
-                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                     />
                   </div>
 
@@ -736,7 +736,7 @@ export default function AdminContent() {
                         about: { ...siteContent.about, mission: e.target.value }
                       })}
                       rows={2}
-                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                     />
                   </div>
 
@@ -753,7 +753,7 @@ export default function AdminContent() {
                             stats: { ...siteContent.about.stats, followers: e.target.value }
                           }
                         })}
-                        className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                        className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                       />
                     </div>
 
@@ -769,7 +769,7 @@ export default function AdminContent() {
                             stats: { ...siteContent.about.stats, resources: e.target.value }
                           }
                         })}
-                        className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                        className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                       />
                     </div>
 
@@ -785,7 +785,7 @@ export default function AdminContent() {
                             stats: { ...siteContent.about.stats, impressions: e.target.value }
                           }
                         })}
-                        className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                        className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                       />
                     </div>
                   </div>
@@ -793,7 +793,7 @@ export default function AdminContent() {
                   <button
                     onClick={saveSiteContent}
                     disabled={isLoading}
-                    className="flex items-center gap-2 px-6 py-3 bg-gradient-to-b from-[#CC785C] to-[#b8674a] text-black font-bold rounded-full hover:shadow-[0_0_20px_rgba(204,120,92,0.4)] transition-all"
+                    className="flex items-center gap-2 px-6 py-3 bg-gradient-to-b from-[#FF6A25] to-[#FF6A25] text-black font-bold rounded-full hover:shadow-[0_0_20px_rgba(255,106,37,0.4)] transition-all"
                   >
                     <Save size={18} />
                     {isLoading ? "Saving..." : "Save About Page"}
@@ -806,7 +806,7 @@ export default function AdminContent() {
             {activeTab === "social" && siteContent && (
               <OSCard>
                 <h2 className="font-heading text-2xl text-white mb-6 flex items-center gap-3">
-                  <Share2 className="w-6 h-6 text-[#CC785C]" />
+                  <Share2 className="w-6 h-6 text-[#FF6A25]" />
                   Social Links
                 </h2>
                 
@@ -820,7 +820,7 @@ export default function AdminContent() {
                         ...siteContent,
                         social: { ...siteContent.social, instagram: e.target.value }
                       })}
-                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                     />
                   </div>
 
@@ -833,7 +833,7 @@ export default function AdminContent() {
                         ...siteContent,
                         social: { ...siteContent.social, email: e.target.value }
                       })}
-                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                     />
                   </div>
 
@@ -846,14 +846,14 @@ export default function AdminContent() {
                         ...siteContent,
                         social: { ...siteContent.social, website: e.target.value }
                       })}
-                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                     />
                   </div>
 
                   <button
                     onClick={saveSiteContent}
                     disabled={isLoading}
-                    className="flex items-center gap-2 px-6 py-3 bg-gradient-to-b from-[#CC785C] to-[#b8674a] text-black font-bold rounded-full hover:shadow-[0_0_20px_rgba(204,120,92,0.4)] transition-all"
+                    className="flex items-center gap-2 px-6 py-3 bg-gradient-to-b from-[#FF6A25] to-[#FF6A25] text-black font-bold rounded-full hover:shadow-[0_0_20px_rgba(255,106,37,0.4)] transition-all"
                   >
                     <Save size={18} />
                     {isLoading ? "Saving..." : "Save Social Links"}
@@ -866,14 +866,14 @@ export default function AdminContent() {
             {activeTab === "seo" && siteContent && (
               <OSCard>
                 <h2 className="font-heading text-2xl text-white mb-6 flex items-center gap-3">
-                  <Search className="w-6 h-6 text-[#CC785C]" />
+                  <Search className="w-6 h-6 text-[#FF6A25]" />
                   SEO Settings
                 </h2>
                 
                 <div className="space-y-6">
                   {Object.entries(siteContent.seo).map(([page, data]) => (
                     <div key={page} className="p-4 bg-white/5 border border-white/10 rounded-2xl">
-                      <h3 className="font-mono text-sm text-[#CC785C] uppercase mb-4">
+                      <h3 className="font-mono text-sm text-[#FF6A25] uppercase mb-4">
                         {page} Page
                       </h3>
                       <div className="space-y-3">
@@ -889,7 +889,7 @@ export default function AdminContent() {
                                 [page]: { ...data, title: e.target.value }
                               }
                             })}
-                            className="w-full px-4 py-2 bg-[#0a0a0a] border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                            className="w-full px-4 py-2 bg-[#0a0a0a] border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                           />
                         </div>
 
@@ -905,7 +905,7 @@ export default function AdminContent() {
                               }
                             })}
                             rows={2}
-                            className="w-full px-4 py-2 bg-[#0a0a0a] border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                            className="w-full px-4 py-2 bg-[#0a0a0a] border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                           />
                         </div>
 
@@ -921,7 +921,7 @@ export default function AdminContent() {
                                 [page]: { ...data, keywords: e.target.value }
                               }
                             })}
-                            className="w-full px-4 py-2 bg-[#0a0a0a] border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                            className="w-full px-4 py-2 bg-[#0a0a0a] border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                           />
                         </div>
                       </div>
@@ -931,7 +931,7 @@ export default function AdminContent() {
                   <button
                     onClick={saveSiteContent}
                     disabled={isLoading}
-                    className="flex items-center gap-2 px-6 py-3 bg-gradient-to-b from-[#CC785C] to-[#b8674a] text-black font-bold rounded-full hover:shadow-[0_0_20px_rgba(204,120,92,0.4)] transition-all"
+                    className="flex items-center gap-2 px-6 py-3 bg-gradient-to-b from-[#FF6A25] to-[#FF6A25] text-black font-bold rounded-full hover:shadow-[0_0_20px_rgba(255,106,37,0.4)] transition-all"
                   >
                     <Save size={18} />
                     {isLoading ? "Saving..." : "Save SEO Settings"}
@@ -944,7 +944,7 @@ export default function AdminContent() {
             {activeTab === "partnerships" && siteContent && (
               <OSCard>
                 <h2 className="font-heading text-2xl text-white mb-6 flex items-center gap-3">
-                  <Briefcase className="w-6 h-6 text-[#CC785C]" />
+                  <Briefcase className="w-6 h-6 text-[#FF6A25]" />
                   Partnership Page
                 </h2>
                 
@@ -958,7 +958,7 @@ export default function AdminContent() {
                         ...siteContent,
                         partnerships: { ...siteContent.partnerships, heading: e.target.value }
                       })}
-                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                     />
                   </div>
 
@@ -971,7 +971,7 @@ export default function AdminContent() {
                         partnerships: { ...siteContent.partnerships, subheading: e.target.value }
                       })}
                       rows={3}
-                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                     />
                   </div>
 
@@ -992,7 +992,7 @@ export default function AdminContent() {
                               });
                             }}
                             placeholder="Partner Name"
-                            className="flex-1 px-4 py-2 bg-[#0a0a0a] border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                            className="flex-1 px-4 py-2 bg-[#0a0a0a] border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                           />
                           <input
                             type="text"
@@ -1006,7 +1006,7 @@ export default function AdminContent() {
                               });
                             }}
                             placeholder="URL (optional)"
-                            className="flex-1 px-4 py-2 bg-[#0a0a0a] border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                            className="flex-1 px-4 py-2 bg-[#0a0a0a] border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                           />
                         </div>
                       ))}
@@ -1016,7 +1016,7 @@ export default function AdminContent() {
                   <button
                     onClick={saveSiteContent}
                     disabled={isLoading}
-                    className="flex items-center gap-2 px-6 py-3 bg-gradient-to-b from-[#CC785C] to-[#b8674a] text-black font-bold rounded-full hover:shadow-[0_0_20px_rgba(204,120,92,0.4)] transition-all"
+                    className="flex items-center gap-2 px-6 py-3 bg-gradient-to-b from-[#FF6A25] to-[#FF6A25] text-black font-bold rounded-full hover:shadow-[0_0_20px_rgba(255,106,37,0.4)] transition-all"
                   >
                     <Save size={18} />
                     {isLoading ? "Saving..." : "Save Partnerships"}
@@ -1029,7 +1029,7 @@ export default function AdminContent() {
             {activeTab === "media-kit" && mediaKitData && (
               <OSCard>
                 <h2 className="font-heading text-2xl text-white mb-6 flex items-center gap-3">
-                  <Award className="w-6 h-6 text-[#CC785C]" />
+                  <Award className="w-6 h-6 text-[#FF6A25]" />
                   Media Kit Data
                 </h2>
                 
@@ -1041,7 +1041,7 @@ export default function AdminContent() {
                         type="text"
                         value={mediaKitData.followers}
                         onChange={(e) => setMediaKitData({ ...mediaKitData, followers: e.target.value })}
-                        className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                        className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                       />
                     </div>
 
@@ -1051,7 +1051,7 @@ export default function AdminContent() {
                         type="text"
                         value={mediaKitData.impressions}
                         onChange={(e) => setMediaKitData({ ...mediaKitData, impressions: e.target.value })}
-                        className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                        className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                       />
                     </div>
 
@@ -1061,7 +1061,7 @@ export default function AdminContent() {
                         type="text"
                         value={mediaKitData.audienceAge}
                         onChange={(e) => setMediaKitData({ ...mediaKitData, audienceAge: e.target.value })}
-                        className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                        className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                       />
                     </div>
                   </div>
@@ -1072,7 +1072,7 @@ export default function AdminContent() {
                       type="text"
                       value={mediaKitData.engagementRate}
                       onChange={(e) => setMediaKitData({ ...mediaKitData, engagementRate: e.target.value })}
-                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                     />
                   </div>
 
@@ -1089,7 +1089,7 @@ export default function AdminContent() {
                             gender: { ...mediaKitData.demographics.gender, male: e.target.value }
                           }
                         })}
-                        className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                        className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                       />
                     </div>
 
@@ -1105,7 +1105,7 @@ export default function AdminContent() {
                             gender: { ...mediaKitData.demographics.gender, female: e.target.value }
                           }
                         })}
-                        className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                        className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                       />
                     </div>
                   </div>
@@ -1122,7 +1122,7 @@ export default function AdminContent() {
                           topLocations: e.target.value.split(",").map((l: string) => l.trim())
                         }
                       })}
-                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                     />
                   </div>
 
@@ -1135,7 +1135,7 @@ export default function AdminContent() {
                         ...mediaKitData,
                         topInterests: e.target.value.split(",").map((i: string) => i.trim())
                       })}
-                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                     />
                   </div>
 
@@ -1146,14 +1146,14 @@ export default function AdminContent() {
                       value={mediaKitData.lastUpdated}
                       onChange={(e) => setMediaKitData({ ...mediaKitData, lastUpdated: e.target.value })}
                       placeholder="April 2025"
-                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50"
+                      className="w-full px-4 py-3 bg-[#0a0a0a] border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50"
                     />
                   </div>
 
                   <button
                     onClick={saveMediaKit}
                     disabled={isLoading}
-                    className="flex items-center gap-2 px-6 py-3 bg-gradient-to-b from-[#CC785C] to-[#b8674a] text-black font-bold rounded-full hover:shadow-[0_0_20px_rgba(204,120,92,0.4)] transition-all"
+                    className="flex items-center gap-2 px-6 py-3 bg-gradient-to-b from-[#FF6A25] to-[#FF6A25] text-black font-bold rounded-full hover:shadow-[0_0_20px_rgba(255,106,37,0.4)] transition-all"
                   >
                     <Save size={18} />
                     {isLoading ? "Saving..." : "Save Media Kit"}

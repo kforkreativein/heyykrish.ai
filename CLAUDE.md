@@ -29,7 +29,7 @@ The UI follows a **Futuristic Cyber-Dashboard** aesthetic with ultra-dark backgr
    * **Main Background:** `#0a0a0a` (pure black) - Deep dark base
    * **Container Backgrounds:** `#121212` - OS cards and panels
    * **Borders:** `white/5` - Subtle 5% white borders for glass effect
-   * **Accent Color:** `#CC785C` - Dusty orange/Claude color for CTAs, highlights
+   * **Accent Color:** `#FF6A25` - Dusty orange/Claude color for CTAs, highlights
    * **Text Primary:** `#ffffff` (pure white) - Headings
    * **Text Secondary:** `#d4d4d8` (zinc-300) - Body text
    * **Text Tertiary:** `#a1a1aa` (zinc-400) - Descriptions
@@ -45,7 +45,7 @@ The UI follows a **Futuristic Cyber-Dashboard** aesthetic with ultra-dark backgr
    * **Inset Glow:** `inset 0 1px 0 0 rgba(255,255,255,0.05)` on top edge of cards
    * **Shadows:** `0 4px 24px -1px rgba(0,0,0,0.5)` for depth
    * **Backdrop Blur:** `backdrop-blur-xl` for glass morphism effect
-   * **Glowing Indicators:** `shadow-[0_0_8px_rgba(204,120,92,0.6)]` for status dots
+   * **Glowing Indicators:** `shadow-[0_0_8px_rgba(255,106,37,0.6)]` for status dots
 
 4. **Component Styling:**
    * Cards: OSCard component with `bg-[#121212] border border-white/5 rounded-[32px] shadow-os-card`
@@ -134,7 +134,7 @@ Base styles applied automatically:
 2. **Tailwind & CSS Variables:** 
    - Mobile-first responsive design
    - Use CSS variables from globals.css: `--claude-*`, `--font-*`
-   - Access via Tailwind: `text-[#CC785C]`, `bg-[#121212]`, `border-white/5`
+   - Access via Tailwind: `text-[#FF6A25]`, `bg-[#121212]`, `border-white/5`
    - Font utilities: `font-heading`, `font-mono`
 
 3. **Typography Usage:**
@@ -215,7 +215,7 @@ Base styles applied automatically:
 />
 ```
 - Client component with smooth typing animation
-- Text color: `text-[#CC785C]` (claudeColor)
+- Text color: `text-[#FF6A25]` (claudeColor)
 - Use on hero sections
 - Prevents layout shift
 
@@ -302,7 +302,7 @@ npm run start        # Run production build
 ### Adding Features
 1. Check if skill exists (`.claude/skills/`)
 2. Read project memory (`.claude/memory/MEMORY.md`)
-3. Follow design system (zinc colors, #E17F62 accent)
+3. Follow design system (zinc colors, #FF6A25 accent)
 4. Use Server Components by default
 5. Test mobile responsiveness
 

@@ -19,14 +19,14 @@ export default function BrandPartnershipsPage() {
     <div className="min-h-screen bg-[#0a0a0a] pt-16 lg:pt-8 pb-16 px-4 lg:px-8 relative overflow-hidden w-full max-w-[100vw] animate-page-enter">
       {/* Ambient Background Glow with float animation */}
       <div 
-        className="absolute top-[-10%] left-[10%] md:left-[20%] w-[280px] h-[280px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] bg-[#CC785C]/10 rounded-full blur-[120px] -z-10 pointer-events-none animate-float"
+        className="absolute top-[-10%] left-[10%] md:left-[20%] w-[280px] h-[280px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] bg-[#FF6A25]/10 rounded-full blur-[120px] -z-10 pointer-events-none animate-float"
         aria-hidden="true"
       />
       
       <div className="max-w-6xl mx-auto">
         {/* Page Header */}
         <div className="mb-12 animate-fade-up">
-          <div className="font-mono text-xs tracking-widest text-[#CC785C] mb-4 uppercase">
+          <div className="font-mono text-xs tracking-widest text-[#FF6A25] mb-4 uppercase">
             Heyykrish.AI // Partnership
           </div>
           <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
@@ -42,7 +42,7 @@ export default function BrandPartnershipsPage() {
           <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4">
             <Link 
               href="/media-kit"
-              className="inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-bold text-black bg-gradient-to-b from-[#CC785C] to-[#b8674a] rounded-full hover:shadow-[0_0_20px_rgba(204,120,92,0.4)] transition-all duration-300 shadow-[0_0_15px_rgba(204,120,92,0.3)] hover:scale-105 btn-magnetic"
+              className="inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-bold text-black bg-gradient-to-b from-[#FF6A25] to-[#FF6A25] rounded-full hover:shadow-[0_0_20px_rgba(255,106,37,0.4)] transition-all duration-300 shadow-[0_0_15px_rgba(255,106,37,0.3)] hover:scale-105 btn-magnetic"
             >
               <Download size={18} />
               View Media Kit
@@ -65,13 +65,13 @@ export default function BrandPartnershipsPage() {
             {pastPartners.map((partner, index) => (
               <OSCard
                 key={partner}
-                className="h-32 flex items-center justify-center group hover:border-[#CC785C]/20 transition-all duration-300 animate-fade-up"
+                className="h-32 flex items-center justify-center group hover:border-[#FF6A25]/20 transition-all duration-300 animate-fade-up"
                 style={{ animationDelay: `${0.2 + index * 0.05}s` }}
               >
                 <div className="text-center">
                   {/* Logo Placeholder */}
-                  <div className="w-12 h-12 mx-auto mb-3 bg-[#CC785C]/10 rounded-full flex items-center justify-center group-hover:bg-[#CC785C]/20 transition-all duration-300">
-                    <span className="text-[#CC785C] font-mono text-lg font-bold">
+                  <div className="w-12 h-12 mx-auto mb-3 bg-[#FF6A25]/10 rounded-full flex items-center justify-center group-hover:bg-[#FF6A25]/20 transition-all duration-300">
+                    <span className="text-[#FF6A25] font-mono text-lg font-bold">
                       {partner.split(' ').map(word => word[0]).join('')}
                     </span>
                   </div>
@@ -93,7 +93,7 @@ export default function BrandPartnershipsPage() {
             {/* Card 1 - The Workflow */}
             <OSCard className="h-full animate-fade-up" style={{ animationDelay: "0.45s" }}>
               <div className="mb-4">
-                <span className="font-mono text-[10px] tracking-[0.2em] text-[#CC785C] uppercase">
+                <span className="font-mono text-[10px] tracking-[0.2em] text-[#FF6A25] uppercase">
                   [ MODULE // BUILD ]
                 </span>
               </div>
@@ -108,7 +108,7 @@ export default function BrandPartnershipsPage() {
             {/* Card 2 - The User Value */}
             <OSCard className="h-full animate-fade-up" style={{ animationDelay: "0.5s" }}>
               <div className="mb-4">
-                <span className="font-mono text-[10px] tracking-[0.2em] text-[#CC785C] uppercase">
+                <span className="font-mono text-[10px] tracking-[0.2em] text-[#FF6A25] uppercase">
                   [ VALUE // DEPLOY ]
                 </span>
               </div>
@@ -123,7 +123,7 @@ export default function BrandPartnershipsPage() {
             {/* Card 3 - The Partner Benefit */}
             <OSCard className="h-full animate-fade-up" style={{ animationDelay: "0.55s" }}>
               <div className="mb-4">
-                <span className="font-mono text-[10px] tracking-[0.2em] text-[#CC785C] uppercase">
+                <span className="font-mono text-[10px] tracking-[0.2em] text-[#FF6A25] uppercase">
                   [ RESULT // ACQUIRE ]
                 </span>
               </div>
@@ -145,6 +145,7 @@ export default function BrandPartnershipsPage() {
             subtext="I work with brands that align with my mission to democratize AI knowledge. Let's create something meaningful together."
             buttonText="Get in Touch"
             buttonHref="mailto:kforkreativein@gmail.com"
+            useContactModal={true}
           />
         </div>
 

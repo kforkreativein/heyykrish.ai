@@ -16,12 +16,12 @@ export default function HomeContent() {
     <div className="min-h-screen bg-[#0a0a0a] pt-16 lg:pt-8 pb-16 px-4 lg:px-8 relative overflow-hidden w-full max-w-[100vw] animate-page-enter">
       {/* Ambient Background Glow - with floating animation */}
       <div 
-        className="absolute top-[-10%] left-[10%] md:left-[20%] w-[280px] h-[280px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] bg-[#CC785C]/10 rounded-full blur-[120px] -z-10 pointer-events-none animate-float"
+        className="absolute top-[-10%] left-[10%] md:left-[20%] w-[280px] h-[280px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] bg-[#FF6A25]/10 rounded-full blur-[120px] -z-10 pointer-events-none animate-float"
         aria-hidden="true"
       />
       {/* Secondary glow for depth */}
       <div 
-        className="absolute top-[20%] right-[5%] w-[200px] h-[200px] md:w-[300px] md:h-[300px] bg-[#CC785C]/5 rounded-full blur-[100px] -z-10 pointer-events-none animate-float"
+        className="absolute top-[20%] right-[5%] w-[200px] h-[200px] md:w-[300px] md:h-[300px] bg-[#FF6A25]/5 rounded-full blur-[100px] -z-10 pointer-events-none animate-float"
         style={{ animationDelay: "-10s", animationDirection: "reverse" }}
         aria-hidden="true"
       />
@@ -34,7 +34,7 @@ export default function HomeContent() {
             <div className="flex-1 md:w-[60%]">
               {/* Technical Breadcrumb */}
               <div 
-                className="font-mono text-xs tracking-widest text-[#CC785C] mb-4 uppercase animate-fade-up"
+                className="font-mono text-xs tracking-widest text-[#FF6A25] mb-4 uppercase animate-fade-up"
                 style={{ animationDelay: "0.1s" }}
               >
                 Heyykrish.AI // Home
@@ -54,7 +54,7 @@ export default function HomeContent() {
                 style={{ animationDelay: "0.3s" }}
               >
                 <span>Steal my private</span>
-                <span className="text-[#CC785C]">
+                <span className="text-[#FF6A25]">
                   <TypewriterText
                     words={["workflows.", "prompts.", "automations.", "systems.", "templates."]}
                   />
@@ -82,7 +82,7 @@ export default function HomeContent() {
                 </p>
                 <button
                    onClick={() => setIsNewsletterModalOpen(true)}
-                   className="w-full px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-semibold text-black bg-gradient-to-b from-[#CC785C] to-[#b8674a] rounded-full hover:shadow-[0_0_25px_rgba(204,120,92,0.5)] transition-all duration-300 shadow-[0_0_15px_rgba(204,120,92,0.3)] btn-press btn-magnetic cta-glow focus-ring"
+                   className="w-full px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-semibold text-black bg-gradient-to-b from-[#FF6A25] to-[#FF6A25] rounded-full hover:shadow-[0_0_25px_rgba(255,106,37,0.5)] transition-all duration-300 shadow-[0_0_15px_rgba(255,106,37,0.3)] btn-press btn-magnetic cta-glow focus-ring"
                  >
                    Join Free
                  </button>
@@ -96,7 +96,7 @@ export default function HomeContent() {
             >
               <div className="relative group profile-depth">
                 <div 
-                  className="absolute -inset-0.5 bg-gradient-to-r from-[#CC785C] to-[#b8674a] rounded-[32px] blur opacity-20 group-hover:opacity-40 transition duration-500"
+                  className="absolute -inset-0.5 bg-gradient-to-r from-[#FF6A25] to-[#FF6A25] rounded-[32px] blur opacity-20 group-hover:opacity-40 transition duration-500"
                   aria-hidden="true"
                 />
                 <div className="relative w-56 h-72 sm:w-64 sm:h-80 md:w-80 md:h-96 rounded-[32px] border border-white/5 bg-[#121212] overflow-hidden transform -rotate-2 group-hover:rotate-0 transition-all duration-500 shadow-[0_4px_24px_-1px_rgba(0,0,0,0.5)] border-glow-hover">
@@ -118,7 +118,7 @@ export default function HomeContent() {
         <section className="pt-16 border-t border-white/5">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <div className="font-mono text-xs tracking-widest text-[#CC785C] mb-2 uppercase">
+              <div className="font-mono text-xs tracking-widest text-[#FF6A25] mb-2 uppercase">
                 Latest Resources
               </div>
               <h2 className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-white">
@@ -127,7 +127,7 @@ export default function HomeContent() {
             </div>
             <Link
               href="/resources"
-              className="font-mono text-xs font-medium text-[#CC785C] hover:text-[#d88567] transition-colors flex items-center gap-1.5 group uppercase tracking-wider focus-ring rounded-md px-2 py-1"
+              className="font-mono text-xs font-medium text-[#FF6A25] hover:text-[#d88567] transition-colors flex items-center gap-1.5 group uppercase tracking-wider focus-ring rounded-md px-2 py-1"
             >
               View All
               <span className="group-hover:translate-x-0.5 transition-transform" aria-hidden="true">

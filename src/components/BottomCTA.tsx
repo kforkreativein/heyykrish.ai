@@ -32,15 +32,15 @@ export default function BottomCTA({
     <>
       <OSCard className="overflow-hidden">
       {/* Icon in Rounded Container */}
-      <div className="inline-flex items-center justify-center w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-[#CC785C]/10 border border-[#CC785C]/20 mb-4 sm:mb-6">
-        <Zap className="w-5 sm:w-6 h-5 sm:h-6 text-[#CC785C]" />
+      <div className="inline-flex items-center justify-center w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-[#FF6A25]/10 border border-[#FF6A25]/20 mb-4 sm:mb-6">
+        <Zap className="w-5 sm:w-6 h-5 sm:h-6 text-[#FF6A25]" />
       </div>
       
       <div className="flex flex-col gap-6">
         <div className="flex-1">
           {/* Badge */}
           <div className="inline-block mb-4">
-            <span className="px-3 py-1 text-[10px] font-mono uppercase tracking-wider text-[#CC785C] bg-[#CC785C]/10 border border-[#CC785C]/20 rounded-full">
+            <span className="px-3 py-1 text-[10px] font-mono uppercase tracking-wider text-[#FF6A25] bg-[#FF6A25]/10 border border-[#FF6A25]/20 rounded-full">
               {badge}
             </span>
           </div>
@@ -59,7 +59,7 @@ export default function BottomCTA({
           {useModal ? (
             <button
               onClick={() => setIsNewsletterModalOpen(true)}
-              className="inline-flex items-center gap-2 font-mono text-sm text-[#CC785C] hover:text-[#d88567] transition-colors group uppercase tracking-wider bg-transparent border-none cursor-pointer p-0"
+              className="inline-flex items-center gap-2 font-mono text-sm text-[#FF6A25] hover:text-[#d88567] transition-colors group uppercase tracking-wider bg-transparent border-none cursor-pointer p-0"
             >
               {buttonText}
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -67,7 +67,7 @@ export default function BottomCTA({
           ) : useContactModal ? (
             <button
               onClick={() => setIsContactModalOpen(true)}
-              className="inline-flex items-center gap-2 font-mono text-sm text-[#CC785C] hover:text-[#d88567] transition-colors group uppercase tracking-wider bg-transparent border-none cursor-pointer p-0"
+              className="inline-flex items-center gap-2 font-mono text-sm text-[#FF6A25] hover:text-[#d88567] transition-colors group uppercase tracking-wider bg-transparent border-none cursor-pointer p-0"
             >
               {buttonText}
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -75,7 +75,7 @@ export default function BottomCTA({
           ) : (
             <Link
               href={buttonHref}
-              className="inline-flex items-center gap-2 font-mono text-sm text-[#CC785C] hover:text-[#d88567] transition-colors group uppercase tracking-wider"
+              className="inline-flex items-center gap-2 font-mono text-sm text-[#FF6A25] hover:text-[#d88567] transition-colors group uppercase tracking-wider"
             >
               {buttonText}
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

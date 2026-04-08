@@ -57,7 +57,7 @@ export default function Sidebar() {
       <div className="p-5 pb-6">
         <div className="flex flex-col items-center text-center">
           {/* Status indicator */}
-          <span className="font-mono text-[10px] tracking-[0.2em] text-[#CC785C] uppercase mb-2">
+          <span className="font-mono text-[10px] tracking-[0.2em] text-[#FF6A25] uppercase mb-2">
             System Ready
           </span>
           {/* Name */}
@@ -83,7 +83,7 @@ export default function Sidebar() {
                   aria-current={isActive ? "page" : undefined}
                   className={`flex items-center gap-3 px-4 py-3 rounded-2xl font-mono text-[11px] uppercase tracking-[0.15em] transition-all duration-200 focus-ring group ${
                     isActive
-                      ? "text-[#CC785C]"
+                      ? "text-[#FF6A25]"
                       : "text-zinc-500 hover:text-zinc-300"
                   }`}
                 >
@@ -91,7 +91,7 @@ export default function Sidebar() {
                   <span 
                     className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
                       isActive 
-                        ? "bg-[#CC785C] nav-dot-active shadow-[0_0_8px_rgba(204,120,92,0.6)]" 
+                        ? "bg-[#FF6A25] nav-dot-active shadow-[0_0_8px_rgba(255,106,37,0.6)]" 
                         : "bg-zinc-700 group-hover:bg-zinc-500 group-hover:scale-110"
                     }`} 
                     aria-hidden="true"
@@ -120,7 +120,7 @@ export default function Sidebar() {
                 aria-label={`${link.name}${link.href.startsWith('mailto:') ? '' : ' (opens in new tab)'}`}
                 className="flex items-center gap-4 px-5 py-3.5 w-full rounded-[16px] border border-white/5 bg-[#121212] hover:bg-white/5 transition-all text-sm font-mono text-zinc-300 tracking-wide shadow-sm focus-ring"
               >
-                <span className="text-zinc-500 group-hover:text-[#CC785C] transition-colors" aria-hidden="true">
+                <span className="text-zinc-500 group-hover:text-[#FF6A25] transition-colors" aria-hidden="true">
                   <link.icon />
                 </span>
                 <span className="font-mono text-[11px] uppercase tracking-wider">
@@ -140,7 +140,7 @@ export default function Sidebar() {
           </p>
           <button
             onClick={() => setIsNewsletterModalOpen(true)}
-            className="w-full px-4 py-2.5 sm:py-3 text-xs font-mono font-medium text-black bg-[#CC785C] rounded-full hover:bg-[#B86246] transition-all duration-200 uppercase tracking-wider btn-press focus-ring"
+            className="w-full px-4 py-2.5 sm:py-3 text-xs font-mono font-medium text-black bg-[#FF6A25] rounded-full hover:bg-[#FF6A25] transition-all duration-200 uppercase tracking-wider btn-press focus-ring"
           >
             Subscribe
           </button>
@@ -153,7 +153,7 @@ export default function Sidebar() {
     <>
       {/* Mobile Header */}
       <div className="lg:hidden fixed top-0 left-0 right-0 h-14 bg-[#0a0a0a] border-b border-white/5 flex items-center justify-between px-4 z-40">
-        <Link href="/" className="font-heading text-base font-semibold text-white hover:text-[#CC785C] transition-colors">
+        <Link href="/" className="font-heading text-base font-semibold text-white hover:text-[#FF6A25] transition-colors">
           heyykrish.ai
         </Link>
         <button

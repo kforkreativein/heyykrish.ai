@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { X, Mail } from "lucide-react";
 import OSCard from "./OSCard";
+import CenteredModal from "./CenteredModal";
 
 interface NewsletterModalProps {
   isOpen: boolean;
@@ -109,20 +110,12 @@ export default function NewsletterModal({
   };
 
   return (
-    <div 
-      className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 modal-backdrop-enter"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="newsletter-modal-title"
+    <CenteredModal
+      isOpen={isOpen}
+      onClose={onClose}
+      ariaLabelledBy="newsletter-modal-title"
     >
-      <div 
-        className="absolute inset-0" 
-        onClick={onClose}
-        aria-hidden="true"
-      />
-
-      {/* Modal */}
-      <div ref={modalRef} className="relative w-full max-w-md modal-content-enter">
+      <div ref={modalRef}>
         <OSCard className="relative">
           {/* Close Button */}
           <button
@@ -134,8 +127,8 @@ export default function NewsletterModal({
           </button>
 
           {/* Icon */}
-          <div className="inline-flex items-center justify-center w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-[#CC785C]/10 border border-[#CC785C]/20 mb-4 sm:mb-6">
-            <Mail className="w-5 sm:w-6 h-5 sm:h-6 text-[#CC785C]" aria-hidden="true" />
+          <div className="inline-flex items-center justify-center w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-[#FF6A25]/10 border border-[#FF6A25]/20 mb-4 sm:mb-6">
+            <Mail className="w-5 sm:w-6 h-5 sm:h-6 text-[#FF6A25]" aria-hidden="true" />
           </div>
 
           {/* Heading */}
@@ -148,9 +141,9 @@ export default function NewsletterModal({
 
           {success ? (
             <div className="text-center py-6 sm:py-8" role="status" aria-live="polite">
-              <div className="inline-flex items-center justify-center w-12 sm:w-16 h-12 sm:h-16 rounded-full bg-[#CC785C]/20 border border-[#CC785C]/30 mb-4">
+              <div className="inline-flex items-center justify-center w-12 sm:w-16 h-12 sm:h-16 rounded-full bg-[#FF6A25]/20 border border-[#FF6A25]/30 mb-4">
                 <svg 
-                  className="w-6 sm:w-8 h-6 sm:h-8 text-[#CC785C]" 
+                  className="w-6 sm:w-8 h-6 sm:h-8 text-[#FF6A25]" 
                   viewBox="0 0 24 24" 
                   fill="none" 
                   stroke="currentColor" 
@@ -189,7 +182,7 @@ export default function NewsletterModal({
                   onChange={(e) => setName(e.target.value)}
                   required
                   placeholder="John Doe"
-                  className="w-full px-5 py-3 text-sm bg-[#0a0a0a] border border-white/10 rounded-full text-zinc-50 placeholder:text-zinc-600 focus:outline-none focus:border-[#CC785C] focus:shadow-[0_0_20px_rgba(204,120,92,0.2)] transition-all"
+                  className="w-full px-5 py-3 text-sm bg-[#0a0a0a] border border-white/10 rounded-full text-zinc-50 placeholder:text-zinc-600 focus:outline-none focus:border-[#FF6A25] focus:shadow-[0_0_20px_rgba(255,106,37,0.2)] transition-all"
                 />
               </div>
 
@@ -208,7 +201,7 @@ export default function NewsletterModal({
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   placeholder="john@example.com"
-                  className="w-full px-5 py-3 text-sm bg-[#0a0a0a] border border-white/10 rounded-full text-zinc-50 placeholder:text-zinc-600 focus:outline-none focus:border-[#CC785C] focus:shadow-[0_0_20px_rgba(204,120,92,0.2)] transition-all"
+                  className="w-full px-5 py-3 text-sm bg-[#0a0a0a] border border-white/10 rounded-full text-zinc-50 placeholder:text-zinc-600 focus:outline-none focus:border-[#FF6A25] focus:shadow-[0_0_20px_rgba(255,106,37,0.2)] transition-all"
                 />
               </div>
 
@@ -220,7 +213,7 @@ export default function NewsletterModal({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full px-6 py-3.5 text-sm font-semibold text-black bg-gradient-to-b from-[#CC785C] to-[#b8674a] rounded-full hover:shadow-[0_0_25px_rgba(204,120,92,0.5)] transition-all duration-300 shadow-[0_0_15px_rgba(204,120,92,0.3)] disabled:opacity-50 disabled:cursor-not-allowed btn-press"
+                className="w-full px-6 py-3.5 text-sm font-semibold text-black bg-gradient-to-b from-[#FF6A25] to-[#FF6A25] rounded-full hover:shadow-[0_0_25px_rgba(255,106,37,0.5)] transition-all duration-300 shadow-[0_0_15px_rgba(255,106,37,0.3)] disabled:opacity-50 disabled:cursor-not-allowed btn-press"
               >
                 {isSubmitting ? "Subscribing..." : "Subscribe Now"}
               </button>
@@ -232,6 +225,6 @@ export default function NewsletterModal({
           )}
         </OSCard>
       </div>
-    </div>
+    </CenteredModal>
   );
 }

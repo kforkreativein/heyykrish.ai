@@ -16,14 +16,14 @@ export default function AboutPage() {
     <div className="min-h-screen bg-[#0a0a0a] pt-16 lg:pt-8 pb-16 px-4 lg:px-8 relative overflow-hidden w-full max-w-[100vw] animate-page-enter">
       {/* Ambient Background Glow with float animation */}
       <div 
-        className="absolute top-[-10%] left-[10%] md:left-[20%] w-[280px] h-[280px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] bg-[#CC785C]/10 rounded-full blur-[120px] -z-10 pointer-events-none animate-float"
+        className="absolute top-[-10%] left-[10%] md:left-[20%] w-[280px] h-[280px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px] bg-[#FF6A25]/10 rounded-full blur-[120px] -z-10 pointer-events-none animate-float"
         aria-hidden="true"
       />
       
       <div className="max-w-6xl mx-auto">
         {/* Page Header */}
         <div className="mb-8 animate-fade-up">
-          <div className="font-mono text-xs tracking-widest text-[#CC785C] mb-4 uppercase">
+          <div className="font-mono text-xs tracking-widest text-[#FF6A25] mb-4 uppercase">
             Heyykrish.AI // About
           </div>
           <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
@@ -53,7 +53,7 @@ export default function AboutPage() {
             </p>
             
             {/* Callout Box */}
-            <div className="my-8 border-l-2 border-[#CC785C] bg-black/30 px-6 py-4 italic rounded-r-2xl">
+            <div className="my-8 border-l-2 border-[#FF6A25] bg-black/30 px-6 py-4 italic rounded-r-2xl">
               <p className="text-zinc-300 leading-relaxed">
                 "The best AI tools aren't the ones with flashy demos. They're the ones that save you time, reduce friction, and actually fit into your workflow."
               </p>
@@ -83,7 +83,7 @@ export default function AboutPage() {
             </h2>
 
             <p className="text-zinc-400 leading-relaxed">
-              Follow me on <a href="https://instagram.com/heyykrish" target="_blank" rel="noopener noreferrer" className="text-[#CC785C] hover:underline">Instagram</a> for daily AI tips, or join my newsletter for in-depth breakdowns every Tuesday. Questions? My DMs are always open.
+              Follow me on <a href="https://instagram.com/heyykrish" target="_blank" rel="noopener noreferrer" className="text-[#FF6A25] hover:underline">Instagram</a> for daily AI tips, or join my newsletter for in-depth breakdowns every Tuesday. Questions? My DMs are always open.
             </p>
           </div>
         </OSCard>

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { X, Mail } from "lucide-react";
 import OSCard from "./OSCard";
+import CenteredModal from "./CenteredModal";
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -113,19 +114,12 @@ export default function ContactModal({
   };
 
   return (
-    <div 
-      className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 modal-backdrop-enter"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="contact-modal-title"
+    <CenteredModal
+      isOpen={isOpen}
+      onClose={onClose}
+      ariaLabelledBy="contact-modal-title"
     >
-      <div 
-        className="absolute inset-0" 
-        onClick={onClose}
-        aria-hidden="true"
-      />
-      
-      <div ref={modalRef} className="relative w-full max-w-md modal-content-enter">
+      <div ref={modalRef}>
         <OSCard className="relative">
           {/* Close Button */}
           <button
@@ -137,8 +131,8 @@ export default function ContactModal({
           </button>
 
           {/* Icon */}
-          <div className="inline-flex items-center justify-center w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-[#CC785C]/10 border border-[#CC785C]/20 mb-4 sm:mb-6">
-            <Mail className="w-5 sm:w-6 h-5 sm:h-6 text-[#CC785C]" aria-hidden="true" />
+          <div className="inline-flex items-center justify-center w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-[#FF6A25]/10 border border-[#FF6A25]/20 mb-4 sm:mb-6">
+            <Mail className="w-5 sm:w-6 h-5 sm:h-6 text-[#FF6A25]" aria-hidden="true" />
           </div>
 
           {/* Header */}
@@ -151,9 +145,9 @@ export default function ContactModal({
 
           {success ? (
             <div className="text-center py-6 sm:py-8" role="status" aria-live="polite">
-              <div className="w-12 sm:w-16 h-12 sm:h-16 mx-auto mb-4 bg-[#CC785C]/20 rounded-full flex items-center justify-center">
+              <div className="w-12 sm:w-16 h-12 sm:h-16 mx-auto mb-4 bg-[#FF6A25]/20 rounded-full flex items-center justify-center">
                 <svg 
-                  className="w-6 sm:w-8 h-6 sm:h-8 text-[#CC785C]" 
+                  className="w-6 sm:w-8 h-6 sm:h-8 text-[#FF6A25]" 
                   viewBox="0 0 24 24" 
                   fill="none" 
                   stroke="currentColor" 
@@ -193,7 +187,7 @@ export default function ContactModal({
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
-                  className="w-full px-5 py-3 text-sm bg-[#0a0a0a] border border-white/10 rounded-[24px] text-zinc-50 placeholder:text-zinc-600 focus:outline-none focus:border-[#CC785C] focus:shadow-[0_0_20px_rgba(204,120,92,0.2)] transition-all"
+                  className="w-full px-5 py-3 text-sm bg-[#0a0a0a] border border-white/10 rounded-[24px] text-zinc-50 placeholder:text-zinc-600 focus:outline-none focus:border-[#FF6A25] focus:shadow-[0_0_20px_rgba(255,106,37,0.2)] transition-all"
                   placeholder="John Smith"
                 />
               </div>
@@ -209,7 +203,7 @@ export default function ContactModal({
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full px-5 py-3 text-sm bg-[#0a0a0a] border border-white/10 rounded-[24px] text-zinc-50 placeholder:text-zinc-600 focus:outline-none focus:border-[#CC785C] focus:shadow-[0_0_20px_rgba(204,120,92,0.2)] transition-all"
+                  className="w-full px-5 py-3 text-sm bg-[#0a0a0a] border border-white/10 rounded-[24px] text-zinc-50 placeholder:text-zinc-600 focus:outline-none focus:border-[#FF6A25] focus:shadow-[0_0_20px_rgba(255,106,37,0.2)] transition-all"
                   placeholder="john@company.com"
                 />
               </div>
@@ -224,7 +218,7 @@ export default function ContactModal({
                   id="contact-company"
                   value={company}
                   onChange={(e) => setCompany(e.target.value)}
-                  className="w-full px-5 py-3 text-sm bg-[#0a0a0a] border border-white/10 rounded-[24px] text-zinc-50 placeholder:text-zinc-600 focus:outline-none focus:border-[#CC785C] focus:shadow-[0_0_20px_rgba(204,120,92,0.2)] transition-all"
+                  className="w-full px-5 py-3 text-sm bg-[#0a0a0a] border border-white/10 rounded-[24px] text-zinc-50 placeholder:text-zinc-600 focus:outline-none focus:border-[#FF6A25] focus:shadow-[0_0_20px_rgba(255,106,37,0.2)] transition-all"
                   placeholder="AI Tools Inc"
                 />
               </div>
@@ -240,7 +234,7 @@ export default function ContactModal({
                   onChange={(e) => setMessage(e.target.value)}
                   required
                   rows={4}
-                  className="w-full px-5 py-3 text-sm bg-[#0a0a0a] border border-white/10 rounded-[24px] text-zinc-50 placeholder:text-zinc-600 focus:outline-none focus:border-[#CC785C] focus:shadow-[0_0_20px_rgba(204,120,92,0.2)] transition-all resize-none"
+                  className="w-full px-5 py-3 text-sm bg-[#0a0a0a] border border-white/10 rounded-[24px] text-zinc-50 placeholder:text-zinc-600 focus:outline-none focus:border-[#FF6A25] focus:shadow-[0_0_20px_rgba(255,106,37,0.2)] transition-all resize-none"
                   placeholder="Tell me about your product and partnership goals..."
                 />
               </div>
@@ -252,7 +246,7 @@ export default function ContactModal({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-bold text-black bg-gradient-to-b from-[#CC785C] to-[#b8674a] rounded-full hover:shadow-[0_0_25px_rgba(204,120,92,0.5)] transition-all duration-300 shadow-[0_0_15px_rgba(204,120,92,0.3)] hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-[#CC785C]/50 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed btn-press"
+                className="w-full px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-bold text-black bg-gradient-to-b from-[#FF6A25] to-[#FF6A25] rounded-full hover:shadow-[0_0_25px_rgba(255,106,37,0.5)] transition-all duration-300 shadow-[0_0_15px_rgba(255,106,37,0.3)] hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-[#FF6A25]/50 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed btn-press"
               >
                 {isSubmitting ? "Sending..." : "Send Partnership Inquiry"}
               </button>
@@ -260,6 +254,6 @@ export default function ContactModal({
           )}
         </OSCard>
       </div>
-    </div>
+    </CenteredModal>
   );
 }

@@ -47,7 +47,7 @@ export default function ResourcesContent() {
       <div className="max-w-6xl mx-auto">
         {/* Page Header */}
         <div className="mb-10 animate-fade-up">
-          <div className="font-mono text-xs tracking-widest text-[#CC785C] mb-4 uppercase">
+          <div className="font-mono text-xs tracking-widest text-[#FF6A25] mb-4 uppercase">
             Heyykrish.AI // Resources
           </div>
           <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
@@ -68,7 +68,7 @@ export default function ResourcesContent() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             aria-describedby="search-results-count"
-            className="w-full px-4 sm:px-6 py-3 sm:py-4 text-sm bg-[#121212] border border-white/10 rounded-full font-mono text-[#CC785C] placeholder:text-zinc-600 focus:outline-none focus:border-[#CC785C] focus:shadow-[0_0_20px_rgba(204,120,92,0.2)] transition-all shadow-[0_4px_24px_-1px_rgba(0,0,0,0.5),inset_0_1px_0_0_rgba(255,255,255,0.05)] backdrop-blur-xl pr-20"
+            className="w-full px-4 sm:px-6 py-3 sm:py-4 text-sm bg-[#121212] border border-white/10 rounded-full font-mono text-[#FF6A25] placeholder:text-zinc-600 focus:outline-none focus:border-[#FF6A25] focus:shadow-[0_0_20px_rgba(255,106,37,0.2)] transition-all shadow-[0_4px_24px_-1px_rgba(0,0,0,0.5),inset_0_1px_0_0_rgba(255,255,255,0.05)] backdrop-blur-xl pr-20"
           />
           <kbd className="absolute right-4 top-1/2 -translate-y-1/2 hidden sm:inline-flex items-center gap-1 px-2 py-1 text-[10px] font-mono text-zinc-500 bg-white/5 rounded border border-white/10">
             <span className="text-xs">⌘</span>K
@@ -89,7 +89,7 @@ export default function ResourcesContent() {
               aria-pressed={activeCategory === category}
               className={`px-3 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium rounded-full transition-all duration-300 btn-press focus-ring ${
                 activeCategory === category
-                  ? "bg-[#CC785C] text-black shadow-[0_0_15px_rgba(204,120,92,0.4)] font-semibold"
+                  ? "bg-[#FF6A25] text-black shadow-[0_0_15px_rgba(255,106,37,0.4)] font-semibold"
                   : "bg-white/5 text-zinc-400 border border-white/5 hover:bg-white/10 hover:text-zinc-300"
               }`}
             >

@@ -27,7 +27,7 @@ export const resources: Resource[] = [
     contentHtml: `
       <div class="space-y-8">
         <p class="text-lg text-zinc-300 leading-relaxed">
-          This pipeline connects <span class="text-[#E17F62] font-semibold">Claude Code</span> to Google's NotebookLM via an unofficial Python API (notebooklm-py). Give it a topic → it scrapes YouTube → pushes videos to NotebookLM → generates deep analysis, infographics, podcasts, and study guides automatically.
+          This pipeline connects <span class="text-[#FF6A25] font-semibold">Claude Code</span> to Google's NotebookLM via an unofficial Python API (notebooklm-py). Give it a topic → it scrapes YouTube → pushes videos to NotebookLM → generates deep analysis, infographics, podcasts, and study guides automatically.
         </p>
         <p class="text-zinc-500 text-sm leading-relaxed">
           Original system by Steve Arneson (stevearneson.com/notebook) · Python library by Teng Lin (github.com/teng-lin/notebooklm-py)
@@ -53,11 +53,11 @@ export const resources: Resource[] = [
         <h3 class="text-xl font-bold text-zinc-50 mt-8 mb-4">Prerequisites — You Need 2 Things</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
-            <p class="text-[#E17F62] font-semibold text-sm mb-2">Claude Code (Pro or Max)</p>
+            <p class="text-[#FF6A25] font-semibold text-sm mb-2">Claude Code (Pro or Max)</p>
             <p class="text-zinc-400 text-sm">Download at claude.ai/download. Free plan won't work — you need Pro ($20/mo) or Max. Claude Code handles all installs including Python.</p>
           </div>
           <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
-            <p class="text-[#E17F62] font-semibold text-sm mb-2">Google Account + NotebookLM</p>
+            <p class="text-[#FF6A25] font-semibold text-sm mb-2">Google Account + NotebookLM</p>
             <p class="text-zinc-400 text-sm">NotebookLM is free at notebooklm.google.com. Sign in once to confirm your account works before running setup.</p>
           </div>
         </div>
@@ -104,13 +104,13 @@ ask me what topic I want to research before proceeding.</code></pre>
         <h3 class="text-xl font-bold text-zinc-50 mt-8 mb-4">The 4-Step Workflow (After Pasting)</h3>
         <ol class="list-decimal pl-6 space-y-4 text-zinc-400">
           <li><strong class="text-zinc-300">Accept Everything:</strong> Claude Code writes Python scripts and creates skills. When it asks permission to run commands or install packages, hit Y or Enter. If Python isn't installed, Claude Code handles that too.</li>
-          <li><strong class="text-zinc-300">Authenticate (Separate Terminal):</strong> When Claude tells you to authenticate, open a COMPLETELY SEPARATE terminal window — not inside Claude Code. Run <code class="text-[#E17F62] bg-zinc-900 px-1.5 py-0.5 rounded text-xs">notebooklm login</code> → browser opens → log into Google → done. See the Login Fix section below for the full tested process.</li>
+          <li><strong class="text-zinc-300">Authenticate (Separate Terminal):</strong> When Claude tells you to authenticate, open a COMPLETELY SEPARATE terminal window — not inside Claude Code. Run <code class="text-[#FF6A25] bg-zinc-900 px-1.5 py-0.5 rounded text-xs">notebooklm login</code> → browser opens → log into Google → done. See the Login Fix section below for the full tested process.</li>
           <li><strong class="text-zinc-300">Claude Confirms Ready:</strong> Claude Code tells you skills are installed and recognized. It will ask for your research topic, or you can jump straight to the research command.</li>
           <li><strong class="text-zinc-300">Run Your First Research:</strong> Give Claude Code the research command. It scrapes YouTube, pushes videos to NotebookLM, analyzes findings, and generates your deliverable.</li>
         </ol>
 
         <h3 class="text-xl font-bold text-zinc-50 mt-8 mb-3">Step 2 — Run Your First Research Command</h3>
-        <p class="text-zinc-400 mb-4">Once setup is confirmed, give Claude Code this command. Replace <code class="text-[#E17F62] bg-zinc-900 px-1 rounded text-xs">[YOUR TOPIC]</code> with your research subject.</p>
+        <p class="text-zinc-400 mb-4">Once setup is confirmed, give Claude Code this command. Replace <code class="text-[#FF6A25] bg-zinc-900 px-1 rounded text-xs">[YOUR TOPIC]</code> with your research subject.</p>
 
         <div class="relative bg-[#121212] rounded-xl p-5 my-6 font-mono text-sm text-zinc-200 overflow-x-auto">
           <pre><code>Use the yt-research skill to find the 25 latest trending videos on
@@ -120,12 +120,12 @@ then have NotebookLM create an infographic in a handwritten / chalkboard
 style depicting that analysis.</code></pre>
         </div>
 
-        <blockquote class="border-l-2 border-[#E17F62] bg-zinc-900/50 p-4 my-6 text-zinc-300">
-          <strong class="text-[#E17F62]">Pro Tip:</strong> Replace [YOUR TOPIC] with anything: "AI avatar content for health coaches", "competitor analysis for Shopify stores", "latest trends in social media marketing India". If you forget the topic, Claude will ask.
+        <blockquote class="border-l-2 border-[#FF6A25] bg-zinc-900/50 p-4 my-6 text-zinc-300">
+          <strong class="text-[#FF6A25]">Pro Tip:</strong> Replace [YOUR TOPIC] with anything: "AI avatar content for health coaches", "competitor analysis for Shopify stores", "latest trends in social media marketing India". If you forget the topic, Claude will ask.
         </blockquote>
 
         <h3 class="text-xl font-bold text-zinc-50 mt-8 mb-3">NotebookLM Login — The Working Method</h3>
-        <p class="text-zinc-400 mb-4">The original guide's login instructions are incomplete. The basic pip install doesn't include browser support needed for login. Here's the <span class="text-[#E17F62] font-semibold">full tested process that actually works:</span></p>
+        <p class="text-zinc-400 mb-4">The original guide's login instructions are incomplete. The basic pip install doesn't include browser support needed for login. Here's the <span class="text-[#FF6A25] font-semibold">full tested process that actually works:</span></p>
 
         <div class="relative bg-[#121212] rounded-xl p-5 my-6 font-mono text-sm text-zinc-200 overflow-x-auto">
           <pre><code># Step 1: Install with browser support (critical — do NOT skip [browser])
@@ -154,8 +154,8 @@ notebooklm list    # Should show notebooks or empty list
 # Sessions expire every 1–2 weeks — re-run login when needed</code></pre>
         </div>
 
-        <blockquote class="border-l-2 border-[#E17F62] bg-zinc-900/50 p-4 my-6 text-zinc-300">
-          <strong class="text-[#E17F62]">Key Insight:</strong> Playwright is ONLY needed for the <code class="text-zinc-300 bg-zinc-800 px-1 rounded text-xs">notebooklm login</code> command. Every other operation uses standard HTTP. You can copy a valid <code class="text-zinc-300 bg-zinc-800 px-1 rounded text-xs">~/.notebooklm/storage_state.json</code> to servers without installing Playwright there.
+        <blockquote class="border-l-2 border-[#FF6A25] bg-zinc-900/50 p-4 my-6 text-zinc-300">
+          <strong class="text-[#FF6A25]">Key Insight:</strong> Playwright is ONLY needed for the <code class="text-zinc-300 bg-zinc-800 px-1 rounded text-xs">notebooklm login</code> command. Every other operation uses standard HTTP. You can copy a valid <code class="text-zinc-300 bg-zinc-800 px-1 rounded text-xs">~/.notebooklm/storage_state.json</code> to servers without installing Playwright there.
         </blockquote>
 
         <h3 class="text-xl font-bold text-zinc-50 mt-8 mb-4">Troubleshooting</h3>

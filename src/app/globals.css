@@ -8,13 +8,13 @@
 :root {
   --background: #0a0a0a;
   --foreground: #d4d4d8;
-  --accent: #CC785C;
+  --accent: #FF6A25;
   
   /* Claude Color Palette */
   --claude-50: #F5EBE8;
   --claude-100: #EBD6CF;
-  --claude-500: #CC785C;
-  --claude-600: #B86246;
+  --claude-500: #FF6A25;
+  --claude-600: #FF6A25;
   --claude-900: #4A271B;
 }
 
@@ -110,12 +110,12 @@ body {
 }
 
 .prose-dark strong {
-  color: #CC785C;
+  color: #FF6A25;
   font-weight: 600;
 }
 
 .prose-dark a {
-  color: #CC785C;
+  color: #FF6A25;
   text-decoration: underline;
 }
 
@@ -124,7 +124,7 @@ body {
 }
 
 .prose-dark blockquote {
-  border-left: 3px solid #CC785C;
+  border-left: 3px solid #FF6A25;
   padding-left: 1rem;
   margin: 1.5rem 0;
   font-style: italic;
@@ -364,11 +364,11 @@ body {
 .text-shimmer {
   background: linear-gradient(
     90deg,
-    #CC785C 0%,
+    #FF6A25 0%,
     #E8A084 25%,
-    #CC785C 50%,
+    #FF6A25 50%,
     #E8A084 75%,
-    #CC785C 100%
+    #FF6A25 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -398,7 +398,7 @@ body {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: #CC785C;
+  background: #FF6A25;
   animation: trail-pulse 2s ease-out infinite;
 }
 
