@@ -105,6 +105,7 @@ export default function HomeContent() {
                     src="/profile.jpg"
                     alt="Krish Chhatrala - AI Creator and Automation Expert"
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover"
                     priority
                   />

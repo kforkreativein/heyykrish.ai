@@ -247,6 +247,145 @@ NOTEBOOKLM_DEBUG_RPC=1 notebooklm list        # Check RPC IDs</code></pre>
       </div>
     `,
   },
+  {
+    id: "12",
+    slug: "memory-extraction-prompt",
+    title: "Switching from ChatGPT to Claude",
+    description: "Instantly extract your entire ChatGPT history and context, formatting it into the perfect briefing document for Claude's Memory.",
+    category: "Prompts",
+    publishedAt: "2026-04-09",
+    featured: true,
+    downloadUrl: "/downloads/heyykrish_extraction_prompt.pdf",
+    contentHtml: `
+      <div class="space-y-8">
+        <p class="text-lg text-zinc-300 leading-relaxed">
+          Claude Sonnet is arguably the best AI available right now—but if you switch from ChatGPT, it feels "dumb" because it doesn't know who you are. This prompt fixes that in 60 seconds.
+        </p>
+
+        <h3 class="text-xl font-bold text-zinc-50 mt-8 mb-4">How to extract and migrate</h3>
+        <ol class="list-decimal pl-6 space-y-4 text-zinc-400 mb-6">
+          <li>Copy the <strong class="text-zinc-300">Extraction Prompt</strong> from the box below and paste it into your active ChatGPT or Gemini account.</li>
+          <li>The AI will create a massive, structured profile of who you are (business, tone, goals, tech stack). <strong class="text-zinc-300">Copy the entire output.</strong></li>
+          <li>Open Claude. Go to <code class="text-[#FF6A25] bg-zinc-900 px-1.5 py-0.5 rounded text-xs">Settings &rarr; Capabilities &rarr; Import Memory</code>.</li>
+          <li>Paste the output. From your very first chat, Claude will now generate outputs with your full business and personal context.</li>
+        </ol>
+
+        <h3 class="text-xl font-bold text-zinc-50 mt-8 mb-4">The Complete Prompt</h3>
+        <p class="text-zinc-400 mb-4">Click inside the box below to copy the full prompt. Paste it directly into ChatGPT.</p>
+        
+        <div class="relative bg-[#121212] rounded-xl p-5 my-6 font-mono text-xs sm:text-sm text-zinc-200 overflow-x-auto border border-zinc-800">
+          <pre class="whitespace-pre-wrap leading-relaxed"><code>I want you to do a full memory extraction. Go through everything you know about me — from every conversation, every context, every detail I've shared — and compile it into one complete briefing document.
+
+Be specific. Use real names, real numbers, real tool names, real dates where you know them. Do not summarize vaguely. This document will be imported into another AI so it can understand who I am immediately.
+
+Structure the output like this:
+
+**1. WHO I AM**
+- My name, age, location, background
+- How I'd describe myself
+- My communication style and personality
+
+**2. WHAT I DO PROFESSIONALLY**
+- My job, business, or role
+- Industries I work in
+- How long I've been doing this
+- What I'm known for or building toward
+
+**3. MY CURRENT PROJECTS & WORK**
+- What I'm actively building or working on right now
+- Status of each project
+- Current challenges or goals
+- The tools and platforms I use
+
+**4. MY GOALS**
+- What I'm trying to achieve short-term (weeks/months)
+- What I'm trying to achieve long-term (1–3 years)
+- What problems I'm trying to solve
+
+**5. TOOLS & TECH I USE**
+- Every tool, platform, software, or service I've mentioned
+- How I use each one
+
+**6. MY AUDIENCE & CONTENT (if applicable)**
+- Platforms I create on
+- What kind of content I make
+- Who my audience is
+
+**7. HOW I LIKE TO WORK WITH AI**
+- Tone I prefer
+- How I like information delivered
+- Things that frustrate me
+- How I make decisions
+
+**8. ANYTHING ELSE IMPORTANT**
+- Any recurring themes, values, or preferences I've mentioned
+- Random but important details about me
+- People or relationships I've mentioned
+
+Output requirements:
+- Use bullet points within each section
+- Be specific — no vague placeholders
+- If you're not sure about something, include it and add [uncertain]
+- If something is incomplete, include what you have and add [partial]
+- Do not skip any section — write "nothing on record" if a section is empty
+- This output will be pasted directly into another AI's memory. Write it so that AI immediately understands who I am, what I'm building, and how to work with me.</code></pre>
+        </div>
+
+        <blockquote class="border-l-2 border-[#FF6A25] bg-zinc-900/50 p-4 my-6 text-zinc-300 text-sm">
+          <strong class="text-[#FF6A25]">Important:</strong> If Claude's generic Memory tab isn't available to you yet, you can simply paste the extracted ChatGPT output into a new "Project" inside Claude and name it <code class="text-zinc-400">Context</code>. Download the PDF for a layout of this prompt if you want to keep it on your computer.
+        </blockquote>
+      </div>
+    `,
+  },
+  {
+    id: "13",
+    slug: "claude-productivity-prompts",
+    title: "The 20 Claude Prompts Pack",
+    description: "My personal vault of 20 high-value, copy-paste prompts covering Content Creation, Business Strategy, Coding & Automations, and First-Principles Thinking.",
+    category: "Prompts",
+    publishedAt: "2026-04-09",
+    featured: true,
+    downloadUrl: "/downloads/heyykrish_ClaudePrompts.pdf",
+    contentHtml: `
+      <div class="space-y-8">
+        <p class="text-lg text-zinc-300 leading-relaxed">
+          The blank chat interface is intimidating. Instead of typing manually every time, I rely on a vault of <span class="text-[#FF6A25] font-semibold">20 engineered prompts</span> specifically designed for Claude's incredible phrasing and logic capabilities.
+        </p>
+
+        <h3 class="text-xl font-bold text-zinc-50 mt-8 mb-4">What's Inside the PDF?</h3>
+        <p class="text-zinc-400 mb-4">
+          The pack contains exactly <strong class="text-zinc-300">20 highly-detailed prompts</strong> spread across <strong class="text-zinc-300">5 practical categories</strong> that I use daily:
+        </p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+            <p class="text-[#FF6A25] font-semibold text-sm mb-2">1. Social & Content (4 Prompts)</p>
+            <p class="text-zinc-400 text-sm">Hook generators, script formats, and newsletter outlines that sound human, not robotic.</p>
+          </div>
+          <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+            <p class="text-[#FF6A25] font-semibold text-sm mb-2">2. Business Strategy (4 Prompts)</p>
+            <p class="text-zinc-400 text-sm">Frameworks for decision making, competitor analysis, and offer development.</p>
+          </div>
+          <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+            <p class="text-[#FF6A25] font-semibold text-sm mb-2">3. Coding & Automations (4 Prompts)</p>
+            <p class="text-zinc-400 text-sm">Prompts specifically designed to make Claude write clean Python scripts and workflows.</p>
+          </div>
+          <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+            <p class="text-[#FF6A25] font-semibold text-sm mb-2">4. Learning (4 Prompts)</p>
+            <p class="text-zinc-400 text-sm">Turning Claude into a personalized tutor for learning complex AI topics instantly.</p>
+          </div>
+          <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5 md:col-span-2">
+            <p class="text-[#FF6A25] font-semibold text-sm mb-2">5. First Principles Thinking (4 Prompts)</p>
+            <p class="text-zinc-400 text-sm">Mental models mapped directly into Claude for high-level problem solving, breaking down arguments, and logic checking.</p>
+          </div>
+        </div>
+
+        <blockquote class="border-l-2 border-[#FF6A25] bg-zinc-900/50 p-4 my-6 text-zinc-300">
+          <strong class="text-[#FF6A25]">Action Step:</strong> Once you download the guide, try running the "Content Idea Bank" or "Business Decision Maker" prompt first to immediately see the difference in Claude's output quality.
+        </blockquote>
+      </div>
+    `,
+  },
 ];
 
 // Categories for filtering
@@ -262,7 +401,7 @@ export const categories = [
 
 // Helper functions
 export function getAllResources(): Resource[] {
-  return resources.sort(
+  return [...resources].sort(
     (a, b) =>
       new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
   );
