@@ -113,13 +113,26 @@ export default function DownloadModal({
         throw new Error("Failed to submit");
       }
 
+      // Immediately trigger download
+      if (downloadUrl) {
+        // Use a download approach that works across browsers:
+        // For same-origin PDFs, we can use either:
+        // 1. link with download attribute (most reliable)
+        // 2. window.open with download prompt
+        const link = document.createElement("a");
+        link.href = downloadUrl;
+        link.setAttribute("download", ""); // Force download instead of opening
+        link.style.display = "none";
+        document.body.appendChild(link);
+        link.click();
+        // Clean up after a brief moment to ensure the download started
+        setTimeout(() => document.body.removeChild(link), 100);
+      }
+
       setSuccess(true);
 
-      // Trigger download after 1.5 seconds to show success animation
+      // Close modal after showing success message (1 second is enough)
       setTimeout(() => {
-        if (downloadUrl) {
-          window.open(downloadUrl, "_blank");
-        }
         onClose();
         // Reset form
         setTimeout(() => {
@@ -127,7 +140,7 @@ export default function DownloadModal({
           setEmail("");
           setSuccess(false);
         }, 300);
-      }, 1500);
+      }, 1000);
     } catch (err) {
       setError("Something went wrong. Please try again.");
       setIsSubmitting(false);
@@ -187,7 +200,8 @@ export default function DownloadModal({
                   />
                 </svg>
               </div>
-              <p className="text-zinc-300 font-medium">Subscribed! Check your email.</p>
+              <p className="text-zinc-300 font-medium">Perfect! Your download is starting.</p>
+              <p className="text-xs text-zinc-500 mt-2">You've also been added to my newsletter.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
