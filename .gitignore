@@ -56,8 +56,7 @@ Thumbs.db
 # Local development
 .claude/
 .copilot/
-*.pdf
-Downloads/
+# Note: PDFs in public/downloads/ are committed - they're production assets
 
 # Secrets & credentials
 .env.secrets
