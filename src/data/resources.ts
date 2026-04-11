@@ -15,6 +15,97 @@ export type Resource = {
 
 export const resources: Resource[] = [
   {
+    id: "14",
+    slug: "claude-code-free-setup-guide",
+    title: "Claude Code Free Setup Guide",
+    description:
+      "Set up Claude Code with Ollama so you can run a local coding workflow without paying API credits for every session.",
+    category: "Tools",
+    publishedAt: "2026-04-11",
+    featured: true,
+    downloadUrl: "/downloads/claude-code-free-setup-guide.pdf",
+    contentHtml: `
+      <div class="space-y-8">
+        <p class="text-lg text-zinc-300 leading-relaxed">
+          This guide shows you the cleanest way to run <span class="text-[#FF6A25] font-semibold">Claude Code</span> with <span class="text-[#FF6A25] font-semibold">Ollama</span> so you can keep the workflow local, reduce privacy risk, and avoid paying for every coding session.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+            <p class="text-[#FF6A25] font-semibold text-sm mb-2">Main Outcome</p>
+            <p class="text-zinc-400 text-sm">Install Ollama, pull one coding model, install Claude Code, and launch the workflow in the right order.</p>
+          </div>
+          <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+            <p class="text-[#FF6A25] font-semibold text-sm mb-2">Who It Helps</p>
+            <p class="text-zinc-400 text-sm">Developers and builders who want a practical local coding-agent setup without unnecessary cost friction.</p>
+          </div>
+          <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+            <p class="text-[#FF6A25] font-semibold text-sm mb-2">What It Covers</p>
+            <p class="text-zinc-400 text-sm">The 3-step setup, model picks, fallback manual route, and the most common troubleshooting fixes.</p>
+          </div>
+        </div>
+
+        <h3 class="text-xl font-bold text-zinc-50 mt-8 mb-4">Inside The Guide</h3>
+        <ol class="list-decimal pl-6 space-y-3 text-zinc-400">
+          <li><strong class="text-zinc-300">Step 1:</strong> Install Ollama on Mac, Linux, or Windows/WSL.</li>
+          <li><strong class="text-zinc-300">Step 2:</strong> Pull a coding model like <code class="text-[#FF6A25] bg-zinc-900 px-1.5 py-0.5 rounded text-xs">qwen3.5</code>.</li>
+          <li><strong class="text-zinc-300">Step 3:</strong> Install Claude Code and launch it against that model.</li>
+          <li><strong class="text-zinc-300">Fallback Path:</strong> Use manual environment variables if the shortcut launch flow does not fit your setup.</li>
+          <li><strong class="text-zinc-300">Troubleshooting:</strong> Fix command-not-found issues, model mismatches, and local connection problems.</li>
+        </ol>
+
+        <h3 class="text-xl font-bold text-zinc-50 mt-8 mb-4">Copy-Paste Commands</h3>
+        <p class="text-zinc-400 mb-4">
+          These are the key commands from the PDF. Keep the page summary here, but always expose the most useful commands directly on the website so people can copy them without downloading first.
+        </p>
+
+        <div class="space-y-6">
+          <div>
+            <p class="text-[#FF6A25] font-semibold text-sm mb-2">1. Install Ollama</p>
+            <div class="relative bg-[#121212] rounded-xl p-5 font-mono text-sm text-zinc-200 overflow-x-auto">
+              <pre><code>curl -fsSL https://ollama.com/install.sh | sh</code></pre>
+            </div>
+          </div>
+
+          <div>
+            <p class="text-[#FF6A25] font-semibold text-sm mb-2">2. Pull a coding model</p>
+            <div class="relative bg-[#121212] rounded-xl p-5 font-mono text-sm text-zinc-200 overflow-x-auto">
+              <pre><code>ollama pull qwen3.5</code></pre>
+            </div>
+          </div>
+
+          <div>
+            <p class="text-[#FF6A25] font-semibold text-sm mb-2">3. Install Claude Code</p>
+            <div class="relative bg-[#121212] rounded-xl p-5 font-mono text-sm text-zinc-200 overflow-x-auto">
+              <pre><code>npm install -g @anthropic-ai/claude-code</code></pre>
+            </div>
+          </div>
+
+          <div>
+            <p class="text-[#FF6A25] font-semibold text-sm mb-2">4. Launch Claude Code with Ollama</p>
+            <div class="relative bg-[#121212] rounded-xl p-5 font-mono text-sm text-zinc-200 overflow-x-auto">
+              <pre><code>ollama launch claude --model qwen3.5</code></pre>
+            </div>
+          </div>
+
+          <div>
+            <p class="text-[#FF6A25] font-semibold text-sm mb-2">Fallback: manual Ollama endpoint route</p>
+            <div class="relative bg-[#121212] rounded-xl p-5 font-mono text-sm text-zinc-200 overflow-x-auto">
+              <pre><code>export ANTHROPIC_AUTH_TOKEN=ollama
+export ANTHROPIC_API_KEY=""
+export ANTHROPIC_BASE_URL=http://localhost:11434
+claude --model qwen3.5</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <blockquote class="border-l-2 border-[#FF6A25] bg-zinc-900/50 p-4 my-6 text-zinc-300">
+          <strong class="text-[#FF6A25]">Why this matters:</strong> the original social post is intentionally fast. This resource gives you the exact order and commands so you can actually finish the setup.
+        </blockquote>
+      </div>
+    `,
+  },
+  {
     id: "11",
     slug: "notebooklm-claude-code-automation-guide",
     title: "NotebookLM + Claude Automation",
@@ -408,7 +499,14 @@ export function getAllResources(): Resource[] {
 }
 
 export function getFeaturedResources(): Resource[] {
-  return resources.filter((r) => r.featured).slice(0, 6);
+  return [...resources]
+    .filter((r) => r.featured)
+    .sort((a, b) => {
+      const dateDiff = new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+      if (dateDiff !== 0) return dateDiff;
+      return Number(b.id) - Number(a.id);
+    })
+    .slice(0, 6);
 }
 
 export function getResourceBySlug(slug: string): Resource | undefined {
