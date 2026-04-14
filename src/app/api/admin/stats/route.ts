@@ -1,25 +1,25 @@
-import { NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
+import { NextRequest, NextResponse } from "next/server";
+import { isAdminAuthenticated } from "@/lib/admin-auth";
+import { supabaseServer } from "@/lib/supabase-server";
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
-
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    if (!isAdminAuthenticated(request)) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     // Get newsletter count
-    const { count: newsletterCount } = await supabase
+    const { count: newsletterCount } = await supabaseServer
       .from("newsletter_subscribers")
       .select("*", { count: "exact", head: true });
 
     // Get contact count
-    const { count: contactCount } = await supabase
+    const { count: contactCount } = await supabaseServer
       .from("contact_inquiries")
       .select("*", { count: "exact", head: true });
 
     // Get download count
-    const { count: downloadCount } = await supabase
+    const { count: downloadCount } = await supabaseServer
       .from("download_leads")
       .select("*", { count: "exact", head: true });
 

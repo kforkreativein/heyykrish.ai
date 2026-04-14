@@ -137,6 +137,11 @@ export function getRateLimitHeaders(result: RateLimitResult): HeadersInit {
 
 // Default rate limit configurations for different endpoints
 export const RATE_LIMITS = {
+  adminAuth: {
+    limit: 5,
+    windowSeconds: 15 * 60, // 5 attempts per 15 minutes
+    identifier: "admin-auth",
+  },
   newsletter: {
     limit: 5,
     windowSeconds: 60, // 5 requests per minute

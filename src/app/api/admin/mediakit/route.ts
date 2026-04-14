@@ -1,12 +1,29 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
+import { isAdminAuthenticated } from "@/lib/admin-auth";
 
 const MEDIA_KIT_PATH = path.join(process.cwd(), "src/data/mediakit.ts");
 
+function q(value: unknown): string {
+  return JSON.stringify(String(value ?? ""));
+}
+
+function toStringArray(value: unknown): string[] {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  return value.map((entry) => String(entry ?? ""));
+}
+
 // GET: Fetch current media kit data
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    if (!isAdminAuthenticated(request)) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const content = await fs.readFile(MEDIA_KIT_PATH, "utf-8");
     
     // Extract the data object from the TypeScript file
@@ -34,29 +51,42 @@ export async function GET() {
 // POST: Update media kit data
 export async function POST(request: NextRequest) {
   try {
+    if (!isAdminAuthenticated(request)) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const updatedData = await request.json();
+    if (
+      !updatedData ||
+      typeof updatedData !== "object" ||
+      Array.isArray(updatedData)
+    ) {
+      return NextResponse.json({ error: "Invalid media kit payload" }, { status: 400 });
+    }
+    const topLocations = toStringArray(updatedData?.demographics?.topLocations);
+    const topInterests = toStringArray(updatedData?.topInterests);
 
     // Generate TypeScript file content
-    const fileContent = `// Media Kit Data - Last Updated: ${updatedData.lastUpdated || "April 2025"}
+    const fileContent = `// Media Kit Data - Last Updated: ${String(updatedData.lastUpdated || "April 2025")}
 
 export const mediaKitData = {
-  followers: "${updatedData.followers}",
-  impressions: "${updatedData.impressions}",
-  audienceAge: "${updatedData.audienceAge}",
-  engagementRate: "${updatedData.engagementRate}",
+  followers: ${q(updatedData.followers)},
+  impressions: ${q(updatedData.impressions)},
+  audienceAge: ${q(updatedData.audienceAge)},
+  engagementRate: ${q(updatedData.engagementRate)},
   demographics: {
     gender: {
-      male: "${updatedData.demographics.gender.male}",
-      female: "${updatedData.demographics.gender.female}",
+      male: ${q(updatedData?.demographics?.gender?.male)},
+      female: ${q(updatedData?.demographics?.gender?.female)},
     },
     topLocations: [
-      ${updatedData.demographics.topLocations.map((loc: string) => `"${loc}"`).join(",\n      ")}
+      ${topLocations.map((loc) => q(loc)).join(",\n      ")}
     ],
   },
   topInterests: [
-    ${updatedData.topInterests.map((interest: string) => `"${interest}"`).join(",\n    ")}
+    ${topInterests.map((interest) => q(interest)).join(",\n    ")}
   ],
-  lastUpdated: "${updatedData.lastUpdated}",
+  lastUpdated: ${q(updatedData.lastUpdated)},
 };
 `;
 

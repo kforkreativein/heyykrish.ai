@@ -120,7 +120,6 @@ export default function AdminContent() {
 
       if (result.success) {
         setIsAuthenticated(true);
-        sessionStorage.setItem("admin_auth", "true");
       } else {
         setError("Invalid password");
       }
@@ -133,10 +132,20 @@ export default function AdminContent() {
   };
 
   useEffect(() => {
-    const auth = sessionStorage.getItem("admin_auth");
-    if (auth === "true") {
-      setIsAuthenticated(true);
-    }
+    const checkAuth = async () => {
+      try {
+        const response = await fetch("/api/admin/auth");
+        if (!response.ok) return;
+        const result = await response.json();
+        if (result.authenticated) {
+          setIsAuthenticated(true);
+        }
+      } catch {
+        setIsAuthenticated(false);
+      }
+    };
+
+    void checkAuth();
   }, []);
 
   const fetchStats = async () => {
@@ -259,6 +268,17 @@ export default function AdminContent() {
     setIsLoading(false);
   };
 
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/admin/auth", { method: "DELETE" });
+    } catch (error) {
+      console.error("Logout error:", error);
+    } finally {
+      setIsAuthenticated(false);
+      setPassword("");
+    }
+  };
+
   useEffect(() => {
     if (isAuthenticated) {
       fetchStats();
@@ -361,16 +381,25 @@ export default function AdminContent() {
     <div className="min-h-screen bg-[#0a0a0a] pt-16 lg:pt-8 pb-16 px-4 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
-          <div className="font-mono text-xs tracking-widest text-[#FF6A25] mb-4 uppercase">
-            Admin // Dashboard
+        <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <div>
+            <div className="font-mono text-xs tracking-widest text-[#FF6A25] mb-4 uppercase">
+              Admin // Dashboard
+            </div>
+            <h1 className="font-heading text-3xl sm:text-4xl font-bold text-white mb-2">
+              Content Management System
+            </h1>
+            <p className="text-zinc-400">
+              Manage your site content, subscribers, and analytics
+            </p>
           </div>
-          <h1 className="font-heading text-3xl sm:text-4xl font-bold text-white mb-2">
-            Content Management System
-          </h1>
-          <p className="text-zinc-400">
-            Manage your site content, subscribers, and analytics
-          </p>
+          <button
+            type="button"
+            onClick={handleLogout}
+            className="px-4 py-2 bg-white/5 text-zinc-300 border border-white/10 rounded-full hover:bg-white/10 hover:text-white transition-colors"
+          >
+            Logout
+          </button>
         </div>
 
         {/* Tabs */}

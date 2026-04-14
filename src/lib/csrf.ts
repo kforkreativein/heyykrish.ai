@@ -32,10 +32,19 @@ export function validateOrigin(request: NextRequest): {
 } {
   const origin = request.headers.get("origin");
   const referer = request.headers.get("referer");
-  
-  // For same-origin requests, Origin might not be sent
-  // but we should have a Referer
-  const checkOrigin = origin || (referer ? new URL(referer).origin : null);
+
+  // For same-origin requests, Origin might not be sent, so fallback to Referer origin.
+  let checkOrigin: string | null = origin;
+  if (!checkOrigin && referer) {
+    try {
+      checkOrigin = new URL(referer).origin;
+    } catch {
+      return {
+        valid: false,
+        error: "Invalid referer header",
+      };
+    }
+  }
   
   if (!checkOrigin) {
     // No origin info - might be a direct API call (curl, Postman, etc.)
@@ -51,9 +60,7 @@ export function validateOrigin(request: NextRequest): {
   }
   
   // Check if origin is in allowed list
-  const isAllowed = ALLOWED_ORIGINS.some(
-    (allowed) => checkOrigin === allowed || checkOrigin.startsWith(allowed)
-  );
+  const isAllowed = ALLOWED_ORIGINS.includes(checkOrigin);
   
   if (!isAllowed) {
     return {
