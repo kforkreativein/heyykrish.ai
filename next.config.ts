@@ -29,10 +29,6 @@ const nextConfig: NextConfig = {
             value: 'nosniff',
           },
           {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
-          },
-          {
             key: "Content-Security-Policy",
             value: contentSecurityPolicy,
           },
