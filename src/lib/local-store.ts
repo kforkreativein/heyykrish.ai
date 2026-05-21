@@ -39,6 +39,10 @@ const FILE_NAMES: Record<keyof CollectionMap, string> = {
   downloadLeads: "download-leads.json",
 };
 
+function isReadOnlyProduction() {
+  return process.env.VERCEL === "1";
+}
+
 function getDataDir() {
   return path.join(process.cwd(), "data", "local");
 }
@@ -64,6 +68,10 @@ async function ensureDataDir() {
 async function readCollection<K extends keyof CollectionMap>(
   collection: K
 ): Promise<CollectionMap[K][]> {
+  if (isReadOnlyProduction()) {
+    return [];
+  }
+
   try {
     const raw = await readFile(getFilePath(collection), "utf8");
     const parsed = JSON.parse(raw);
@@ -80,6 +88,10 @@ async function writeCollection<K extends keyof CollectionMap>(
   collection: K,
   rows: CollectionMap[K][]
 ) {
+  if (isReadOnlyProduction()) {
+    return;
+  }
+
   await ensureDataDir();
   const filePath = getFilePath(collection);
   const tempPath = `${filePath}.tmp`;
