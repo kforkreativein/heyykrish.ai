@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
-import { supabaseServer } from "@/lib/supabase-server";
+import { getLocalStats } from "@/lib/local-store";
 
 export async function GET(request: NextRequest) {
   try {
@@ -8,26 +8,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    // Get newsletter count
-    const { count: newsletterCount } = await supabaseServer
-      .from("newsletter_subscribers")
-      .select("*", { count: "exact", head: true });
-
-    // Get contact count
-    const { count: contactCount } = await supabaseServer
-      .from("contact_inquiries")
-      .select("*", { count: "exact", head: true });
-
-    // Get download count
-    const { count: downloadCount } = await supabaseServer
-      .from("download_leads")
-      .select("*", { count: "exact", head: true });
-
-    return NextResponse.json({
-      newsletterCount: newsletterCount ?? 0,
-      contactCount: contactCount ?? 0,
-      downloadCount: downloadCount ?? 0,
-    });
+    return NextResponse.json(await getLocalStats());
   } catch (error) {
     console.error("Error fetching stats:", error);
     return NextResponse.json(

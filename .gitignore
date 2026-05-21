@@ -65,3 +65,4 @@ secrets.json
 
 # User data exports — never commit PII to version control
 data/*.csv
+data/local/

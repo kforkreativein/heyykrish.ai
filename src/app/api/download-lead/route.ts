@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
 import {
   checkRateLimit,
   getClientIP,
@@ -8,17 +7,8 @@ import {
 } from "@/lib/rate-limit";
 import { downloadLeadSchema, validateWithSchema } from "@/lib/validations";
 import { validateRequest } from "@/lib/csrf";
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
-
-function getISTTimestamp() {
-  const now = new Date();
-  const istTime = new Date(now.getTime() + 5.5 * 60 * 60 * 1000);
-  return istTime.toISOString();
-}
+import { addDownloadLead, addNewsletterSubscriber } from "@/lib/local-store";
+import { submitToWeb3Forms } from "@/lib/web3forms";
 
 export async function POST(request: NextRequest) {
   try {
@@ -56,25 +46,24 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { email, resourceId, resourceTitle } = validation.data;
+    const { name, email, resourceId, resourceTitle } = validation.data;
+    const web3forms = await submitToWeb3Forms({
+      subject: "New resource download from heyykrish.site",
+      from_name: name,
+      email,
+      resource_id: resourceId,
+      resource_title: resourceTitle,
+      message: `Downloaded: ${resourceTitle || resourceId}`,
+    });
 
-    // Insert into Supabase
-    const { error } = await supabase
-      .from("download_leads")
-      .insert([
-        {
-          email,
-          source: `${resourceTitle || resourceId}`,
-          created_at: getISTTimestamp(),
-        },
-      ]);
+    await addDownloadLead({ email, name, resourceId, resourceTitle });
+    await addNewsletterSubscriber({
+      email,
+      name,
+      source: resourceTitle || resourceId,
+    });
 
-    if (error) {
-      console.error("Supabase error:", error);
-      throw error;
-    }
-
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, web3forms });
   } catch (error) {
     console.error("Error saving download lead:", error);
     return NextResponse.json(

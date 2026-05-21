@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
 import {
   checkRateLimit,
   getClientIP,
@@ -8,17 +7,8 @@ import {
 } from "@/lib/rate-limit";
 import { newsletterSchema, validateWithSchema } from "@/lib/validations";
 import { validateRequest } from "@/lib/csrf";
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
-
-function getISTTimestamp() {
-  const now = new Date();
-  const istTime = new Date(now.getTime() + 5.5 * 60 * 60 * 1000);
-  return istTime.toISOString();
-}
+import { addNewsletterSubscriber } from "@/lib/local-store";
+import { submitToWeb3Forms } from "@/lib/web3forms";
 
 export async function POST(request: NextRequest) {
   try {
@@ -58,31 +48,17 @@ export async function POST(request: NextRequest) {
 
     const { email, name, source } = validation.data;
 
-    // Insert into Supabase
-    const { error } = await supabase
-      .from("newsletter_subscribers")
-      .insert([
-        {
-          email,
-          name,
-          source,
-          created_at: getISTTimestamp(),
-        },
-      ]);
+    const web3forms = await submitToWeb3Forms({
+      subject: "New newsletter signup from heyykrish.site",
+      from_name: name || "Newsletter subscriber",
+      email,
+      source,
+      message: `Newsletter signup from ${source}`,
+    });
 
-    if (error) {
-      console.error("Supabase error:", error);
-      // Check if it's a duplicate email error
-      if (error.code === "23505") {
-        return NextResponse.json(
-          { error: "This email is already subscribed" },
-          { status: 400 }
-        );
-      }
-      throw error;
-    }
+    await addNewsletterSubscriber({ email, name, source });
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, web3forms });
   } catch (error) {
     console.error("Error saving newsletter subscriber:", error);
     return NextResponse.json(

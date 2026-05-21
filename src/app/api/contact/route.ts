@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
 import {
   checkRateLimit,
   getClientIP,
@@ -8,17 +7,8 @@ import {
 } from "@/lib/rate-limit";
 import { contactSchema, validateWithSchema } from "@/lib/validations";
 import { validateRequest } from "@/lib/csrf";
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
-
-function getISTTimestamp() {
-  const now = new Date();
-  const istTime = new Date(now.getTime() + 5.5 * 60 * 60 * 1000);
-  return istTime.toISOString();
-}
+import { addContactInquiry } from "@/lib/local-store";
+import { submitToWeb3Forms } from "@/lib/web3forms";
 
 export async function POST(request: NextRequest) {
   try {
@@ -57,28 +47,20 @@ export async function POST(request: NextRequest) {
     }
 
     const { name, email, company, message } = validation.data;
+    const web3forms = await submitToWeb3Forms({
+      subject: "New partnership inquiry from heyykrish.site",
+      from_name: name,
+      email,
+      company: company ?? undefined,
+      message,
+    });
 
-    // Insert into Supabase
-    const { error } = await supabase
-      .from("contact_inquiries")
-      .insert([
-        {
-          name,
-          email,
-          company,
-          message,
-          created_at: getISTTimestamp(),
-        },
-      ]);
-
-    if (error) {
-      console.error("Supabase error:", error);
-      throw error;
-    }
+    await addContactInquiry({ name, email, company, message });
 
     return NextResponse.json({
       success: true,
       message: "Contact inquiry saved successfully",
+      web3forms,
     });
   } catch (error) {
     console.error("Error saving contact inquiry:", error);
